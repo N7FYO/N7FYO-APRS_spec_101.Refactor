@@ -685,6 +685,11 @@ receive acknowledgements from those stations.
 
 All APRS transmissions use AX.25 UI-frames, with 9 fields of data:
 
+
+
+
+
+
 % Figure Here
 
 AX.25 UI-FRAME FORMAT
@@ -1442,49 +1447,41 @@ Invalid Data/Test Data
 In general, any APRS packet can contain a plain text comment (such as a
 beacon message) in the Information field, immediately following the APRS
 Data or APRS Data Extension.
+
 There is no separator between the APRS data and the comment unless
 otherwise stated.
+
 The comment may contain any printable ASCII characters (except | and ~,
 which are reserved for TNC channel switching).
+
 The maximum length of the comment field depends on the report — details
 are included in the description of each report.
+
 In special cases, the Comment field can also contain further APRS data:
 
+\begin{itemize}
 
 
-•
-
-Altitude in comment text (see Chapter 6: Time and Position Formats), or
+\item Altitude in comment text (see Chapter 6: Time and Position Formats), or
 in Mic-E status text (see Chapter 10: Mic-E Data Format).
 
-•
-
-Maidenhead Locator (grid square), in a Mic-E status text field (see
+\item Maidenhead Locator (grid square), in a Mic-E status text field (see
 Chapter 10: Mic-E Data Format) or in a Status Report (see Chapter 16:
 Status Reports).
 
-•
-
-Bearing and Number/Range/Quality parameters (/BRG/NRQ), in DF
+\item Bearing and Number/Range/Quality parameters (/BRG/NRQ), in DF
 reports (see Chapter 7: APRS Data Extensions).
 
-•
+\item Area Object Line Widths (see Chapter 11: Object and Item Reports).
 
-Area Object Line Widths (see Chapter 11: Object and Item Reports).
+\item Signpost Objects (see Chapter 11: Object and Item Reports).
 
-•
+\item Weather and Storm Data (see Chapter 12: Weather Reports).
 
-Signpost Objects (see Chapter 11: Object and Item Reports).
-
-•
-
-Weather and Storm Data (see Chapter 12: Weather Reports).
-
-•
-
-Beam Heading and Power, in Status Reports (see Chapter 16: Status
+\item Beam Heading and Power, in Status Reports (see Chapter 16: Status
 Reports).
 
+\end{itemize}
 
 \section{Base-91 Notation}
 
@@ -1531,17 +1528,17 @@ The default GPS earth datum is World Geodetic System (WGS) 1984.
 \section{Time Formats}
 
 APRS timestamps are expressed in three different ways:
-•
 
-Day/Hours/Minutes format
+\begin{itemize}
 
-•
+\item Day/Hours/Minutes format
 
-Hours/Minutes/Seconds format
+\item Hours/Minutes/Seconds format
 
-•
+\item Month/Day/Hours/Minutes format
 
-Month/Day/Hours/Minutes format
+
+\end{itemize}
 
 In all three formats, the 24-hour clock is used.
 Day/Hours/Minutes (DHM) format is a fixed 7-character field, consisting of
@@ -1557,7 +1554,9 @@ is 2345 hours local time on the 9th day of the month.
 
 It is recommended that future APRS implementations only transmit zulu
 format on the air.
+
 Note: The time in Status Reports may only be in zulu format.
+
 Hours/Minutes/Seconds (HMS) format is a fixed 7-character field,
 consisting of a 6-digit time in hours, minutes and seconds, followed by the h
 time-indicator character. For example:
@@ -1566,6 +1565,7 @@ time-indicator character. For example:
 is 23 hours 45 minutes and 17 seconds zulu.
 
 Note: This format may not be used in Status Reports.
+
 Month/Day/Hours/Minutes (MDHM) format is a fixed 8-character field,
 consisting of the month (01–12) and day-of-the-month (01–31), followed by
 the time in hours and minutes zulu. For example:
@@ -1710,17 +1710,16 @@ minutes of latitude and longitude may take any value in the range 00–99.
 
 Thus the station may be located anywhere inside a bounding box having the
 following corner coordinates:
-North West corner:
-North East corner:
-South East corner:
-South West corner:
 
+\begin{itemize}
 
+\item North West corner: 49 deg 3.99 mins N, 72 deg 1.99 mins W
+\item North East corner: 49 deg 3.99 mins N, 72 deg 1.00 mins W
+\item South East corner: 49 deg 3.00 mins N, 72 deg 1.00 mins W
+\item South West corner: 49 deg 3.00 mins N, 72 deg 1.99 mins W
 
-49 deg 3.99 mins N, 72 deg 1.99 mins W
-49 deg 3.99 mins N, 72 deg 1.00 mins W
-49 deg 3.00 mins N, 72 deg 1.00 mins W
-49 deg 3.00 mins N, 72 deg 1.99 mins W
+\end{itemize}
+
 
 \section{Default Null Position}
 
@@ -1739,23 +1738,20 @@ will contain the coordinates …0000.00N\00000.00W.…
 
 An alternative method of expressing a station’s location is to provide a
 Maidenhead locator (grid square). There are four ways of doing this:
-•
 
-In a Status Report — e.g. IO91SX/(/- represents the symbol for a “house”).
+\begin{itemize}
+  
+\item In a Status Report — e.g. IO91SX/(/- represents the symbol for a “house”).
 
-•
-
-In Mic-E Status Text — e.g. IO91SX/G
+\item In Mic-E Status Text — e.g. IO91SX/G
 (/G indicates a “grid square”).
 
-•
+\item In the Destination Address — e.g. IO91SX. (obsolete).
 
-In the Destination Address — e.g. IO91SX. (obsolete).
-
-•
-
-In AX.25 beacon text, with the [ APRS Data Type Identifier — e.g.
+\item In AX.25 beacon text, with the [ APRS Data Type Identifier — e.g.
 [IO91SX] (obsolete).
+
+\end{itemize}
 
 Grid squares may be in 6-character form (as above) or in the shortened
 4-character form (e.g. IO91).
@@ -1806,58 +1802,49 @@ APRS Data Extension. The extension may be one of the following:
 
 \section{Course and Speed}
 
-•
 
-CSE/SPD
-
+\begin{itemize}
+\item CSE/SPD
 Course and Speed (this may be followed by a further 8 bytes
 containing DF bearing and Number/Range/Quality
 parameters)
 
-•
+\item DIR/SPD
 
-DIR/SPD
+Wind Direction and Wind Speed
 
-\section{Wind Direction and Wind Speed}
-
-•
-
-PHGphgd
+\item PHGphgd
 
 Station Power and Effective Antenna Height/Gain/
 Directivity
 
-•
-
-RNGrrrr
+\item RNGrrrr
 
 Pre-Calculated Radio Range
 
-•
-
-DFSshgd
+\item DFSshgd
 
 DF Signal Strength and Effective Antenna Height/Gain
 
-•
-
-Tyy/Cxx
+\item Tyy/Cxx
 
 Area Object Descriptor
 
-
+\end{itemize}
 
 
 The 7-byte CSE/SPD Data Extension can be used to represent the course and
 speed of a vehicle or APRS Object.
 The course is expressed in degrees (001-360), clockwise from due north. The
 speed is expressed in knots. A slash / character separates the two.
+
 For example:
 088/036 represents a course 88 degrees, traveling at 36 knots.
 
 If the course and speed are unknown or not relevant, they can be set to
 000/000 or .../... or VVV/VVV
 VVV VVV .
+
 Note: In the special case of DF reports, a course of 000 means that the DF
 station is fixed. If the course is non-zero, the station is mobile.
 
@@ -2039,22 +2026,30 @@ The height code may in fact be any ASCII character 0–9 and above. This is
 so that larger heights for balloons, aircraft or satellites may be specified.
 
 For example:
-: is the height code for 10240 feet (approximately 1.9 miles).
-; is the height code for 20480 feet (approximately 3.9 miles), and so on.
+\begin{itemize}
+  
+\item : is the height code for 10240 feet (approximately 1.9 miles).
+\item ; is the height code for 20480 feet (approximately 3.9 miles), and so on.
+\end{itemize}
+
 The Directivity code offsets the PHG circle by one third in the indicated
 direction. This means a front-to-back ratio of 2 to 1. Most often this is used
 to indicate a favored direction or a null, even if an omni antenna is at the site.
 
 An example of the PHG Data Extension:
 
-PHG5132
+\begin{itemize}
+\item PHG5132
+\end{itemize}
 
+\begin{itemize}
+means
 
-
-means a power of 25 watts,
-an antenna height of 20 feet above the average local terrain,
-an antenna gain of 3 dB,
-and maximum gain due east.
+\item a power of 25 watts,
+\item an antenna height of 20 feet above the average local terrain,
+\item an antenna gain of 3 dB,
+\item and maximum gain due east.
+\end{itemize}
 
 
 Range Circle Plot
@@ -6061,12 +6056,14 @@ APRS Software Type
 
 A Weather Report may contain a single-character code S for the type of
 APRS software that is running at the weather station:
+\begin{verbatim}
 d = APRSdos
 M = MacAPRS
 P = pocketAPRS
 S = APRS+SA
 W = WinAPRS
 X = X-APRS (Linux)
+\end{verbatim}
 
 Weather Unit
 Type
@@ -6604,7 +6601,7 @@ Examples
 
 
 
-Storm Data
+\paragraph{Storm Data}
 
 APRS reports can contain data relating to tropical storms, hurricanes and
 tropical depressions. The format of the data is as follows:
@@ -6732,9 +6729,11 @@ Type Identifier is T.
 The report Sequence Number is a 3-character value — typically a 3-digit
 number, or the three letters MIC. In the case of MIC, there may or may not be
 a comma preceding the first analog data value.
+
 There are five 8-bit unsigned analog data values (expressed as 3-digit
 decimal numbers in the range 000–255), followed by a single 8-bit digital
 data value (expressed as 8 bytes, each containing 1 or 0).
+
 The Kantronics KPC-3+ TNC and APRS Micro Interface Module (MIM) use
 this format.
 
@@ -6812,6 +6811,7 @@ way. In practice, however, an APRS user can define the telemetry parameters
 binary data) at any time, and then send these definitions as APRS messages.
 Other stations receiving these messages will then know how to interpret the
 data.
+
 This is achieved by sending four messages:
 •
 
@@ -6832,6 +6832,7 @@ A Bit Sense/Project Name message.
 The messages addressee is the callsign of the station transmitting the
 telemetry data. For example, if N0QBF launches a balloon with the callsign
 N0QBF-11, then the four messages are addressed to N0QBF-11.
+
 See Chapter 14: Messages, Bulletins and Announcements for full details of
 message formats.
 
@@ -7209,10 +7210,12 @@ A message may also have an optional message identifier, which is appended
 to the message text. The message identifier consists of the character {
 followed by a message number (up to 5 alphanumeric characters, no spaces)
 to identify the message.
+
 Messages without a message identifier are not to be acknowledged.
 Messages with a message identifier are intended to be acknowledged by the
 addressee. The sending station will repeatedly send the message until it
 receives an acknowledgement, or it is canceled, or it times out.
+
 Message Format
 Message ID
 Addressee
