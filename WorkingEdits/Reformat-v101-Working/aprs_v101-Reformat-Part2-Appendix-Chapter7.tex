@@ -1,0 +1,134 @@
+\chapter{Appendix 7: Document Release History}
+
+
+Date
+
+Doc
+Version
+
+Status / Major Changes
+
+10 Oct 1999
+
+1.0 (Draft)
+
+Protocol Version 1.0. First public draft release.
+
+3 Dec 1999
+
+1.0.1g
+
+Protocol Version 1.0. Second public draft release. Much extended, incorporating packet format
+layouts, APRS symbol tables, compressed data format, Mic-E format, telemetry format.
+
+30 Apr 2000
+
+1.0.1m
+
+Protocol Version 1.0. Third public draft release.
+Major additions/changes to the draft 1.0.1g specification:
+
+\begin{itemize}
+Added a section on Map Views and Range Scale.
+Changed Destination Address SSID description (specifying generic APRS digipeater paths)
+to apply to all packets, not just Mic-E packets.
+Changed APRS destination “callsigns” to “destination addresses”.
+Added TEL* to the list of generic destination addresses.
+Added brief explanations of how several generic destination addresses are used.
+Added “Grid-in-To-Address” (but marked as obsolete).
+Extended the description of the Comment field, with pointers to what can appear in the field.
+Added explanation of base 91.
+Added paragraph on lack of consistency in on-air units, and default GPS datum = WGS84.
+APRS Data Type Identifiers Table:
+marked Shelter Data and Space Weather as reserved DTIs.
+marked the - DTI as unused (previously erroneously allocated to Killed Objects).
+marked the ' DTI to mean Current Mic-E data in Kenwood TM-D700 radios.
+marked the ‘ DTI as not used in Kenwood TM-D700 radios.
+Position Ambiguity: need only be specified in the latitude — the longitude will have the same
+level of ambiguity.
+Added the options of .../... and V V V /VV V V to express unknown course/speed.
+Added DFS parameter table.
+Added Quality table for BRG/NRQ data.
+Position, DF and Compressed Report formats: split the format diagrams into two parts (with
+and without timestamps).
+DF Reports: added notes:
+BRG/NRQ data is only valid when the symbol is /\.
+CSE=000 means the DF station is fixed, CSE non-zero means the station is moving.
+Compressed position reports: corrected the multiplication/division constants for encoding/
+decoding.
+Mic-E chapter rewritten and expanded. Emphasized the need to ensure that non-printing
+ASCII characters are not dropped. Corrected the Mic-E telemetry data format.
+Expanded the introductory description of Objects/Items. All Objects must have a timestamp.
+Added Area Object Extended Data field to Object and Item format diagrams.
+Added Object/Item format diagrams with compressed location data.
+Killed Objects/Items: now indicated by underscore after the name.
+Re-categorized weather reports: Raw, Positionless and Complete.
+Added a statement that temperatures below zero are expressed as -01 to -99.
+Added the options of ... and V V V to express unknown weather parameter values.
+Corrected the storm data format. Also, central pressure is now /ppppp (tenths of millibar).
+Corrected the telemetry parameter data (now APRS messages instead of AX.25 UI beacons).
+Added optional comment field to the Telemetry (T) format.
+Added a section describing the handling of multiple message acknowledgements.
+Added a section on NTS radiograms.
+Added Bulletin/Announcement implementation recommendations.
+Queries and Responses:
+Query Names (e.g. APRSD): all upper-case.
+A queried station need not respond if it has no relevant information to send.
+A queried station should ignore any query type that it does not recognize.
+APRSH: callsigns must be padded to 9 characters.
+Added PING as a synonym of APRST.
+Extended meteor scatter ERP beyond 810 watts, and added a lookup table.
+Maidenhead Locator: all letters must be transmitted in upper case, but may be received in
+either upper or lower case.
+Changed the definition of non-APRS packets — these are not APRS Status Messages, but
+may optionally be treated as such.
+APRS Symbols chapter substantially rewritten..
+Added section on Symbol Precedence (where more than one symbol appears in an APRS
+packet).
+Clarified some of the descriptions in the APRS Symbol Tables.
+Added overlay capability to the \a symbol (ARES/RACES etc).
+Separated the 7-bit ASCII table from the Dec/Hex (0x80-0xff) conversion table.
+Added several new entries and a units conversion table to the Glossary.
+Added new references to NMEA sentence formats and Maidenhead Locator formats.
+
+
+Date
+29 Aug 2000
+
+Doc
+Version
+1.0.1
+
+Status / Major Changes
+Protocol Version 1.0. Approved public release.
+
+Minor additions/changes to the draft 1.0.1m specification:
+• Added Foreword.
+• Replaced section on Map Views and Range Scale.
+• APRS Software Version No: added APDxxx (Linux aprsd server).
+• APRS Data Type Identifier: Designated [ as Maidenhead grid locator (but noted as obsolete).
+• Position Ambiguity: added a bounding box example.
+• Compressed Position Formats: for course/speed, corrected the range of possible values of the
+“c” byte to 0–89.
+• Mic-E: replaced the latitude example table, to show more explicitly how the N/S/E/W/Long
+offset bits are encoded.
+• Mic-E: removed the paragraph stating that there must be a space between the altitude and
+comment text — no space is required.
+• Mic-E: removed the note on inaccurate altitude data, as GPS Selective Availability has been
+switched off.
+• Object Reports: added timestamps to some of the examples (an Object Report must always
+have a timestamp).
+• Signposts: can be Objects or Items.
+• Storm Data: changed central pressure format to /pppp (i.e. to the nearest millibar/hPascal).
+• Storm Data: Hurricane Brenda examples: inserted a leading zero in the central pressure field
+(central pressure is 4 digits).
+• Telemetry Data: Added MIC as an alternative form of Sequence Number. MIC may or may
+not be followed by a comma.
+• Messages: added the reject message format.
+• Appendix 1: Agrelo format: changed the separator between Bearing and Quality to /.
+• Symbol Table: changed /( symbol from “Cloudy” to “Mobile Satellite Groundstation”.
+• Reformatted the Units Conversion Table.
+
+
+
+END OF DOCUMENT

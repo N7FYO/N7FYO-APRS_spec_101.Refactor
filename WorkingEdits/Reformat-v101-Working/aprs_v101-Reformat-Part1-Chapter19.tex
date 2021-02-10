@@ -1,0 +1,37 @@
+\chapter{Chapter 19: Other Packets}
+
+\section{Invalid Data or Test Data Packets}
+
+To indicate that a packet contains invalid data, or test data that does not
+conform to any standard APRS format, the , Data Type Identifier is used.
+For example, the Mic-E unit will generate such a packet if it detects that a
+received GPS sentence is not valid.
+
+Invalid Data / Test Data Format
+
+Bytes:
+
+,
+
+Invalid Data or Test Data
+
+1
+
+n
+
+Example
+,191146,V,4214.2466,N,07303.5181,W,417.238,114.5,091099,14.7,W/GPS FIX
+Invalid GPS data from a Mic-E unit. The unit has interpreted the V character in the
+received sentence to mean the data is invalid, and has stripped out the $GPRMC header.
+
+All Other Packets
+
+Packets that do not meet any of the formats described in this document are
+assumed to be non-APRS beacons. Programs can decide to handle these, or
+ignore them, but they must be able to process them without ill effects.
+APRS programs may treat such packets as APRS Status Reports. This allows
+APRS to accept any UI packet addressed to the typical beacon address to be
+captured as a status message. Typical TNC ID packets fall into this category.
+Once a proper Status Report (with the APRS Data Type Identifier >) has
+been received from a station it will not be overwritten by other non-APRS
+packets from that station.

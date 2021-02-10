@@ -1,0 +1,448 @@
+\chapter {Chapter 5: APRS Data in the AX.25 Information Field}
+
+\section {Generic Data Format}
+
+In general, the AX.25 Information field can contain some or all of the
+following information:
+\begin{itemize}
+\item  APRS Data Type Identifier
+\item  APRS Data
+\item  APRS Data Extension
+\item  Comment
+\end{itemize}
+
+% begin chart
+
+Generic APRS Information Field
+Data
+Type ID
+
+APRS Data
+
+APRS Data
+Extension
+
+Comment
+
+1
+
+n
+
+7
+
+n
+
+Bytes:
+
+% end chart
+
+\section{APRS Data Type Identifier}
+
+Every APRS packet contains an APRS Data Type Identifier (DTI). This
+determines the format of the remainder of the data in the Information field, as
+follows:
+
+% begin chart
+
+APRS Data Type Identifiers
+Ident
+
+Data Type
+
+Ident
+
+Data Type
+
+0x1c
+
+Current Mic-E Data (Rev 0 beta)
+
+<
+
+Station Capabilities
+
+0x1d
+
+Old Mic-E Data (Rev 0 beta)
+
+=
+
+Position without timestamp (with APRS
+messaging)
+
+!
+
+Position without timestamp (no APRS
+messaging), or Ultimeter 2000 WX Station
+
+>
+
+Status
+
+"
+
+[Unused]
+
+?
+
+Query
+
+#
+
+Peet Bros U-II Weather Station
+
+@
+
+Position with timestamp (with APRS messaging)
+
+$
+
+Raw GPS data or Ultimeter 2000
+
+%
+
+Agrelo DFJr / MicroFinder
+
+&
+
+[Reserved — Map Feature]
+
+'
+
+Old Mic-E Data (but Current data for TM-D700)
+
+[
+
+Maidenhead grid locator beacon (obsolete)
+
+(
+
+[Unused]
+
+\
+
+[Unused]
+
+)
+
+Item
+
+]
+
+[Unused]
+
+*
+
+Peet Bros U-II Weather Station
+
+^
+
+[Unused]
+
++
+
+[Reserved — Shelter data with time]
+
+_
+
+Weather Report (without position)
+
+,
+
+Invalid data or test data
+
+‘
+
+-
+
+[Unused]
+
+.
+
+[Reserved — Space weather]
+
+{
+
+User-Defined APRS packet format
+
+/
+
+Position with timestamp (no APRS messaging)
+
+|
+
+[Do not use — TNC stream switch character]
+
+[Do not use]
+
+}
+
+Third-party traffic
+
+:
+
+Message
+
+~
+
+[Do not use — TNC stream switch character]
+
+;
+
+Object
+
+0–9
+
+A–S
+T
+U–Z
+
+a–z
+
+
+
+[Do not use]
+Telemetry data
+[Do not use]
+
+Current Mic-E Data (not used in TM-D700)
+[Do not use]
+
+
+
+% end chart
+
+
+\textbf{Note:} There is one exception to the requirement for the Data Type Identifier
+to be the first character in the Information field — this is the Position without
+Timestamp (indicated by the ! DTI). The ! character may occur anywhere
+up to and including the 40th character position in the Information field. This
+variability is required to support X1J TNC digipeaters which have a string of
+unmodifiable text at the beginning of the field.
+
+% footnote that this exception was later removed in spec version 1.1 (check)
+
+\textbf{Note:} The Kenwood TM-D700 radio uses the ' DTI for current Mic-E data.
+The radio does not use the ‘ DTI.
+
+\section{APRS Data and Data Extension}
+
+
+
+There are 10 main types of APRS Data:
+
+\begin {itemize}
+
+\item Position
+\item Direction Finding
+\item Objects and Items
+\item Weather
+\item Telemetry
+\item Messages, Bulletins and Announcements
+\item Queries
+\item Responses
+\item Status
+\item Other
+
+\end{itemize}
+
+Some of this data may also have an APRS Data Extension that provides
+additional information.
+
+The APRS Data and optional Data Extension follow the Data Type Identifier.
+The table on the next page shows a complete list of all the different possible
+types of APRS Data and APRS Data Extension.
+
+
+
+Possible APRS Data
+
+Possible APRS Data Extension
+
+Time (DHM or HMS)
+Lat/long coordinates
+Compressed lat/long/course/speed/radio range/altitude
+Symbol Table ID and Symbol Code
+Mic-E longitude, speed and course, telemetry or status
+Raw GPS NMEA sentence
+Raw weather station data
+
+Course and Speed
+Power, Effective Antenna Height/Gain/Directivity
+Pre-Calculated Radio Range
+Omni DF Signal Strength
+Storm Data (in Comment field)
+
+Time (DHM or HMS)
+Lat/long coordinates
+Compressed lat/long/course/speed/radio range/altitude
+Symbol Table ID and Symbol Code
+
+Course and Speed
+Power, Effective Antenna Height/Gain/Directivity
+Pre-Calculated Radio Range
+Omni DF Signal Strength
+Bearing and Number/Range/Quality
+(in Comment field)
+
+Objects and
+Items
+
+Object name
+Item name
+Time (DHM or HMS)
+Lat/long coordinates
+Compressed lat/long/course/speed/radio range/altitude
+Symbol Table ID and Symbol Code
+Raw weather station data
+
+Course and Speed
+Power, Effective Antenna Height/Gain/Directivity
+Pre-Calculated Radio Range
+Omni DF Signal Strength
+Area Object
+Storm Data (in Comment field)
+Wind Direction and Speed
+Storm Data (in Comment field)
+
+Weather
+
+Time (MDHM)
+Lat/long coordinates
+Compressed lat/long/course/speed/radio range/altitude
+Symbol Table ID and Symbol Code
+Raw weather station data
+
+Position
+
+Direction Finding
+
+Telemetry
+Messages,
+Bulletins and
+Announcements
+
+Queries
+
+Responses
+
+Status
+
+Other
+
+Telemetry (non Mic-E)
+Addressee
+Message Text
+Message Identifier
+Message Acknowledgement
+Bulletin ID, Announcement ID
+Group Bulletin ID
+Query Type
+Query Target Footprint
+Addressee (Directed Query)
+Position
+Object/Item
+Weather
+Status
+Message
+Digipeater Trace
+Stations Heard
+Heard Statistics
+Station Capabilities
+
+Course and Speed
+Power, Effective Antenna Height/Gain/Directivity
+Pre-Calculated Radio Range
+Omni DF Signal Strength
+Area Object
+Wind Direction and Speed
+
+Time (DHM zulu)
+Status text
+Meteor Scatter Beam Heading/Power
+Maidenhead Locator (Grid Square)
+Altitude (Mic-E)
+E-mail message
+Third-Party forwarding
+Invalid Data/Test Data
+
+
+\section{Comment Field}
+
+In general, any APRS packet can contain a plain text comment (such as a
+beacon message) in the Information field, immediately following the APRS
+Data or APRS Data Extension.
+
+There is no separator between the APRS data and the comment unless
+otherwise stated.
+
+The comment may contain any printable ASCII characters (except | and ~,
+which are reserved for TNC channel switching).
+
+The maximum length of the comment field depends on the report — details
+are included in the description of each report.
+
+In special cases, the Comment field can also contain further APRS data:
+
+\begin{itemize}
+
+
+\item Altitude in comment text (see Chapter 6: Time and Position Formats), or
+in Mic-E status text (see Chapter 10: Mic-E Data Format).
+
+\item Maidenhead Locator (grid square), in a Mic-E status text field (see
+Chapter 10: Mic-E Data Format) or in a Status Report (see Chapter 16:
+Status Reports).
+
+\item Bearing and Number/Range/Quality parameters (/BRG/NRQ), in DF
+reports (see Chapter 7: APRS Data Extensions).
+
+\item Area Object Line Widths (see Chapter 11: Object and Item Reports).
+
+\item Signpost Objects (see Chapter 11: Object and Item Reports).
+
+\item Weather and Storm Data (see Chapter 12: Weather Reports).
+
+\item Beam Heading and Power, in Status Reports (see Chapter 16: Status
+Reports).
+
+\end{itemize}
+
+\section{Base-91 Notation}
+
+Two APRS data formats use base-91 notation: lat/long coordinates in
+compressed format (see Chapter 9) and the altitude in Mic-E format (see
+Chapter 10).
+
+Base-91 data is compressed into a short string of characters. All the
+characters are printable ASCII, with character codes in the range 33–124
+decimal (i.e. ! through |).
+
+To compute the base-91 ASCII character string for a given data value, the
+value is divided by progressively reducing powers of 91 until the remainder
+is less than 91. At each step, 33 is added to the modulus of the division
+process to obtain the corresponding ASCII character code.
+
+For example, for a data value of 12345678:
+\begin{verbatim}
+12345678 / 913 = modulus 16, remainder 288542
+288542 / 912 = modulus 34, remainder 6988
+6988 / 911
+= modulus 76, remainder 72
+\end{verbatim}
+
+The four ASCII character codes are thus 49 (i.e. 16+33), 67 (i.e. 34+33), 109
+(i.e. 76+33) and 105 (i.e. 72+33), corresponding to the ASCII string 1Cmi.
+
+\section{APRS Data Units}
+
+For historical reasons there is some lack of consistency between units of data
+in APRS packets — some speeds are in knots, others in miles per hour; some
+altitudes are in feet, others in meters, and so on. It is emphasized that this
+specification describes the units of data as they are transmitted on-air. It is
+the responsibility of APRS applications to convert the on-air units to more
+suitable units if required.
+
+The default GPS earth datum is World Geodetic System (WGS) 1984.
+
+

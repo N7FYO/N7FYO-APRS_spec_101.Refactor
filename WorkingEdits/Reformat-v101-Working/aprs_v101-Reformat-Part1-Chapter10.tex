@@ -1,0 +1,222 @@
+\chapter{Chapter 10: Mic-E Data Format}
+
+Example of
+Decoding the
+Information Field
+Data
+
+If the first 9 bytes of the Information field contain ‘(_f n "Oj/, and the
+destination address specifies that the station is in the western hemisphere
+with a longitude offset of +100 degrees, then the data is decoded as follows:
+
+\begin{itemize}
+\item  ‘ is the APRS Data Type Identifier for a Mic-E packet containing current GPS data.
+\item ( is the d+28 byte. The ( character has the value 40 decimal. Subtracting
+28 gives 12. The longitude offset (in the destination address) is +100
+degrees, so the longitude is 100 + 12 = 112 degrees.
+
+\item _ is the m+28 byte. The _ character has the value 95 decimal. Subtracting
+28 gives 67. This is ™ 60, so subtracting 60 gives a value of 7 minutes
+
+\item longitude.
+
+\item f is the h+28 byte. The f character has the value 102 decimal.
+
+\item Subtracting 28 gives 74 hundredths of a minute.
+Thus the longitude is 112 degrees 7.74 minutes west.
+The speed and course are calculated as follows:
+
+\item n is the SP+28 byte. The n character has the value 110 decimal. After
+subtracting 28, the result is 82. As this is ™ 80, a further 80 is subtracted,
+leaving a result of 2 tens of knots.
+
+\item " is the DC+28 byte. The " character has the value 34 decimal.
+
+\item Subtracting 28 gives 6. Dividing this by 10 gives a quotient of 0 (units of
+speed). Adding the first part of the speed, multiplied by 10 (i.e. 20) to the
+quotient (0) gives a final computed speed of 20 knots.
+The remainder from the division is 6. Subtracting 4 gives the course in
+hundreds of degrees; i.e. 2.
+
+\item O (upper-case letter “O”) is the SE+28 byte. The O character has the value
+79 decimal. Subtracting 28 gives 51. Adding this to the remainder
+calculated above, multiplied by 100 (i.e. 200), gives the final value of
+251 degrees for the course.
+
+\end {itemize}
+
+The last two characters (j/) represent the jeep symbol from the Primary
+Symbol Table.
+
+
+
+\section {Mic-E Position Ambiguity}
+
+As mentioned in Chapter 6 (Time and Position Formats), a station may
+reduce the precision of its position by introducing position ambiguity. This is
+also possible in Mic-E data format.
+
+The position ambiguity is specified for the latitude (in the destination
+address). The same degree of ambiguity will then also apply to the longitude.
+For example, if the destination address is T4SQZZ, the last two digits of the
+latitude are ambiguous (represented by ZZ). Then, if the longitude data in the
+Information field is (_f , as in the above example, the last two digits of the
+computed longitude will be ignored — that is, the longitude will be 112
+degrees 7 minutes.
+
+\section {Mic-E Telemetry Data}
+
+The Information field may optionally contain either Mic-E telemetry data
+values or Mic-E status text.
+If the byte following the Symbol Table Identifier is one of the Telemetry
+Flag characters (‘,' or 0x1d), then telemetry data follows:
+Optional Mic-E Telemetry Data
+Telemetry
+Flag
+
+Bytes:
+
+Telemetry Data Channels
+
+F
+
+Ch 1
+
+Ch 2
+
+Ch 3
+
+Ch 4
+
+Ch 5
+
+1
+
+1/2
+
+1/2
+
+1/2
+
+1/2
+
+1/2
+
+
+The Telemetry Flag F is one of:
+
+\begin{itemize}
+  
+\item ‘
+2 printable hex telemetry values follow (channels 1 and 3).
+'
+5 printable hex telemetry values follow.
+0x1d 5 binary telemetry values follow (Rev. 0 beta units only).
+If F is ‘ or ', each channel requires 2 bytes, containing a 2-digit printable
+hexadecimal representation of a value ranging from 0–255. For example, 254
+is represented as FE.
+If F is 0x1d, each channel requires one byte, containing an 8-bit binary value.
+For example, if the telemetry data is '7200007100, the ' indicates that 5
+bytes of telemetry follow, coded in hexadecimal:
+0x72 = 114 decimal
+0x00 = 0 decimal
+0x00 = 0 decimal
+0x71 = 113 decimal
+0x00 = 0 decimal
+
+\end {itemize}
+
+\subsection{Mic-E Status Text}
+
+As an alternative to telemetry data, the packet may include Mic-E status text.
+The status text may be any length that fits in the rest of the Information field.
+The Mic-E status text must not start with ‘,' or 0x1d, otherwise it will be
+confused with telemetry data.
+
+It is possible to include a standard APRS-formatted position in the Mic-E
+status text field. A suitable position will cause the APRS display software to
+override any position data the Mic-E has encoded. This is useful if using a
+Mic-E without a GPS receiver.
+
+
+Note: The Kenwood radios automatically insert a special type code at the
+front of the status text string (i.e. in the 10th character of the Information
+field):
+>
+Kenwood TH-D7:
+Kenwood TM-D700: ]
+
+These characters should not be confused with the APRS Data Type Identifier
+that appears at the start of reports.
+
+It is envisaged that other Mic-E-compatible devices will be allocated their
+own type codes in future.
+
+Note: When Kenwood radios receive the status, they can only display a small
+number of text characters:
+
+Kenwood TH-D7:
+20 characters
+
+Kenwood TM-D700: 28 characters
+Note: The Kenwood TM-D700 radio uses the ' (apostrophe) instead of the ‘
+(grave) APRS Data Type Identifier to represent current GPS data. A
+suggested way of detecting this situation is to examine the first and 10th
+characters of the Information field; if they are ' and ] respectively, then the
+packet is almost certainly from a TM-D700.
+
+\subsection{Maidenhead Locator in the Mic-E Status Text Field}
+
+The Mic-E status text field can contain a Maidenhead locator.
+If the locator is followed by a plain text comment, the first character of the
+text must be a space. For example:
+
+IO91SX/GV
+V HelloV world
+V HelloV world
+>IO91SX/GV
+]IO91SX/GV
+V HelloV world
+
+(from a Mic-E or PIC-E)
+(from a Kenwood TH-D7)
+(from a Kenwood TM-D700)
+
+(/G is the grid locator symbol).
+
+Altitude in the
+Mic-E Status Text
+Field
+
+The Mic-E status text field can contain the station’s altitude. The altitude is
+expressed in the form xxx}, where xxx is in meters relative to 10km below
+mean sea level (the deepest ocean), to base 91.
+For example, to compute the xxx characters for an altitude of 200 feet:
+200 feet = 61 meters = 10061 meters relative to the datum
+10061 / 912 = 1, remainder 1780
+1780 / 91
+= 19, remainder 51
+Adding 33 to each of the highlighted values gives 34, 52 and 84 for the
+ASCII codes of xxx.
+
+
+Thus the 4-character altitude string is "4T}
+Some examples:
+"4T}
+>"4T}
+]"4T}
+
+Mic-E Data in
+Non-APRS
+Networks
+
+Some parts of the Mic-E AX.25 Information field may contain binary data
+(i.e. non-printable ASCII characters). If such a packet is constrained to the
+APRS network, this should not cause any difficulties.
+If, however, the packet is to be forwarded via a network that does not reliably
+preserve binary data (e.g. the Internet), then it is necessary to convert the data
+to a format that will preserve it.
+Further, if the packet subsequently re-emerges back onto the APRS network,
+it will then be necessary to re-convert the data back to its original format.
+
+

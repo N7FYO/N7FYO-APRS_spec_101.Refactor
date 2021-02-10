@@ -1,0 +1,467 @@
+\chapter{Chapter 13: Telemetry Data}
+
+
+The AX.25 Information field can contain telemetry data. The APRS Data
+Type Identifier is T.
+
+\section{Telemetry Report Format}
+
+The report Sequence Number is a 3-character value — typically a 3-digit
+number, or the three letters MIC. In the case of MIC, there may or may not be
+a comma preceding the first analog data value.
+
+There are five 8-bit unsigned analog data values (expressed as 3-digit
+decimal numbers in the range 000–255), followed by a single 8-bit digital
+data value (expressed as 8 bytes, each containing 1 or 0).
+
+The Kantronics KPC-3+ TNC and APRS Micro Interface Module (MIM) use
+this format.
+
+Telemetry Report Format
+
+Bytes:
+
+Sequence
+No
+
+Analog
+Value 1
+
+Analog
+Value 2
+
+Analog
+Value 3
+
+Analog
+Value 4
+
+Analog
+Value 5
+
+Digital
+Value
+
+T
+
+#xxx,
+
+aaa,
+
+aaa,
+
+aaa,
+
+aaa,
+
+aaa,
+
+bbbbbbbb
+
+1
+
+5
+
+4
+
+4
+
+4
+
+4
+
+4
+
+8
+
+Comment
+
+n
+
+Examples
+T#005,199,000,255,073,123,01101001
+T#MIC199,000,255,073,123,01101001
+On-Air Definition of
+Telemetry
+Parameters
+
+In principle, received telemetry data may be interpreted in any appropriate
+way. In practice, however, an APRS user can define the telemetry parameters
+(such as quadratic coefficients for the analog values, or the meaning of the
+binary data) at any time, and then send these definitions as APRS messages.
+Other stations receiving these messages will then know how to interpret the
+data.
+
+This is achieved by sending four messages:
+•
+
+A Parameter Name message.
+
+•
+
+A Unit/Label message.
+
+•
+
+An Equation Coefficients message.
+
+•
+
+A Bit Sense/Project Name message.
+
+The messages addressee is the callsign of the station transmitting the
+telemetry data. For example, if N0QBF launches a balloon with the callsign
+N0QBF-11, then the four messages are addressed to N0QBF-11.
+
+See Chapter 14: Messages, Bulletins and Announcements for full details of
+message formats.
+
+The Parameter Name message contains the names (N) associated with the
+five analog channels and the 8 digital channels. Its format is as follows:
+
+Parameter Name
+Message
+
+Telemetry Parameter Name Message Data
+Note the different byte counts, which include commas where shown. The list may stop at any field.
+
+Bytes:
+
+PARM.
+
+A1
+N…
+
+A2
+,N…
+
+A3
+,N…
+
+A4
+,N…
+
+A5
+,N…
+
+B1
+,N…
+
+B2
+,N…
+
+B3
+,N…
+
+B4
+,N…
+
+B5
+,N…
+
+B6
+,N…
+
+B7
+,N…
+
+B8
+,N…
+
+5
+
+1-7
+
+1-7
+
+1-6
+
+1-6
+
+1-5
+
+1-6
+
+1-5
+
+1-4
+
+1-4
+
+1-4
+
+1-3
+
+1-3
+
+1-3
+
+Example
+:N0QBF-11V:PARM.Battery,Btemp,ATemp,Pres,Alt,Camra,Chut,Sun,10m,ATV
+
+Note: The field widths are not all the same (this is a legacy arising from
+earlier limitations in display screen width). Note also that the byte counts
+include the comma separators where shown.
+The list can terminate after any field.
+
+The Unit/Label message specifies the units (U) for the analog values, and the
+labels (L) associated with the digital channels:
+
+Unit/Label Message
+
+Telemetry Unit/Label Message Data
+Note the different byte counts, which include commas where shown. The list may stop at any field.
+
+Bytes:
+
+UNIT.
+
+A1
+U…
+
+A2
+,U…
+
+A3
+,U…
+
+A4
+,U…
+
+A5
+,U…
+
+B1
+,L…
+
+B2
+,L…
+
+B3
+,L…
+
+B4
+,L…
+
+B5
+,L…
+
+B6
+,L…
+
+B7
+,L…
+
+B8
+,L…
+
+5
+
+1-7
+
+1-7
+
+1-6
+
+1-6
+
+1-5
+
+1-6
+
+1-5
+
+1-4
+
+1-4
+
+1-4
+
+1-3
+
+1-3
+
+1-3
+
+Example
+:N0QBF-11V:UNIT.v/100,deg.F,deg.F,Mbar,Kft,Click,OPEN,on,on,hi
+
+Note: Again, the field widths are not all the same, and the byte counts
+include the comma separators where shown.
+The list can terminate after any field.
+
+
+The Equation Coefficients message contains three coefficients (a, b and c)
+for each of the five analog channels.
+
+Equation
+Coefficients
+Message
+
+Telemetry Equation Coefficients Message Data
+2
+The list may stop at any field. Value = a x v + b x v + c
+A1
+
+Bytes:
+
+A2
+
+A3
+
+A4
+
+A5
+
+EQNS.
+
+a
+
+,b
+
+,c
+
+,a
+
+,b
+
+,c
+
+,a
+
+,b
+
+,c
+
+,a
+
+,b
+
+,c
+
+,a
+
+,b
+
+,c
+
+5
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+n
+
+Example
+:N0QBF-11V:EQNS.0,5.2,0,0,.53,-32,3,4.39,49,-32,3,18,1,2,3
+
+To obtain the final value of an analog channel, these coefficients are
+substituted into the equation:
+
+$ a x v2 + b x v + c $ 
+
+where v is the raw received analog value.
+For example, analog channel A1 in the above beacon examples relates to the
+battery voltage, expressed in hundredths of volts, and a = 0, b = 5.2, c = 0. If
+the raw received value v is 199, then the voltage is calculated as:
+voltage = 0 x 1992 + 5.2 x 199 + 0
+= 1034.8 hundredths of a volt
+= 10.348 volts
+The Bit Sense/Project Name message contains two types of information:
+
+Bit Sense/
+Project Name
+Message
+
+•
+
+An 8-bit pattern of ones and zeros, specifying the sense of each digital
+channel that matches the corresponding label.
+
+•
+
+The name of the project associated with the telemetry station.
+
+Telemetry Bit Sense/Project Name Message Data
+
+Bytes:
+
+BITS.
+
+B1
+x
+
+B2
+x
+
+B3
+x
+
+B4
+x
+
+B5
+x
+
+B6
+x
+
+B7
+x
+
+B8
+x
+
+Project Title
+
+5
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+0-23
+
+Example
+:N0QBF-11V:BITS.10110000,N0QBF’s Big Balloon
+
+Thus in the above message examples, if digital channel B1 is 1, this indicates
+the camera has clicked. If channel B2 is 0, the parachute has opened, and so
+on.

@@ -1,0 +1,294 @@
+\chapter{Chapter 4: APRS Data in the AX.25 Destination and Source Address Fields}
+
+
+\section{The AX.25 Destination Address Field}
+
+The AX.25 Destination Address field can contain 6 different types of APRS
+information:
+
+\begin{itemize}
+
+\item A generic APRS address.
+
+\item A generic APRS address with a symbol.
+
+\item An APRS software version number.
+
+\item Mic-E encoded data.
+
+\item A Maidenhead Grid Locator (obsolete).
+
+\item An Alternate Net (ALTNET) address.
+
+\end{itemize}
+
+In all of these cases, the Destination Address SSID may specify a generic
+APRS digipeater path.
+
+\section {Generic APRS Destination Addresses}
+
+APRS uses the following generic beacon-style destination addresses:
+
+% Start Chart
+
+AIR* †
+DGPS*
+QST*
+TEL*
+
+ALL*
+DRILL*
+QTH*
+TEST*
+
+AP*
+DX*
+RTCM*
+TLM*
+
+BEACON
+ID*
+SKY*
+WX*
+
+CQ*
+GPS*
+JAVA* MAIL*
+SPACE* SPC*
+ZIP* †
+
+DF*
+MICE*
+SYM*
+
+% End chart
+
+The asterisk is a wildcard, allowing the address to be extended (up to a total
+of 6 alphanumeric characters). Thus, for example, WX1, WX12 and WX12CD
+are all valid APRS destination addresses.
+† The AIR* and ZIP* addresses are being phased out, but are needed at
+present for backward compatibility.
+
+All of these addresses have an SSID of –0. Non-zero SSIDs are reserved for
+generic APRS digipeating.
+These addresses are copied by everyone. All APRS software must accept
+packets with these destination addresses.
+
+The address GPS (i.e. the 3-letter address GPS, not GPS*) is specifically
+intended for use by trackers sending lat/long positions via digipeaters which
+have the capability of converting positions to compressed data format.
+The addresses DGPS and RTCM are used by differential GPS correction
+stations. Most software will not make use of packets using this address, other
+than to pass them on to an attached GPS unit.
+
+The address SKY is used for Skywarn stations.
+Packets addressed to SPCL are intended for special events. APRS software
+can display such packets to the exclusion of all others, to minimize clutter on
+the screen from other stations not involved in the special event.
+The addresses TEL and TLM is used for telemetry stations.
+
+\section{Generic APRS Address with Symbol}
+
+APRS uses several of the above-listed generic addresses in a special way, to
+specify not only an address but also a display symbol. These special
+addresses are GPSxyz, GPSCnn, GPSEnn, SPCxyz and SYMxyz, and are
+intended for use where it is not possible to include the symbol in the AX.25
+Information field.
+
+The GPS addresses above are for general use.
+The SPC addresses are intended for special events.
+The SYM addresses are reserved for future use.
+The characters xy and nn refer to entries in the APRS Symbol Tables. The
+character z specifies a symbol overlay. See Chapter 20: APRS Symbols and
+Appendix 2 for more information.
+
+\section{APRS Software Version Number}
+
+The AX.25 Destination Address field can contain the version number of the
+APRS software that is running at the station. Knowledge of the version
+number can be useful when debugging.
+The following software version types are reserved (xx and xxx indicate a
+version number):
+
+\begin{itemize}
+
+\item APCxxx APRS/CE, Windows CE
+\item APDxxx Linux aprsd server
+\item APExxx PIC-Encoder
+\item APIxxx Icom radios (future)
+\item APICxx ICQ messaging
+\item APKxxx Kenwood radios
+\item APMxxx MacAPRS
+\item APPxxx pocketAPRS
+\item APRxxx APRSdos
+\item APRS older versions of APRSdos
+\item APRSM older versions of MacAPRS
+\item APRSW older versions of WinAPRS
+\item APSxxx APRS+SA
+\item APWxxx WinAPRS
+\item APXxxx X-APRS
+\item APYxxx Yaesu radios (future)
+\item APZxxx Experimental
+
+\end{itemize}
+
+This table will be added to by the APRS Working Group.
+For example, a station using version 3.2.6 of MacAPRS could use the
+destination callsign \texttt{APM326}.
+
+The Experimental destination is designated for temporary use only while a
+product is being developed, before a special APRS Software Version address
+is assigned to it.
+
+
+\section {Mic-E Encoded Data}
+
+Another alternative use of the AX.25 Destination Address field is to contain
+Mic-E encoded data. This data includes:
+•
+
+The latitude of the station.
+
+•
+
+A West/East Indicator and a Longitude Offset Indicator (used in
+longitude computations).
+
+•
+
+A Message Code.
+
+•
+
+The APRS digipeater path.
+
+This data is used with associated data in the AX.25 Information field to
+provide a complete Position Report and other information about the station
+(see Chapter 10: Mic-E Data Format).
+
+\section {Maidenhead Grid Locator in Destination Address}
+
+The AX.25 Destination Address field may contain a 6-character Maidenhead
+Grid Locator. For example: IO91SX. This format is typically used by meteor
+scatter and satellite operators who need to keep packets as short as possible.
+
+This format is now obsolete.
+
+\section{Alternate Nets}
+
+Any other destination address not included in the specific generic list or the
+other categories mentioned above may be used in Alternate Nets (ALTNETs)
+by groups of individuals for special purposes. Thus they can use the APRS
+infrastructure for a variety of experiments without cluttering up the maps and
+lists of other APRS stations. Only stations using the same ALTNET address
+should see their data.
+
+\section{Generic APRS Digipeater Path}
+
+
+The SSID in the Destination Address field of all packets is coded to specify
+the APRS digipeater path.
+
+If the Destination Address SSID is –0, the packet follows the standard AX.25
+digipeater (“VIA”) path contained in the Digipeater Addresses field of the
+AX.25 frame.
+
+If the Destination Address SSID is non-zero, the packet follows one of 15
+generic APRS digipeater paths.
+
+
+The SSID field in the Destination Address (i.e. in the 7th address byte) is
+encoded as follows:
+
+% Chart start
+
+APRS Digipeater Paths in Destination Address SSID
+SSID
+
+The AX.25 Source
+Address SSID to
+specify Symbols
+
+Path
+
+-0
+
+Use VIA path
+
+-1
+-2
+
+SSID
+
+Path
+
+-8
+
+North path
+
+WIDE1-1
+
+-9
+
+South path
+
+WIDE2-2
+
+-10
+
+East path
+
+-3
+
+WIDE3-3
+
+-11
+
+West path
+
+-4
+
+WIDE4-4
+
+-12
+
+North path + WIDE
+
+-5
+
+WIDE5-5
+
+-13
+
+South path + WIDE
+
+-6
+
+WIDE6-6
+
+-14
+
+East path + WIDE
+
+-7
+
+WIDE7-7
+
+-15
+
+West path + WIDE
+
+% end chart
+
+\section{The AX.25 Source Address SSID to specify Symbols}
+
+The AX.25 Source Address field contains the callsign and SSID of the
+originating station. If the SSID is –0, APRS does not treat it in any special
+way.
+
+If, however, the Source Address SSID is non-zero, APRS interprets it as a
+display icon. This is intended for use only with stand-alone trackers where
+there is no other method of specifying a display symbol or a destination
+address (e.g. MIM trackers or NMEA trackers).
+
+For more information, see Chapter 20: APRS Symbols.

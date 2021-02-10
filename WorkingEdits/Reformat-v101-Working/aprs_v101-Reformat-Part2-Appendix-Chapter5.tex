@@ -1,0 +1,464 @@
+\chapter{Appendix 5: Glossary}
+
+
+\paragraph{Altitude}
+
+1. In Mic-E format, the altitude in meters relative to 10km below mean sea level.
+2. In Comment text, the altitude in feet above mean sea level.
+
+Announcement
+Announcement Identifier
+Antenna Height
+
+\paragraph {APRS}
+
+An APRS message that is repeated a few times an hour, perhaps for several days.
+A single letter A-Z that identifies a particular announcement.
+In NMEA sentences, the height of the antenna in meters relative to mean sea level.
+(The antenna height in GPS NMEA sentences fluctuates wildly because of Selective
+Availability, and should only be used if DGPS correction is applied).
+Automatic Position Reporting System.
+
+APRS Data
+
+The data that follows the APRS Data Type Identifier in the AX.25 Information field and
+precedes the APRS Data Extension.
+
+APRS Data Extension
+
+A 7-byte extension to APRS Data. The Data Extension includes one of Course/Speed,
+Wind Direction/Wind Speed, Station Power/Antenna Effective Height/Gain/Directivity,
+Pre-Calculated Radio Range, DF Signal Strength/Effective Antenna Height/Gain, Area
+Object Descriptor.
+
+APRS Digipeater Path
+
+A digipeater path via repeaters with RELAY, WIDE and related aliases. Used in Mic-E
+compressed location format.
+
+APRS Data Type Identifier
+
+The single-byte identifier that specifies what kind of APRS information is contained in
+the AX.25 Information field.
+
+Area Object
+
+A user-defined graphic object (circle, ellipse, triangle, box and line).
+
+ASCII
+
+American Standard Code for Information Interchange. A 7-bit character code
+conforming to ANSI X3.4 (1968) — see Appendix 3 for character definitions.
+
+AX.25
+
+Amateur Packet-Radio Link-Layer Protocol.
+
+Base 91
+
+Number base used to ensure that numeric values are transmitted as printable ASCII
+characters. To obtain the character string corresponding to a numeric value, divide the
+value progressively by decreasing powers of 91, and add 33 decimal to the result at
+each step. Printable characters are in the range !..{. Used in compressed lat/long and
+altitude computation.
+
+Bulletin
+
+An APRS message that is repeated several times an hour, for a small number of
+hours. A General Bulletin is addressed to no-one in particular. A Group Bulletin is
+addressed to a named group (e.g. WX).
+
+Bulletin Identifier
+Destination Address field
+DF Report
+DGPS
+DHM
+DHMz
+Digipeater
+Digipeater Addresses field
+Directivity
+DX Cluster
+ECHO
+Effective Antenna Height
+
+Document Version 1.0.1: 29 August 2000
+
+A single digit 0-9 that identifies a particular bulletin.
+The AX.25 Destination Address field, which can contain an APRS destination callsign
+or Mic-E encoded data.
+A report containing DF bearing and range.
+Differential GPS. Used to overcome the errors arising from Selective Availability.
+7-character timestamp: day-of-the-month, hour, minute, zulu or local time.
+7-character timestamp: day-of-the-month, hour, minute, zulu only.
+A station that relays AX.25 packets. A chain of up to 8 digipeaters may be specified.
+The AX.25 field containing 0–8 digipeater callsigns (or aliases).
+The favored direction of an antenna. Used in the PHG Data Extension.
+A network host that collects and disseminates user reports of DX activity.
+A generic APRS digipeater callsign alias, for an HF digipeater.
+The height of an antenna above the local terrain (not above sea level). A first-order
+indicator of the antenna’s effectiveness in the local area. Used in the PHG Data
+
+APRS Protocol Reference — APRS Protocol Version 1.0
+
+
+
+Extension.
+ERP
+
+Effective Radiated Power. Used in Status Reports containing Beam Heading and
+Power data (typically for meteor scatter use).
+
+FCS
+
+Frame Check Sequence. A sequence of 16 bits that follows the AX.25 Information
+field, used to verify the integrity of the packet.
+
+GATE
+
+A gateway between HF and VHF APRS networks. Used primarily to relay longdistance HF APRS traffic onto local VHF networks.
+
+GGA Sentence
+
+A standard NMEA sentence, containing the receiving station’s lat/long position and
+antenna height relative to mean sea level, and other data.
+
+GLL Sentence
+
+A standard NMEA sentence, containing the receiving station’s lat/long position and
+other data.
+
+GMT
+
+Greenwich Mean Time (=UTC=zulu).
+
+GPS
+
+Global Positioning System. A global network of 24 satellites that provide lat/long and
+antenna height of a receiving station.
+
+GPSxyz
+
+An APRS destination callsign that specifies a display symbol from either the Primary
+Symbol Table or the Alternate Symbol Table. Some symbols from the Alternate
+Symbol Table can be overlaid with a digit or a letter. Used by trackers that cannot
+specify the symbol in the AX.25 Information field.
+
+GPSCnn
+
+An APRS destination callsign that specifies a display symbol from the Primary Symbol
+Table. The symbol can not be overlaid. Used by trackers that cannot specify the
+symbol in the AX.25 Information field.
+
+GPSEnn
+
+An APRS destination callsign that specifies a display symbol from the Alternate
+Symbol Table. The symbol can not be overlaid. Used by trackers that cannot specify
+the symbol in the AX.25 Information field.
+
+HMS
+
+1. In NMEA sentences, a 6-character timestamp: hour, minute, second UTC.
+2. In APRS Data, a 7-character timestamp: hour, minute, second, zulu or local.
+
+ICQ
+IGate
+Information field
+Item
+Item Report
+Killed Object
+knots
+KPC-3
+Longitude Offset
+LORAN
+Maidenhead Locator
+MDHM
+Message
+Message Acknowledgement
+Message Group
+Message Identifier
+Mic-E
+
+International CQ chat.
+A gateway between a VHF and/or HF APRS network and the Internet.
+The AX.25 Information field containing APRS information.
+A type of display object.
+A report containing the location of an APRS Item.
+An Object that an APRS user has assumed control of.
+International nautical miles per hour.
+A Terminal Node Controller from Kantronics Co Inc.
+An offset of +100 degrees longitude (used in Mic-E longitude computation).
+Long Range Navigation System (a terrestrial precursor to GPS).
+A 4- or 6-character grid locator specifying a station’s position.
+8-byte timestamp: month, day, hour, minute (used in positionless weather station
+reports).
+A one-line text message addressed to a particular station.
+An optional acknowledgement of receipt of a message.
+A user-defined group to receive messages.
+A 1–5 character message identifier (typically a line number).
+Originally Microphone Encoder, a unit that encodes location, course and speed
+information into a very short packet, for transmission when releasing the microphone
+PTT button. The Mic-E encoding algorithm is now used in other devices (e.g. in the
+
+
+PIC-E and the Kenwood TH-D7/TM-D700 radios).
+Mic-E Message Identifier
+Mic-E Message Code
+
+A 3-bit identifier (A/B/C) specifying a standard Mic-E message or custom message
+code.
+A 3-bit code specifying a Standard or Custom Mic-E message.
+
+MIM
+
+Micro Interface Module. A complete telemetry TNC transmitter on a chip.
+
+mph
+
+miles per hour.
+
+Net Cycle Time
+
+NMEA
+
+NMEA (Received) Sentence
+
+NRQ
+Null Position
+NWS
+Object
+Object Report
+PHG
+PIC
+PIC-E
+Position Ambiguity
+
+The time within which it should be possible to gain the complete picture of APRS
+activity (typically 10, 20 or 30 minutes, depending on the number of digipeaters
+traversed and local conditions). Stations should not transmit status or position
+information more frequently unless mobile, or in response to a Query.
+National Marine Electronic Association (United States). Producer of the NMEA 0183
+Version 2.0 specification that governs the format of Received Sentences from
+navigation equipment (such as GPS and LORAN receivers). See Appendix 6 for a
+reference to NMEA sentence formats.
+The ASCII data stream received from navigation equipment (such as GPS receivers)
+conforming to the NMEA 0182 Version 2.0 specification. APRS supports five NMEA
+Sentences: GGA, GLL, RMC, VTG and WPT.
+Number/Rate/Quality. A measure of confidence in DF Bearing reports.
+Default position to be reported if the actual position is unknown or indeterminate. The
+null position is 0° 0' 0" north, 0° 0' 0" west.
+National Weather Service (United States).
+A display object that is (usually) not a station. For example, a weather front or a
+marathon runner.
+A report containing the position of an object, with optional timestamp and APRS Data
+Extension.
+APRS Data Extension specifying Power, Effective Antenna Height/Gain/Directivity.
+Programmable Interface Controller.
+A PIC implementation of the Mic-E microphone encoder.
+A reduction in the accuracy of APRS position information (implemented by replacing
+low-order lat/long digits with spaces). Used when the exact position is not known.
+
+Position Report
+
+A report containing lat/long position, optionally with timestamp and Data Extension.
+
+Pre-Calculated Radio Range
+
+A station’s estimate of omni-directional radio range (in miles). Used in compressed
+lat/long format.
+
+Query
+Range Circle
+RELAY
+Response
+RMC Sentence
+RTCM
+Selective Availability
+
+A request for information. Queries may be addressed to stations in general or to
+specific stations.
+Usable radio range (in miles), computed from PHG data.
+A generic APRS digipeater callsign alias, for a VHF/UHF digipeater with limited local
+coverage.
+A reply to a query.
+A standard NMEA sentence, containing the receiving station’s lat/long position, course
+and speed, and other data.
+Radio Technical Commission for Maritime Services. The RTCM SC104 data format
+specification describes the requirements for differential GPS data correction.
+Deliberate GPS position dithering, introducing significant received position errors in
+latitude, longitude and antenna height. Errors can be greatly reduced with differential
+GPS.
+
+Sentence
+
+See NMEA (Received) Sentence.
+
+Signpost
+
+A special signpost icon that displays user-defined variable information (such as a
+
+speed limit or mileage) as an overlay.
+Skywarn
+Source Address Field
+Source Path Header
+SPCL
+SSID
+
+Station Capabilities
+Status Report
+Switch Stream Character
+Symbol
+
+Symbol Code
+Symbol Table Identifier
+
+Target Footprint
+TH-D7
+TM-D700
+Third Party Network
+Third-Party Header
+TNC
+Trace
+
+A weather spotter initiative coordinated by the United States National Weather
+Service.
+The AX.25 Source Address field, containing the callsign of the originating station. A
+non-zero SSID specifies a display symbol.
+The digipeater path followed prior to a packet entering a Third-Party Network.
+A generic APRS destination callsign used for special stations.
+Secondary Station Identifier. A number in the range 0-15, as an adjunct to an AX.25
+address. If the SSID in a source address is non-zero, it specifies a display symbol.
+(This is used when the station is unable to specify the symbol in the AX.25 Destination
+Address field or Information field).
+A list of station characteristics that is sent in reply to a query.
+A report containing station status information (and optionally a Maidenhead locator).
+A character normally used for switching TNC channels.
+A display icon. Consists of a Symbol Table Identifier/Symbol Code pair. Generically,
+/$ represents a symbol from the Primary Symbol Table, and \$ represents a symbol
+from the Alternate Symbol Table.
+A code for a symbol within a Symbol Table.
+An ASCII code specifying the Primary Symbol Table (/) or Alternate Symbol Table (\).
+The Symbol Table Identifier is also implicit in GPSCnn and GPSEnn destination
+callsigns.
+A target area for queries. The querying station asks for responses from stations within
+a specified number of miles of a lat/long position.
+A combined VHF/UHF handheld radio and APRS-compatible TNC from Kenwood.
+A combined VHF/UHF mobile radio and APRS-compatible TNC from Kenwood.
+A non-APRS network that does not understand AX.25 addresses (e.g. the Internet).
+A Path Header with the Third-Party Network Identifier and the callsign of the receiving
+gateway inserted.
+Terminal Node Controller. A combined AX.25 packet assembler/disassembler and
+modem.
+An APRS query that asks for the route taken by a packet to a specified station.
+
+TRACE
+
+A generic digipeater callsign alias, for digipeaters that performs callsign substitution.
+These digipeaters self-identify packets they digipeat, by inserting their own callsign in
+place of RELAY,WIDE or TRACE.
+
+Tracker
+
+A unit comprising a GPS receiver (to obtain the current geographical position) and a
+radio transmitter (to transmit the position to other stations).
+
+Tunneling
+
+UI-Frame
+UNPROTO Path
+UTC
+VTG Received Sentence
+WIDE
+WIDEn-N
+
+Passing APRS AX.25 traffic through a third-party network that does not understand
+AX.25 addressing. The AX.25 addresses are carried as data (in the Source Path
+Header) through the tunneled network.
+AX.25 Unnumbered Information frame. APRS uses only UI-frames — that is, it
+operates entirely in connectionless (UNPROTO) mode.
+The digipeater path to the destination callsign.
+Coordinated Universal Time (=zulu=GMT).
+A standard NMEA sentence, containing the receiving station’s course and speed.
+A generic APRS digipeater callsign alias, for a digipeater with wide area coverage.
+A generic APRS digipeater callsign alias, for a digipeater with wide area coverage
+(N=0-7). As a packet passes through a digipeater, the value of N is decremented by 1
+until it reaches zero. The digipeater keeps a record of each packet (or its FCS) as it
+passes through, and will not digipeat the packet again if it has digipeated it already
+within the last 28 seconds.
+WPT Sentence
+WX
+Ziplan
+Zulu
+
+A standard NMEA sentence, containing waypoints.
+Weather.
+A cheap twisted-pair LAN connecting PCs via their serial I/O ports. Designed for use in
+emergency situations.
+UTC/GMT.
+
+Units Conversion Table
+To convert from
+feet
+meters
+miles
+km
+miles
+nautical miles
+miles per hour (mph)
+
+to
+meters
+
+km
+
+knots
+
+knots
+
+meters / second
+
+meters / second
+
+1.609344
+1.609344
+0.8689762
+
+miles
+
+miles per hour (mph)
+
+miles per hour (mph)
+
+0.3048
+
+miles
+nautical miles
+
+0.8689762
+0.8689762
+0.8689762
+0.51444’
+
+knots
+meters / second
+miles per hour (mph)
+
+divide by
+
+0.3048
+
+feet
+
+knots
+
+meters / second
+
+multiply by
+
+0.51444’
+0.44704
+0.44704
+
+Fahrenheit / Celsius Temperature Conversion Equations
+F = ( C x 1.8 ) + 32
+C = ( F – 32 ) x 5
+9

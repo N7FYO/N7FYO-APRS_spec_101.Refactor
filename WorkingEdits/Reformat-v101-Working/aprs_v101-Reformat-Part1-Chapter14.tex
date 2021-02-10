@@ -1,0 +1,458 @@
+\chapter{Chapter 14: Messages, Bulletins and Announcements}
+
+
+APRS messages, bulletins and announcements are packets containing free
+format text strings, and are intended to convey human-readable information.
+A message is intended for reception by a single specified recipient, and an
+acknowledgement is usually expected. Bulletins and announcements are
+intended for reception by multiple recipients, and are not acknowledged.
+
+An APRS message is a text string with a specified addressee. The addressee
+is a fixed 9-character field (padded with spaces if necessary) following the :
+Data Type Identifier. The addressee field is followed by another :, then the
+text of the message.
+
+\section{Messages}
+
+The message text may be up to 67 characters long, and may contain any
+printable ASCII characters except |, ~ or {.
+A message may also have an optional message identifier, which is appended
+to the message text. The message identifier consists of the character {
+followed by a message number (up to 5 alphanumeric characters, no spaces)
+to identify the message.
+
+Messages without a message identifier are not to be acknowledged.
+Messages with a message identifier are intended to be acknowledged by the
+addressee. The sending station will repeatedly send the message until it
+receives an acknowledgement, or it is canceled, or it times out.
+
+Message Format
+Message ID
+Addressee
+
+:
+Bytes:
+
+1
+
+:
+9
+
+1
+
+Examples
+:WU2ZVVVVV:Testing
+
+:WU2ZVVVVV:Testing{003
+
+Message Text
+(max 67 chars)
+0-67
+
+Message No
+
+{
+
+xxxxx
+
+1
+
+1-5
+
+A message for WU2Z, containing the text “Testing”,
+no acknowledgement expected.
+(Note the filler spaces in the 9-character addressee field).
+The same message, Message No=003, acknowledgement expected.
+
+:EMAILVVVV:msproul@ap.org Test email
+
+APRS Protocol Reference — APRS Protocol Version 1.0
+
+An e-mail message (Note: This is an example
+of how such a message could be constructed.
+APRS itself does not support e-mail delivery)
+
+
+
+Message
+Acknowledgement
+
+A message acknowledgement is similar to a message, except that the message
+text field contains just the letters ack, and this is followed by the Message
+Number being acknowledged.
+Message Acknowledgement Format
+Message
+No
+
+Addressee
+
+:
+Bytes:
+
+1
+
+9
+
+:
+
+ack
+
+xxxxx
+
+1
+
+3
+
+1–5
+
+Example
+:KB2ICI-14:ack003
+
+Message Rejection
+
+If a station is unable to accept a message, it can send a rej message instead
+of an ack message:
+Message Rejection Format
+Message
+No
+
+Addressee
+
+:
+Bytes:
+
+1
+
+9
+
+:
+
+rej
+
+xxxxx
+
+1
+
+3
+
+1–5
+
+Example
+:KB2ICI-14:rej003
+Multiple
+Acknowledgements
+
+If a station receives a particular message more than once, it will respond with
+an acknowledgement for each instance of the message.
+If a station receives a message over a long path, it may respond with a
+reasonable number of multiple copies of the acknowledgement, to improve
+the chances of the originating station receiving at least one of the copies.
+In either of these two situations, multiple message acknowledgements should
+be separated by at least 30 seconds (this is because some network
+components such as digipeaters will suppress duplicated messages within a
+30-second period).
+
+Message Groups
+
+An APRS receiving station can specify special Message Groups, containing
+lists of callsigns that the station will read messages from (in addition to
+messages addressed to itself). Such Message Groups are defined internally
+by the user at the receiving station, and are used to filter received message
+traffic.
+
+
+
+The receiving station will read all messages with the Addressee field set to
+ALL, QST or CQ.
+The receiving station will only acknowledge messages addressed to itself,
+and not any messages received which were addressed to any group callsign.
+Note: The receiving station will acknowledge all messages addressed to
+itself, even if it is operating in an Alternate Net (see Chapter 4: APRS Data
+in the AX.25 Destination and Source Address Fields).
+
+General bulletins are messages where the addressee consists of the letters
+
+General Bulletins
+
+BLN followed by a single-digit bulletin identifier, followed by 5 filler spaces.
+
+General bulletins are generally transmitted a few times an hour for a few
+hours, and typically contain time sensitive information (such as weather
+status).
+Bulletin text may be up to 67 characters long, and may contain any printable
+ASCII characters except | or ~.
+General Bulletin Format
+Bulletin
+ID
+Bytes:
+
+:
+
+BLN
+
+n
+
+VVVVV
+
+:
+
+Bulletin Text
+(max 67 characters)
+
+1
+
+3
+
+1
+
+5
+
+1
+
+0-67
+
+Example
+:BLN3VVVVV:Snow expected in Tampa RSN
+
+Announcements are similar to general bulletins, except that the letters BLN
+are followed by a single upper-case letter announcement identifier.
+Announcements are transmitted much less frequently than bulletins (but
+perhaps for several days), and although possibly timely in nature they are
+usually not time critical.
+
+Announcements
+
+Announcements are typically made for situations leading up to an event, in
+contrast to bulletins which are typically used within the event.
+Users should be alerted on arrival of a new bulletin or announcement.
+Announcement Format
+Announcement
+Identifier
+Bytes:
+
+:
+
+BLN
+
+x
+
+VVVVV
+
+:
+
+Announcement Text
+(max 67 characters)
+
+1
+
+3
+
+1
+
+5
+
+1
+
+0-67
+
+Example
+:BLNQVVVVV:Mt St Helen digi will be QRT this weekend
+
+
+Bulletins may be sent to bulletin groups. A bulletin group address consists of
+the letters BLN, followed by a single-digit group bulletin identifier, followed
+in turn by the name of the group (up to 5 characters long, with filler spaces to
+pad the name to 5 characters).
+
+Group Bulletins
+
+Group Bulletin Format
+Group Bulletin
+ID
+Bytes:
+
+:
+
+BLN
+
+n
+
+Group
+Name
+
+:
+
+Group Bulletin Text
+(max 67 characters)
+
+1
+
+3
+
+1
+
+5
+
+1
+
+0-67
+
+Example
+:BLN4WXVVV:Stand by your snowplows
+
+Group bulletin number 4 to the WX group.
+(Note the filler spaces in the group name).
+
+A receiving station can specify a list of bulletin groups of interest. The list is
+defined internally by the user at the receiving station. If a group is selected
+from the list, the station will only copy bulletins for that group, plus any
+general bulletins. If the list is empty, all bulletins are received and generate
+alerts.
+
+Standard APRS message formats can be used for a variety of other
+applications. For example, in the United States, special formatted messages
+addressed to the generic callsign NWS-xxxxx are used to highlight map areas
+involved in weather warnings, using the following format:
+
+National Weather
+Service Bulletins
+
+National Weather Service Bulletin Format
+
+Bytes:
+
+:
+
+NWS-xxxxx
+
+:
+
+NWS Bulletin Text
+
+1
+
+9
+
+1
+
+n
+
+Example
+:NWS-WARNV:092010z,THUNDER_STORM,AR_ASHLEY,{S9JbA
+(Note: The “message identifier” {S9JbA at the end is for reference
+only, as receiving stations do not acknowledge bulletins).
+
+
+\subsection{NTS Radiograms}
+
+APRS can be used to transport NTS radiograms. This uses the existing
+APRS message format for backwards compatibility, by adding a 3-character
+NTS format identifier Nx\ at the start of the APRS Message Text, as
+follows:
+
+N#\number\precedence\handling\originator\check\place\time\date
+NA\address_line1\address_line2\address_line3\address_line4
+NP\phone number
+N1\line 1 of NTS message text
+N2\line 2 of NTS message text
+N3\line 3 of NTS message text
+N4\line 4 of NTS message text
+N5\line 5 of NTS message text
+N6\line 6 of NTS message text
+NS\Signature block
+NR\Received from\date_time\sent_to\date_time
+
+All of these fields comes from the ARRL NTS Radiogram form and are
+described in the NTS handbook.
+
+Each message line is addressed to the same station.
+The N#\, NA\ and NR\ lines are multiple fields combined for APRS
+transmission efficiency. The backslash separator is used so that conventional
+forward slashes may be embedded in messages. (The backslash does not exist
+in the RTTY or CW alphabets, so it therefore cannot appear in an NTS
+radiogram).
+
+Each line may be up 67 characters long, including the 3-character NTS
+format identifier. Lines in excess of 67 characters will be truncated.
+There is a maximum of 6 lines of NTS message text.
+
+Note: The N#\, NA\, NS\ and NR\ fields are required. The others are
+optional.
+Serialization of each line is handled by the normal APRS Message ID
+{xxxxx.
+
+An APRS application is not required to understand or generate these
+messages. The information can be read and understood in the normal
+message display.
+
+\subsection{Obsolete Bulletin and Announcement Format}
+
+Some stations transmit bulletins and announcements without the : APRS
+Data Type Identifier. This format is obsolete. Some software may still
+decode such data as a bulletin or announcement, but it should now be
+interpreted as a Status Report.
+
+
+
+\section{Bulletin and Announcement Implementation Recommendations}
+
+
+Bulletins and announcements are seen as a way for all participants in an
+event/emergency/net to see all common information posted to the group. In
+this sense they are visualized as a mountain-top billboard or a bulletin board
+on the wall of an Emergency Operations Control Center.
+
+Information that everyone must see is to be posted there. Information is
+added and removed. Space is limited. Only so much information can be
+posted before it becomes too busy for anyone to see everything. Thus things
+are supposed to be posted, updated, and cleared to keep the big billboard
+uncluttered and current with what everyone needs to know at the present
+time. It should not be cluttered with obsolete information.
+
+This can be implemented in an APRS display system as a “Bulletin Screen”.
+Everyone has this screen, and anyone can post or update lines on this screen.
+At any instant, everyone in the network sees exactly the same screen.
+Everything is arranged and displayed in exactly the same way. Thus,
+everyone, everywhere is looking at the same mountain-top billboard or
+bulletin board. There is no ambiguity as to who sees what information, in
+what order at what time.
+
+To make this work, a number of issues should be considered:
+•
+
+•
+
+•
+
+•
+
+•
+
+Sorting: Bulletins/Announcements are almost always multi-line, and
+may arrive out of sequence. They must be sorted before presentation on
+the Bulletin Screen, and re-sorted if necessary when each new line
+arrives. This includes sorting by originating callsign and Bulletin/
+Announcement ID.
+
+Replacement: Stations sending bulletins/announcements can send new
+lines to replace lines sent earlier, re-using the original Bulletin/
+Announcement IDs. (Note: It is only necessary to re-send replacement
+lines. It is not necessary to re-send the whole bulletin/announcement).
+Receipt of a new line with the same Bulletin/Announcement ID as one
+already received from the same station should result in the existing line
+being overwritten (replaced).
+
+Clearing: A user should be able to clear any or all of the bulletins/
+announcements from the Bulletin Screen once he has read them. Any
+bulletins/announcements that are still valid will re-appear in due course
+because of the way they are redundantly re-transmitted.
+Alerts: On receipt of any new or replacement line for the Bulletin
+Screen, an alarm should be sounded and re-sounded periodically until the
+user acknowledges it. Thus, this vital information is “pushed” to the
+operator. There is no excuse for not being aware of the current bulletin/
+announcement state — this is important in the hurried and crisis-laden
+scenario of an APRS event.
+
+Logging: Old bulletins/announcements should be logged in sequential
+
+APRS log files in case they are subsequently needed.

@@ -1,0 +1,47 @@
+\chapter{Chapter 16: Status Reports}
+
+
+A Status Report announces the station’s current mission or any other single
+line status to everyone. The report is contained in the AX.25 Information
+field, and starts with the > APRS Data Type Identifier.
+The report may optionally contain a timestamp.
+
+Note: The timestamp can only be in DHM zulu format.
+
+The status text occupies the rest of the Information field, and may be up to 62
+characters long (if there is no timestamp in the report) or 55 characters (if
+there is a timestamp). The text may contain any printable ASCII characters
+except | or ~.
+
+
+Status Report Format
+Time
+
+Status Text
+(max 62 chars if no timestamp, or 55 chars if there is a timestamp)
+
+7
+
+0-62 or 0-55
+
+> DHM z
+Bytes:
+
+1
+
+Examples
+>Net Control Center
+>092345zNet Control Center
+
+without timestamp.
+with timestamp.
+
+Although the status will usually be plain language text, there are two cases
+where the report can contain special information which can be decoded:
+•
+
+Beam Heading and Power
+
+•
+
+Maidenhead grid locator

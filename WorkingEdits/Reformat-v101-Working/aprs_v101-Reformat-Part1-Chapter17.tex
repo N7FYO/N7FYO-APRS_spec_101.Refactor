@@ -1,0 +1,340 @@
+\chapter{Chapter 17: Network Tunneling and Third-Party Digipeating}
+
+\section{Third-Party Networks}
+
+APRS provides a mechanism for formatting packets that are to be transported
+through third-party (i.e. non AX.25) networks, such as the Internet, an
+Ethernet LAN or a direct wire connection.
+These networks do not understand APRS source, destination and digipeater
+addresses, so it is necessary to send them as data, along with the original data
+being transmitted.
+
+\section{Source Path Header}
+
+Prior to sending an APRS packet into the third-party network, the APRS
+address path is prepended to the Data Type Identifier and the rest of the
+original data.
+The prepended address path is known as the Source Path Header. It consists
+of the source, destination and digipeater callsigns, with associated SSIDs.
+The main purpose of introducing the Source Path Header is to allow
+receiving stations on the far side of the third-party network to identify the
+sender — this is needed when acknowledging receipt of a message, for
+example. Knowledge of the source path is also useful in diagnosing network
+problems.
+
+Data with Source Path Header
+
+Bytes:
+
+Source
+Path
+Header
+
+Data
+Type
+ID
+
+Rest of the original data
+
+n
+
+1
+
+n
+
+The Source Path Header may be in either of two formats, known as the
+“TNC-2” format and the “AEA” format (so called because when TNC-2 or
+AEA-compatible TNCs are operating in terminal MONitor mode they
+automatically produce headers in these formats).
+The APRS Working Group has agreed to move towards standardization on
+the “TNC-2” format in future implementations.
+In most cases, AEA TNCs will produce Source Path Headers in “TNC-2”
+format when BBSMSGS is set to ON.
+
+The formats of these headers are as follows:
+Source Path Header — “TNC-2” Format
+An asterisk follows the digipeater callsign heard.
+
+Bytes:
+
+Source
+Callsign
+(-SSID)
+
+>
+
+Destination
+Callsign
+(-SSID)
+
+1-9
+
+1
+
+1-9
+
+0-8 Digipeaters
+Digipeater
+Callsign
+(-SSID)(*)
+
+,
+
+0-81
+
+:
+1
+
+Example
+
+WB4APR-14>APRS,RELAY*,WIDE:
+(WIDE digipeater “unused”)
+Source Path Header — “AEA” Format
+An asterisk follows the source or digipeater callsign heard.
+Source
+Callsign
+(-SSID)(*)
+Bytes:
+
+1-10
+
+0-8 Digipeaters
+
+>
+
+Digipeater
+Callsign
+(-SSID)(*)
+0-81
+
+>
+
+Destination
+Callsign
+(-SSID)
+
+:
+
+1
+
+1-9
+
+1
+
+Example
+WB4APR-14>RELAY*>WIDE>APRS:
+(WIDE digipeater “unused”)
+
+In both formats, the SSID may be omitted if it is –0.
+In both formats, the callsign of the digipeater from which the incoming
+packet was heard is indicated with an asterisk. (Alternatively, for “AEA”
+format only, the asterisk will follow the source callsign if the packet was
+heard direct from there).
+
+Any digipeaters following the callsign of the station from which the packet
+was heard are termed “unused”. These unused digipeaters are stripped out
+when building a Third-Party Header (see below).
+
+
+After a packet emerges from a third-party network, the receiving gateway
+station modifies it (by inserting a } Third-Party Data Type Identifier and
+modifying the Source Path Header) before transmitting it on the local APRS
+network.
+
+Third-Party Header
+
+The modified Source Path Header is called the Third-Party Header.
+Third-party Format
+
+Bytes:
+
+}
+
+Third-Party
+Header
+
+Rest of the original data
+
+1
+
+n
+
+n
+
+In a similar way to the Source Path Header, The Third-Party Header can be
+in either of two formats: “TNC-2” or “AEA” format.
+Third Party Header — “TNC-2” format
+Source Path
+Header
+(without “unused”
+digipeaters, * or :)
+Bytes:
+
+3-99
+
+,
+1
+
+Third-Party
+Network
+Identifier
+(“callsign”)
+1-9
+
+,
+
+Callsign of
+Receiving
+Gateway Station
+(-SSID)
+
+1
+
+1-9
+
+* :
+1
+
+1
+
+Example
+WB4APR-14>APRS,RELAY,TCPIP,G9RXG*:
+Third Party Header — “AEA” format
+Source Path
+Header
+(without “unused”
+digipeaters, destination,
+* or :)
+
+Third-Party
+Network
+Identifier
+(“callsign”)
+
+2-90
+
+1-9
+
+Bytes:
+
+>
+
+Callsign of
+Receiving
+Gateway Station
+(-SSID)
+
+1
+
+1-9
+
+* >
+
+1
+
+1
+
+Destination
+Callsign from
+Source Path
+Header
+(-SSID)
+
+:
+
+1-9
+
+1
+
+Example
+WB4APR-14>RELAY>TCPIP>G9RXG*>APRS:
+
+In both cases, the “unused” digipeater callsigns (i.e. those digipeater
+callsigns after the asterisk) in the original Source Path Header are stripped
+out. The asterisk itself is also stripped out of the Source Path Header.
+Then two additional callsigns are inserted:
+
+\begin{itemize}
+
+\item The Third-Party Network Identifier (e.g. TCPIP). This is a dummy
+“callsign” that identifies the nature of the third-party network.
+
+\item The callsign of the receiving gateway station, followed by an asterisk.
+
+\end{itemize}
+
+\section{Action on Receiving a Third-Party packet}
+
+When another station receives a third-party packet, it can extract the callsign
+of the original sending station from the Third-Party Header, if it is needed to
+acknowledge receipt of a message.
+
+The other addresses in the Third-Party Header may be useful for network
+diagnostic purposes.
+
+An Example of
+Sending a Message
+through the Internet
+
+The Scenario:
+•
+•
+
+WB4APR-14 wants to send a message via the Internet to G3NRW.
+The nearest Internet gateway to WB4APR-14 is K4HG, reachable via a
+RELAY,WIDE path.
+
+•
+
+The nearest Internet gateway to G3NRW is G9RXG.
+
+The Process:
+•
+
+In the normal way, WB4APR-14 builds a message packet that contains:
+:G3NRWV
+V V V V :Hi Ian{001
+
+•
+
+WB4APR-14 transmits the packet via his UNPROTO path RELAY,WIDE.
+
+•
+
+The Internet gateway K4HG happens to receive this packet from the RELAY
+digipeater in the path.
+
+•
+
+K4HG builds a new packet that contains the source path and the original
+message:
+WB4APR-14>APRS,RELAY*,WIDE::G3NRWV
+V V V V :Hi Ian{001
+
+•
+
+K4HG sends this packet (using telnet) to an APRServer on the Internet.
+
+•
+
+All Internet gateways throughout the world that are connected to the
+APRServe network (including G9RXG) receive the packet.
+
+•
+
+G9RXG converts the packet into a Third-Party packet:
+
+}WB4APR-14>APRS,RELAY,TCPIP,G9RXG*::G3NRWV
+V V V V :Hi Ian{001
+
+Note that the WIDE digipeater was stripped out of the header because it was
+unused.
+•
+
+G9RXG transmits the packet over the local APRS network.
+
+•
+
+G3NRW receives the packet, strips out the Third-Party Header, and discovers
+that the packet contains a message for him. From the header, G3NRW then
+establishes that the acknowledgement is to go back to WB4APR-14.

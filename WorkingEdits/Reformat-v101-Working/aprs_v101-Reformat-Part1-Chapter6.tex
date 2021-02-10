@@ -1,0 +1,271 @@
+\chapter{Chapter 6: Time and Position Formats}
+
+
+\section{Time Formats}
+
+APRS timestamps are expressed in three different ways:
+
+\begin{itemize}
+
+\item Day/Hours/Minutes format
+
+\item Hours/Minutes/Seconds format
+
+\item Month/Day/Hours/Minutes format
+
+
+\end{itemize}
+
+In all three formats, the 24-hour clock is used.
+Day/Hours/Minutes (DHM) format is a fixed 7-character field, consisting of
+a 6-digit day/time group followed by a single time indicator character (z or
+/). The day/time group consists of a two-digit day-of-the-month (01–31) and
+a four-digit time in hours and minutes.
+Times can be expressed in zulu (UTC/GMT) or local time. For example:
+092345z
+092345/
+
+is 2345 hours zulu time on the 9th day of the month.
+is 2345 hours local time on the 9th day of the month.
+
+It is recommended that future APRS implementations only transmit zulu
+format on the air.
+
+Note: The time in Status Reports may only be in zulu format.
+
+Hours/Minutes/Seconds (HMS) format is a fixed 7-character field,
+consisting of a 6-digit time in hours, minutes and seconds, followed by the h
+time-indicator character. For example:
+234517h
+
+is 23 hours 45 minutes and 17 seconds zulu.
+
+Note: This format may not be used in Status Reports.
+
+Month/Day/Hours/Minutes (MDHM) format is a fixed 8-character field,
+consisting of the month (01–12) and day-of-the-month (01–31), followed by
+the time in hours and minutes zulu. For example:
+10092345
+
+is 23 hours 45 minutes zulu on October 9th.
+
+This format is only used in reports from stand-alone “positionless” weather
+stations (i.e. reports that do not contain station position information).
+
+
+\section{Use of Timestamps}
+
+When a station transmits a report without a timestamp, an APRS receiving
+station can make an internal record of the time it was received, if required.
+This record is the receiving station’s notion of the time the report was
+created.
+
+On the other hand, when a station transmits a report with a timestamp, that
+timestamp represents the transmitting station’s notion of the time the report
+was created.
+
+In other words, reports sent without a timestamp can be regarded as real-time,
+“current” reports (and the receiving station has to record the time they were
+received), whereas reports sent with a timestamp may or may not be realtime, and may possibly be (very) “old”.
+Four APRS Data Type Identifiers specify whether or not a report contains a
+timestamp, depending on whether the station has APRS messaging capability
+or not:
+
+No APRS
+Messaging
+
+With APRS
+Messaging
+
+(Current/real-time)
+
+Report without timestamp
+
+!
+
+=
+
+(Old/non-real-time)
+
+Report with timestamp
+
+/
+
+@
+
+Stations without APRS messaging capability are typically stand-alone
+trackers or digipeaters. Stations reporting without a timestamp are generally
+(but not necessarily) fixed stations.
+
+\section{Latitude Format}
+
+Latitude is expressed as a fixed 8-character field, in degrees and decimal
+minutes (to two decimal places), followed by the letter N for north or S for
+south.
+
+Latitude degrees are in the range 00 to 90. Latitude minutes are expressed as
+whole minutes and hundredths of a minute, separated by a decimal point.
+
+For example:
+4903.50N
+
+is 49 degrees 3 minutes 30 seconds north.
+
+In generic format examples, the latitude is shown as the 8-character string
+ddmm.hhN (i.e. degrees, minutes and hundredths of a minute north).
+
+\section{Longitude Format}
+
+Longitude is expressed as a fixed 9-character field, in degrees and decimal
+minutes (to two decimal places), followed by the letter E for east or W for
+west.
+
+
+Longitude degrees are in the range 000 to 180. Longitude minutes are
+expressed as whole minutes and hundredths of a minute, separated by a
+decimal point.
+
+For example:
+07201.75W
+
+is 72 degrees 1 minute 45 seconds west.
+
+In generic format examples, the longitude is shown as the 9-character string
+dddmm.hhW (i.e. degrees, minutes and hundredths of a minute west).
+
+\section{Position Coordinates}
+
+Position coordinates are a combination of latitude and longitude, separated
+by a display Symbol Table Identifier, and followed by a Symbol Code. For
+example:
+
+4903.50N/07201.75W-
+
+The / character between latitude and longitude is the Symbol Table
+Identifier (in this case indicating use of the Primary Symbol Table), and the –
+character at the end is the Symbol Code from that table (in this case,
+indicating a “house” icon).
+
+A description of display symbols is included in Chapter 20: APRS Symbols.
+The full Symbol Table listing is in Appendix 2.
+
+\section{Position Ambiguity}
+
+In some instances — for example, where the exact position is not known —
+the sending station may wish to reduce the number of digits of precision in
+the latitude and longitude. In this case, the mm and hh digits in the latitude
+may be progressively replaced by a V (space) character as the amount of
+imprecision increases. For example:
+4903.5VN
+
+represents latitude to nearest 1/10th of a minute.
+
+4903.VVN
+
+represents latitude to nearest minute.
+
+490V.VVN
+
+represents latitude to nearest 10 minutes.
+
+49VV.VVN
+
+represents latitude to nearest degree.
+
+The level of ambiguity specified in the latitude will automatically apply to
+the longitude as well — it is not necessary to include any V characters in the
+longitude.
+For example, the coordinates:
+4903.VVN/07201.75W-
+
+represent the position to the nearest minute. That is, the hundredths of
+minutes of latitude and longitude may take any value in the range 00–99.
+
+
+
+
+Thus the station may be located anywhere inside a bounding box having the
+following corner coordinates:
+
+\begin{itemize}
+
+\item North West corner: 49 deg 3.99 mins N, 72 deg 1.99 mins W
+\item North East corner: 49 deg 3.99 mins N, 72 deg 1.00 mins W
+\item South East corner: 49 deg 3.00 mins N, 72 deg 1.00 mins W
+\item South West corner: 49 deg 3.00 mins N, 72 deg 1.99 mins W
+
+\end{itemize}
+
+
+\section{Default Null Position}
+
+Where a station does not have any specific position information to transmit
+(for example, a Mic-E unit without a GPS receiver connected to it), the
+station must transmit a default null position in the location field.
+
+The null position corresponds to 0° 0' 0" north, 0° 0' 0" west.
+The null position should be include the \. symbol (unknown/indeterminate
+position).
+
+For example, a Position Report for a station with unknown position
+will contain the coordinates …0000.00N\00000.00W.…
+
+\section{Maidenhead Locator (Grid Square)}
+
+An alternative method of expressing a station’s location is to provide a
+Maidenhead locator (grid square). There are four ways of doing this:
+
+\begin{itemize}
+  
+\item In a Status Report — e.g. IO91SX/(/- represents the symbol for a “house”).
+
+\item In Mic-E Status Text — e.g. IO91SX/G
+(/G indicates a “grid square”).
+
+\item In the Destination Address — e.g. IO91SX. (obsolete).
+
+\item In AX.25 beacon text, with the [ APRS Data Type Identifier — e.g.
+[IO91SX] (obsolete).
+
+\end{itemize}
+
+Grid squares may be in 6-character form (as above) or in the shortened
+4-character form (e.g. IO91).
+
+\section{NMEA Data}
+
+APRS recognizes raw ASCII data strings conforming to the NMEA 0183
+Version 2.0 specification, originating from navigation equipment such as
+GPS and LORAN receivers. It is recommended that APRS stations interpret
+at least the following NMEA Received Sentence types:
+
+\begin{itemize}
+
+\item GGA Global Positioning System Fix Data
+\item GLL Geographic Position, Latitude/Longitude Data
+\item RMC Recommended Minimum Specific GPS/Transit Data
+\item VTG Velocity and Track Data
+\item WPT Way Point Location
+% footnote WPT as typo, as mentioned in 1.1
+
+
+\end{itemize}
+
+
+
+\section{Altitude}
+
+Altitude may be expressed in two ways:
+
+\begin{itemize}
+\item In the comment text.
+\item In Mic-E format.
+\end{itemize}
+
+\textbf{Altitude in Comment Text --} The comment may contain an altitude value,
+in the form /A=aaaaaa, where aaaaaa is the altitude in feet. For example:
+/A=001234. The altitude may appear anywhere in the comment.
+
+\textbf{Altitude in Mic-E format --} The optional Mic-E status field can contain
+altitude data. See Chapter 10: Mic-E Data Format.
+

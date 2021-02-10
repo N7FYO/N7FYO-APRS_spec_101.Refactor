@@ -1,0 +1,497 @@
+\Chapter{Chapter 11: Object and Item Reports}
+
+\section{Objects and Items}
+
+Any APRS station can manually report the position of an APRS entity (e.g.
+another station or a weather phenomenon). This is intended for situations
+where the entity is not capable of reporting its own position.
+APRS provides two types of report to support this:
+
+\begin{itemize}
+
+ \item Object Reports
+
+ \item Item Reports
+
+\end{itemize}
+
+
+Object Reports specify an Object’s position, can have an optional timestamp,
+and can include course/speed information or other Extended Data. Object
+Reports are intended primarily for plotting the positions of moving objects
+(e.g. spacecraft, storms, marathon runners without trackers).
+Item Reports specify an Item’s position, but cannot have a timestamp. While
+Item reports may also include course/speed or other Extended Data, they are
+really intended for inanimate things that are occasionally posted on a map
+(e.g. marathon checkpoints or first-aid posts). Otherwise they are handled in
+the same way as Object Reports.
+
+Objects are distinguished from each other by having different Object names.
+Similarly, Items are distinguished from each other by having different Item
+names.
+
+Implementation Recommendation: When an APRS Object/Item is displayed
+on the screen, the callsign of the station sending the report should be
+associated with the Object/Item.
+
+Replacing an
+Object / Item
+
+A fundamental precept of APRS is that any station may take over the
+reporting responsibility for an APRS Object or Item, by simply transmitting a
+new report with the same Object/Item name.
+
+The replacement report may specify the existing location or a new location.
+The original station will cease transmitting an Object/Item Report when it
+sees an incoming report with the same name from another station.
+
+Killing an
+Object / Item
+
+To kill an Object/Item, a station transmits a new Object/Item Report, with a
+“kill” character following the Object/Item name.
+
+Implementation Recommendation: When an Object/Item is killed it should be
+removed from display on the screen. However, the data associated with the
+Object/Item should be retained internally in case it is needed later.
+
+
+Object Report
+Format
+
+An Object Report has a fixed 9-character Object name, which may consist of
+any printable ASCII characters.
+Object names are case-sensitive.
+
+The ; is the APRS Data Type Identifier for an Object Report, and a * or _
+separates the Object name from the rest of the report:
+
+\begin{itemize} % no bullets?
+  
+\item * indicates a live Object.
+\item _ indicates a killed Object.
+\end{itemize}
+
+The position may be in lat/long or compressed lat/long format, and the report
+may also contain Extended Data.
+
+An Object always has a timestamp.
+
+The Comment field may contain any appropriate APRS data (see the
+Comment Field section in Chapter 5: APRS Data in the AX.25 Information
+Field).
+
+Object Report Format — with Lat/Long position
+
+;
+
+Object
+Name
+
+*
+or
+_
+
+Time
+DHM /
+HMS
+
+Lat
+
+Course/Speed
+
+Sym
+Table
+ID
+
+Long
+
+Symbol
+Code
+
+Power/Height/Gain/Dir
+Radio Range
+DF Signal Strength
+
+Comment
+(max 36 chars with
+Data Extension, or
+43 without)
+
+Area Object
+Bytes:
+
+1
+
+9
+
+1
+
+7
+
+8
+
+1
+
+9
+
+1
+
+Examples
+;LEADERVVV*092345z4903.50N/07201.75W>088/036
+
+;LEADERVVV_092345z4903.50N/07201.75W>088/036
+
+7
+
+0-36/43
+
+A live Object. At 2345 hours zulu
+on the 9th of the month, the
+“Leader” was in the car at
+49°3'30"N/72°1'45"W, heading 88
+deg at 36 knots.
+The same Object, now killed.
+
+Object Report Format — with Compressed Lat/Long position
+
+;
+
+Bytes:
+
+1
+
+Object
+Name
+
+9
+
+*
+or
+_
+1
+
+Time
+DHM /
+HMS
+
+Compressed Position
+Data
+
+Comment
+
+/YYYYXXXX$csT
+7
+
+13
+
+43
+
+Example
+;LEADERVVV*092345z/5L!!<*e7>7P[
+
+
+
+The “Leader” was in the car at 49°30'00"N/
+72°45'00"W, heading 88 deg at 36.2 knots.
+
+
+
+Item Report
+Format
+
+An Item Report has a variable-length Item name, 3–9 characters long. The
+name may consist of any printable ASCII characters except ! or _.
+Item names are case-sensitive.
+The ) is the APRS Data Type Identifier for an Item Report, and a ! or _
+separates the Item name from the rest of the report:
+! indicates a live Item.
+_ is the Item “kill” character.
+
+The position may be in lat/long or compressed lat/long format. There is no
+provision for a timestamp. The report may also contain Extended Data.
+The Comment field may contain any appropriate APRS data (see the
+Comment Field section in Chapter 5: APRS Data in the AX.25 Information
+Field).
+Item Report Format — with Lat/Long position
+Item
+Name
+
+)
+
+!
+or
+_
+
+Lat
+
+Sym
+Table
+ID
+
+Course/Speed
+Long
+
+Symbol
+Code
+
+Power/Height/Gain/Dir
+Radio Range
+
+Comment
+(max 36 chars with Data
+Extension, or 43 without)
+
+DF Signal Strength
+Area Object
+
+Bytes:
+
+1
+
+3-9
+
+1
+
+8
+
+1
+
+9
+
+Examples
+)AIDV#2!4903.50N/07201.75WA
+
+1
+
+7
+
+0-36/43
+
+First Aid Station #2 is at 49°3'30"N/72°1'45"W.
+(/A is the symbol for Aid Station).
+
+)G/WB4APR!53VV.VVN\002VV.VVWd
+
+A rare DX station “somewhere in England”.
+(\d is the symbol for DX Spot).
+
+)AIDV#2_4903.50N/07201.75WA
+
+The First Aid Station has closed down.
+
+Item Report Format — with Compressed Lat/Long position
+
+)
+
+Bytes:
+
+1
+
+Item
+Name
+
+3-9
+
+!
+or
+_
+
+Compressed Position
+Data
+
+Comment
+
+/YYYYXXXX$csT
+
+1
+
+Example
+)MOBIL!\5L!!<*e79VsT
+
+13
+
+43
+
+Mobil Gas Station is at 49°30'00"N/72°45'00"W.
+(\9 is the symbol for Gas Station).
+
+
+Area Objects
+
+Using the \l symbol (i.e. the lower-case letter “L” symbol from the Alternate
+Symbol Table) it is possible to define circle, line, ellipse, triangle and box
+objects in all colors, either open or filled in, any size from 60 feet to 100
+miles.
+These Objects are useful for real-time events such as for a search-and-rescue,
+or adding a special road or route for a special event.
+The Object format is specified as a 7-character APRS Data Extension
+Tyy/Cxx immediately following the l Symbol Code. For example:
+;OBJECTVVV*ddmm.hhN\dddmm.hhW l Tyy/Cxx
+
+where:
+T is the type of object shape.
+/C is the color of the object.
+yy is the square root of the latitude offset in 1/100ths of a degree.
+xx is the square root of the longitude offset in 1/100ths of a degree.
+
+The object type and color codes are as follows:
+T
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+Object Type
+Open circle
+Line (offset: down/right)
+Open ellipse
+Open triangle
+Open box
+Color-filled circle
+Line (offset: down/left)
+Color-filled ellipse
+Color-filled triangle
+Color-filled box
+
+/C
+
+Object Color
+
+Intensity
+
+/0
+/1
+/2
+/3
+/4
+/5
+/6
+/7
+/8
+/9
+10
+11
+12
+13
+14
+15
+
+Black
+
+High
+
+Blue
+
+High
+
+Green
+
+High
+
+Cyan
+
+High
+
+Red
+
+High
+
+Violet
+
+High
+
+Yellow
+
+High
+
+Gray
+
+High
+
+Black
+
+Low
+
+Blue
+
+Low
+
+Green
+
+Low
+
+Cyan
+
+Low
+
+Red
+
+Low
+
+Violet
+
+Low
+
+Yellow
+
+Low
+
+Gray
+
+Low
+
+The latitude/longitude position is the upper left corner of the object, and the
+offsets are relative to this position — the yy offset is down from this position
+and the xx offset is to the right of this position. (An exception is the special
+case of a Type 6 line which is drawn down and to the left).
+
+
+
+Here are some examples of Object Position Reports. The latitude and
+longitude offsets are each one degree (i.e. 100/100ths of a degree), so
+yy = xx = –100 = 10.
+;SEARCHVVV*092345z4903.50N\07201.75W l 710/310
+
+A high intensity cyan filled ellipse, yy=10, xx=10
+;SEARCHVVV*092345z4903.50N\07201.75W l 8101310
+
+A low intensity violet filled triangle, yy=10, xx=10
+Further, with the line option (Type 1 and Type 6) it is possible to specify a
+“corridor” either side of the central line. The width of the corridor (in miles)
+either side of the line is specified in the comment text, enclosed by {}.
+For example:
+;FLIGHTPTH*4903.50N\07201.75W l 610/310{100}
+
+A high intensity cyan line, with a 100-mile corridor
+either side
+Note: The color fill option should be used with care, since a color-filled
+object will obscure information displayed underneath it.
+
+Signpost
+Objects/Items
+
+Signpost Objects/Items (with the symbol \m) display as a yellow box with a
+1–3-character overlay on them. The overlay is specified by enclosing the 1–3
+characters in braces in the comment field. Thus a signpost with {55} would
+appear as a sign with 55 on it.
+For example:
+)I91V3N!4903.50N\07201.75Wm{55}
+
+This was originally designed for posting the speed of traffic past speed
+measuring devices, but can be used for any purpose.
+Implementation Recommendation: Signposts should not display any callsign
+or name, and to avoid clutter should only be displayed at close range.
+
+Obsolete Object
+Format
+
+Some stations transmit Object reports without the ; APRS Data Type
+Identifier. This format is obsolete. Some software may still decode such data
+as an Object, but it should now be interpreted as a Status Report.

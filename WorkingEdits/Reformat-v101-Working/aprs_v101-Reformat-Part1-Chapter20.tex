@@ -1,0 +1,270 @@
+\chapter{Chapter 20: APRS Symbols}
+
+\section{Three Methods}
+
+There are three methods of specifying an APRS symbol (display icon):
+•
+
+In the AX.25 Information field.
+
+•
+
+In the AX.25 Destination Address.
+
+•
+
+In the SSID of the AX.25 Source Address.
+
+The preferred method is to include the symbol in the Information field.
+However, where this is not possible (for example, in stand-alone trackers
+with no means of introducing the symbol into the Information field), either of
+the other two methods may be used instead.
+
+The Symbol Tables
+
+There are two APRS Symbol Tables:
+•
+
+Primary Symbol Table
+
+•
+
+Alternate Symbol Table
+
+See Appendix 2 for a full listing of these tables.
+The essential difference between the Primary and Alternate Symbol Tables is
+that some of the symbols in the Alternate Symbol Table can be overlaid with
+an alphanumeric character. For example, a “car” icon in the Alternate
+Symbol Table could be overlaid with the digit “3”, to indicate it is car #3.
+Symbols capable of taking an overlay are marked as [with overlay].
+None of the symbols in the Primary Symbol Table can be overlaid.
+In the tables, each symbol is coded in three ways:
+•
+
+/$ or \$ — for symbols in the Information field.
+
+•
+
+GPSxyz — for generic Destination addresses containing symbols.
+
+•
+
+GPSCnn or GPSEnn — another form of generic Destination addresses
+containing systems.
+
+In addition, 15 of the symbols in the Primary Symbol Table have an
+associated SSID (e.g. a small aircraft has SSID -7). The SSID is intended for
+use in the AX.25 Source Address of stand-alone trackers which have no other
+means of specifying the symbol.
+
+Symbols in the
+AX.25 Information
+Field
+
+A symbol in the AX.25 Information field is a combination of a one-character
+Symbol Table Identifier and a one-character Symbol Code.
+For example, in the Position Report:
+
+
+@092345z4903.50N/07201.75W>088/036…
+
+the forward slash / is the Symbol Table Identifier and the > character is the
+Symbol Code (in this case representing a “car” icon) from the selected table.
+The Symbol Table Identifier character selects one of the two Symbol Tables,
+or it may be used as single-character (alpha or numeric) overlay, as follows:
+Symbol Table
+Identifier
+
+Selected Table or Overlay Symbol
+
+/
+
+Primary Symbol Table (mostly stations)
+
+\
+
+Alternate Symbol Table (mostly Objects)
+
+0-9
+
+Numeric overlay. Symbol from Alternate
+Symbol Table (uncompressed lat/long
+data format)
+
+a-j
+
+Numeric overlay. Symbol from Alternate
+Symbol Table (compressed lat/long data
+format only). i.e. a-j maps to 0-9
+
+A-Z
+
+Alpha overlay. Symbol from Alternate
+Symbol Table
+
+In the generic case, a symbol from the Primary Symbol Table is represented
+as the character-pair /$, and a symbol from the Alternate Symbol Table as
+\$.
+
+Overlays with
+Symbols in the
+AX.25 Information
+Field
+
+Where the Symbol Table Identifier is 0-9 or A-Z (or a-j with compressed
+position data only), the symbol comes from the Alternate Symbol Table, and
+is overlaid with the identifier (as a single digit or a capital letter).
+For example, in the uncompressed Position Report:
+@092345z4903.50N307201.75W>…
+
+the digit 3 following the latitude will cause the number “3” to be overlaid on
+top of the “car” icon (Note: Because the symbol is overlaid, the > Symbol
+Code here comes from the Alternate Symbol Table).
+Similarly, to overlay a “car” icon with the letter “B” in a compressed
+Position Report, the report will look something like:
+=BL!!<*e7 >7P[
+
+However, in a compressed Position Report, it is not permissible to use a
+numeric Symbol Table Identifier (0-9) — compressed positions never start
+with a digit. If a numeric overlay is required, the report must use a lower-case
+letter instead (in the range a-j) as the Symbol Table Identifier. The lowercase letter is then mapped to the digits 0-9 (i.e. a=0, b=1, c=2, d=3 etc).
+Thus, in the compressed Position Report:
+
+
+=d5L!!<*e7 >7P[
+
+the letter d maps to overlay character “3”.
+As noted above, not all symbols from the Alternate Symbol Table may be
+overlaid in this way — those that can be overlaid are marked as [with overlay]
+in Appendix 2. This means that they are capable of taking an overlay, but
+they do not necessarily need to have one. Thus, for example, the following
+report uses the car symbol from the Alternate Symbol Table, but does not
+display an overlay:
+@092345z4903.50N\07201.75W>…
+
+Symbols in the
+AX.25 Destination
+Address
+
+Where it is not possible to include a symbol in the Information field, the
+symbol may be specified in the AX.25 Destination Address instead, using the
+following generic destination addresses: GPSxyz, GPSCnn, GPSEnn,
+SPCxyz and SYMxyz.
+The characters xy and nn refer to entries in the APRS Symbol Tables. For
+example, from the Primary Symbol Table, a tracker could use the Destination
+Address GPSMVV or GPS30 to specify a “car” icon.
+The character z specifies the overlay character (where permitted), or is a V
+(space) — the space is a filler character, as all AX.25 addresses must be
+exactly 6 characters long.
+The GPS/SPC/SYMxyV and GPSCnn/GPSEnn addresses can be used
+interchangeably. Thus, for example, GPSBMV , SPCBMV , SYMBMV and
+GPSC12 all specify a “Boy Scouts” icon (from the Primary Symbol Table),
+and GPSOMV , SPCOMV , SYMOMV and GPSE12 all specify a “Girl Scouts”
+icon (from the Alternate Symbol Table).
+
+Overlays with
+Symbols in the
+AX.25 Destination
+Address
+
+If the z character in a GPSxyz, SPCxyz or SYMxyz address is not a space,
+it specifies an alphanumeric overlay character, in the range 0-9 or A-Z.
+Overlays can only be used with symbols from the Alternate Symbol Table
+marked with the legend [with overlay].
+For example, if the “car” icon is to be overlaid with a digit “3”, the
+Destination Address will be GPSNV3.
+However, even if the address is overlay-capable, it is not actually necessary
+to specify an overlay; e.g. GPSNVV.
+GPSCnn and GPSEnn symbols can not have overlays.
+
+
+Symbol in the
+Source Address
+SSID
+
+Where it is not possible to include a symbol in the Information field or in the
+Destination Address, the symbol may be specified in the SSID of the Source
+Address instead:
+SSID-Specified Icons in the AX.25 Source Address Field
+SSID
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+
+Symbol Precedence
+
+Icon
+
+SSID
+-8
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+
+[no icon]
+Ambulance
+Bus
+Fire Truck
+Bicycle
+Yacht
+Helicopter
+Small Aircraft
+
+Icon
+Ship (power boat)
+Car
+Motorcycle
+Balloon
+Jeep
+Recreational Vehicle
+Truck
+Van
+
+APRS packets should not contain more than one symbol. However, it is
+conceivably possible to (erroneously) construct a packet containing up to
+three different symbols.
+For example:
+
+Symbol
+
+Source
+Address SSID
+
+Destination
+Address
+
+Information Field
+
+G3NRW-7
+
+GPSMV
+
+!0123.45N/01234.56Wj
+
+Small Aircraft
+
+Car
+
+Jeep
+
+In such a situation:
+•
+
+The symbol in the Information field takes precedence over any other
+symbol.
+
+•
+
+If there is no symbol in the Information field, the symbol in the
+Destination Address takes precedence over the symbol in the Source
+Address SSID.
+

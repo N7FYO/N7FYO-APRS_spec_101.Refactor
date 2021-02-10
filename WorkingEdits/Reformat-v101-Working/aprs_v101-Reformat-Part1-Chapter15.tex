@@ -1,0 +1,262 @@
+\chapter{Chapter 15: Station Capabilities, Queries and Responses}
+
+\section{Station Capabilities}
+
+A station may define a set of one or more attributes of the station, known as
+Station Capabilities. The station transmits its capabilities in response to an
+IGATE query (see below), using the < Data Type Identifier.
+Each capability is a TOKEN or a TOKEN=VALUE pair. More than one
+capability may be on a line, with each capability separated by a comma.
+Currently defined capabilities include:
+IGATE,MSG_CNT=n,LOC_CNT=n
+
+where IGATE defines the station as an IGate, MSG_CNT is the number of
+messages transmitted, and LOC_CNT is the number of “local” stations (those
+to which the IGate will pass messages in the local RF network).
+
+Queries and
+Responses
+
+There are two types of APRS queries. One is general to all stations and the
+other is in a message format directed to a single individual station.
+Queries always begin with a ?, are one-time transmissions, do not have a
+message identifier and should not be acknowledged. Similarly the responses
+to queries are one-time transmissions that also do not have a message
+identifier, so that they too are not acknowledged.
+
+Each query contains a Query Type (in upper-case). The following Query
+Types and expected responses are supported:
+
+Query Type
+APRS
+APRSD
+APRSH
+APRSM
+APRSO
+APRSP
+APRSS
+APRST or
+PING?
+IGATE
+WX
+
+Query
+General — All stations query
+Directed — Query an individual station for
+stations heard direct
+Directed — Query if an individual station has
+heard a particular station
+Directed — Query an individual station for
+outstanding unacknowledged or undelivered
+messages
+Directed — Query an individual station for its
+Objects
+Directed — Query an individual station for its
+position
+Directed — Query an individual station for its
+status
+Directed — Query an individual station for a
+trace (i.e. path by which the packet was heard)
+General — Query all Internet Gateways
+General — Query all weather stations
+
+Response
+Station’s position and status
+List of stations heard direct
+Position of heard station as an APRS Object, plus
+heard statistics for the last 8 hours
+All outstanding messages for the querying station
+
+Station’s Objects
+Station’s position
+Station’s status
+Route trace
+IGate station capabilities
+Weather report (and the station’s position if it is
+not included in the Weather Report)
+
+
+If a queried station has no relevant information to include in a response, it
+need not respond.
+A queried station should ignore any query that it does not recognize.
+
+The format of a general query is as follows:
+
+General Queries
+
+General Query Format
+Target Footprint
+
+? Query
+
+?
+
+Type
+Bytes:
+
+1
+
+n
+
+1
+
+Lat
+
+,
+
+Long
+
+,
+
+Radius
+
+n
+
+1
+
+n
+
+1
+
+4
+
+Examples
+Query
+?APRS?
+General query, with standard posit and status reply.
+?APRS?V
+V34.02,-117.15,0200
+General query for stations within a target footprint
+of radius 200 miles centered on 34.02 degrees
+north, 117.15 degrees west, with standard posit
+and status reply. (Note the leading space in the
+latitude, as its value is positive, see below).
+?IGATE?
+General query for IGate stations, with a Station
+Capabilities reply.
+?WX?
+Query for weather stations, with a standard
+Weather Report reply (without a position),
+followed by a standard posit.
+
+Typical Response
+/092345z4903.50N/07201.75W>
+>092345zNet Control Center
+/3402.78N11714.02W>Digi on low power
+
+<IGATE,MSG_CNT=43,LOC_CNT=14
+
+_10090556c220s004g005t077…
+/090556z4903.50N/07201.75W>
+
+In the case of an ?APRS? query for stations within a particular target
+footprint, the latitude and longitude parameters are in floating point degrees
+(not in APRS lat/long position format).
+•
+
+North and east coordinates are positive values, indicated by a leading V
+(space).
+
+•
+
+South and west coordinates are negative values.
+
+•
+
+The radius of the footprint is in miles, expressed as a fixed 4-digit
+number in whole miles.
+
+All stations inside the specified coverage circle should respond with a
+Position Report and a Status Report.
+
+
+Queries addressed to individual stations are in APRS message format (except
+that they never include a message identifier). The addressee is the callsign of
+the station being queried.
+
+Directed Station
+Queries
+
+The message text is the Query Type. This is followed optionally by another
+callsign — this callsign does not need filler spaces as it is at the end of the
+data.
+
+Directed Station Query Format
+Addressee
+
+:
+Bytes:
+
+1
+
+: ?
+9
+
+1
+
+1
+
+Query
+Type
+
+Callsign of
+Heard Station
+
+5
+
+0-9
+
+Examples
+Query
+
+Typical Response
+
+:KH2ZVVVVV:?APRSD
+A query asking KH2Z what stations he
+has heard direct.
+
+:N8URVVVVV:Directs=VWA1LOUVWD5IVD…
+
+VVVV
+:KH2ZVVVVV:?APRSHVN0QBFVVVV
+A query asking for the number of times
+N0QBF was heard in each of the last
+8 hours. (Note the trailing spaces in the
+callsign following APRSH, padding the
+callsign to 9 characters).
+
+:N8URVVVVV:N0QBFVHEARD:V1V3V2V.V.V4V5V6
+
+:KH2ZVVVVV:?APRSM
+A query asking KH2Z for any
+unacknowledged or undelivered
+messages for him. KH2Z responds
+with all such messages.
+
+:N8URVVVVV:Testing{003
+
+:KH2ZVVVVV:?APRSO
+;LEADERVVV*092345z4903.50N/07201.75W>
+A query asking for KH2Z’s APRS Objects.
+:KH2ZVVVVV:?APRSP
+A query asking for KH2Z’s position.
+
+/092345z4903.50N/07201.75W>
+
+:KH2ZVVVVV:?APRSS
+A query asking for KH2Z’s status.
+
+>092345zNet Control Center
+
+:KH2ZVVVVV:?APRST
+A query asking KH2Z for a trace of the
+route taken to reach him.
+
+:N8URVVVVV:KH2Z>APRS,DIGI1,WIDE*:
+
+:KH2ZVVVVV:?PING?
+The same query, using PING instead
+of APRST.
+
+:N8URVVVVV:KH2Z>APRS,DIGI1,WIDE*:
+
