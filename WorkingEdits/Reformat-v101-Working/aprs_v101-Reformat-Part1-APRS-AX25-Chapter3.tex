@@ -14,65 +14,27 @@ receive acknowledgements from those stations.
 
 \subsection{The AX.25 Frame}
 
+\begin{center}
 All APRS transmissions use AX.25 UI-frames, with 9 fields of data:
+\end{center}
 
-
-
-
-
-
-% Figure Here
-
-AX.25 UI-FRAME FORMAT
-
-Bytes:
-
-Flag
-
-Destination
-Address
-
-Source
-Address
-
-Digipeater
-Addresses
-(0-8)
-
-Control
-Field
-(UI)
-
-Protocol
-ID
-
-INFORMATION FIELD
-
-FCS
-
-Flag
-
-1
-
-7
-
-7
-
-0–56
-
-1
-
-1
-
-1–256
-
-2
-
-1
-
-
-% end figure
-
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{10}{|c|}{AX.25 UI-FRAME FORMAT} \\
+  \hline
+  \hline 
+  FIELD & Flag & Destination & Source & Digipeater  & Control & Protocol  & Information  & FCS & Flag \\
+  NAME & & Address & Address & Addresses & Field  & ID & Field &  &    \\
+  &         &         &    & (0--8)     & (UI)   &       &  &  &  \\
+  \hline
+  BYTES & 1  & 7  & 7  & 0--56 & 1  & 1  & 1--256  & 2  & 1 \\
+  \hline
+  
+  FIELD & One & Two & Three & Four & Five & Six & Seven & Eight & Nine \\
+  NUMBER  &     &     &       &      &      &     &       &       &      \\
+  
+  \hline
+\end{tabular}
 
 \begin{itemize}
 
@@ -104,6 +66,10 @@ character of this field is the APRS Data Type Identifier that specifies the
 nature of the data that follows.
 
 \item \textbf{Frame Check Sequence--} The FCS is a sequence of 16 bits used for
-checking the integrity of a received frame.
+  checking the integrity of a received frame.
+
+\item \textbf{Flag--} The flag field at each end of the frame is the
+  bit sequence 0x7e that separates each frame.
+    
 
 \end{itemize}

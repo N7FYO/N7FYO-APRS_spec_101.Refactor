@@ -71,20 +71,24 @@ present for backward compatibility.
 
 All of these addresses have an SSID of –0. Non-zero SSIDs are reserved for
 generic APRS digipeating.
+
 These addresses are copied by everyone. All APRS software must accept
 packets with these destination addresses.
 
 The address GPS (i.e. the 3-letter address GPS, not GPS*) is specifically
 intended for use by trackers sending lat/long positions via digipeaters which
 have the capability of converting positions to compressed data format.
+
 The addresses DGPS and RTCM are used by differential GPS correction
 stations. Most software will not make use of packets using this address, other
 than to pass them on to an attached GPS unit.
 
 The address SKY is used for Skywarn stations.
+
 Packets addressed to SPCL are intended for special events. APRS software
 can display such packets to the exclusion of all others, to minimize clutter on
 the screen from other stations not involved in the special event.
+
 The addresses TEL and TLM is used for telemetry stations.
 
 \section{Generic APRS Address with Symbol}
@@ -145,23 +149,19 @@ is assigned to it.
 
 Another alternative use of the AX.25 Destination Address field is to contain
 Mic-E encoded data. This data includes:
-•
 
-The latitude of the station.
+\begin{itemize}
 
-•
+\item The latitude of the station.
 
-A West/East Indicator and a Longitude Offset Indicator (used in
+\item A West/East Indicator and a Longitude Offset Indicator (used in
 longitude computations).
 
-•
+\item A Message Code.
 
-A Message Code.
+\item The APRS digipeater path.
 
-•
-
-The APRS digipeater path.
-
+\end{itemize}
 This data is used with associated data in the AX.25 Information field to
 provide a complete Position Report and other information about the station
 (see Chapter 10: Mic-E Data Format).

@@ -1,13 +1,18 @@
 % Reformat of Document Version 1.0.1: 29 August 2000
 % Document Version 1.0.1: 29 August 2000
 
-% \documentclass{report}
-\documentclass{scrreprt}[letter]
+\documentclass{report}
+
+
+\usepackage{geometry}
+\geometry{letterpaper, portrait, margin=0.75in}
 \usepackage{pdfpages}
 \usepackage{color}
-\usepackage{soul}
+% \usepackage{soul}
+\usepackage{parskip}
 
-\KOMAoptions{parskip=full}
+
+
 \title{AUTOMATIC POSITION REPORTING SYSTEM}
 \date{29 August 2000}
 \author{The APRS Working Group}
@@ -16,28 +21,40 @@
 
 \maketitle
 
-\include{aprs_v101-Reformat-covers}
+
+
+% \include{aprs_v101-Reformat-covers}
 
 % Part 0 Chunk 1
-\include{aprs_v101-Reformat-Part0-Prelude-Chunk1}
+
+% \include{aprs_v101-Reformat-Part0-Prelude-Chunk1}
 
 % \maketoc
 
 % Part 0 Chunk 2
-\include{aprs_v101-Reformat-Part0-Prelude-Chunk2}
+
+% \include{aprs_v101-Reformat-Part0-Prelude-Chunk2}
 
 % Part 1 Chapter 0
-\include{aprs_v101-Reformat-Part1-Structure-of-Spec-chunk1}
+
+% \include{aprs_v101-Reformat-Part1-Structure-of-Spec-chunk1}
 
 % Part 1 Chapter 1
-\include{aprs_v101-Reformat-Part1-Intro2APRS-Chapter1}
+
+% \include{aprs_v101-Reformat-Part1-Intro2APRS-Chapter1}
 
 % Part 1 Chapter 2
-\include{aprs_v101-Reformat-Part1-DesignPhilosophy-Chapter2}
+
+% \include{aprs_v101-Reformat-Part1-DesignPhilosophy-Chapter2}
 
 % Part 1 Chapter 3
+
 \include{aprs_v101-Reformat-Part1-APRS-AX25-Chapter3}
 
+% Part 1 Chapter 4
+
+\include{aprs_v101-Reformat-Part1-Chapter4.tex}
+  
 \end{document}
 
 
