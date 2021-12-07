@@ -31,42 +31,20 @@ APRS uses the following generic beacon-style destination addresses:
 
 % Start Chart
 
-AIR* †
-DGPS*
-QST*
-TEL*
+\begin{tabbing}
+\= 123456789 \=123456789 \=123456789 \=123456789 \=123456789 \=123456789 \=123456789 \kill
+\> AIR* $\dagger$  \> ALL*   \> AP*   \> BEACON \> CQ*  \> GPS*   \> DF*   \\
+\> DGPS*  \> DRILL* \> DX*   \> ID*    \> JAVA* \> MAIL* \> MICE* \\
+\> QST*   \> QTH*   \> RTCM* \>SKY*    \> SPACE* \> SPC*  \> SYM* \\
+\> TEL*   \> TEST*  \> TLM*  \> WX*    \> ZIP* $\dagger$ \\
 
-ALL*
-DRILL*
-QTH*
-TEST*
-
-AP*
-DX*
-RTCM*
-TLM*
-
-BEACON
-ID*
-SKY*
-WX*
-
-CQ*
-GPS*
-JAVA* MAIL*
-SPACE* SPC*
-ZIP* †
-
-DF*
-MICE*
-SYM*
-
-% End chart
+\end{tabbing}
 
 The asterisk is a wildcard, allowing the address to be extended (up to a total
 of 6 alphanumeric characters). Thus, for example, WX1, WX12 and WX12CD
 are all valid APRS destination addresses.
-† The AIR* and ZIP* addresses are being phased out, but are needed at
+
+$\dagger$ The AIR* and ZIP* addresses are being phased out, but are needed at
 present for backward compatibility.
 
 All of these addresses have an SSID of –0. Non-zero SSIDs are reserved for
@@ -89,28 +67,32 @@ Packets addressed to SPCL are intended for special events. APRS software
 can display such packets to the exclusion of all others, to minimize clutter on
 the screen from other stations not involved in the special event.
 
-The addresses TEL and TLM is used for telemetry stations.
+The addresses TEL and TLM are used for telemetry stations.
 
 \section{Generic APRS Address with Symbol}
 
 APRS uses several of the above-listed generic addresses in a special way, to
 specify not only an address but also a display symbol. These special
-addresses are GPSxyz, GPSCnn, GPSEnn, SPCxyz and SYMxyz, and are
+addresses are \textsf {GPSxyz, GPSCnn, GPSEnn, SPCxyz} and \textsf {SYMxyz}, and are
 intended for use where it is not possible to include the symbol in the AX.25
 Information field.
 
 The GPS addresses above are for general use.
+
 The SPC addresses are intended for special events.
+
 The SYM addresses are reserved for future use.
-The characters xy and nn refer to entries in the APRS Symbol Tables. The
-character z specifies a symbol overlay. See Chapter 20: APRS Symbols and
-Appendix 2 for more information.
+
+The characters \textsf{xy} and \textsf{nn} refer to entries in the APRS Symbol Tables. The
+character \textsf{z} specifies a symbol overlay. See Chapter 20: APRS Symbols and
+Appendix Two for more information.
 
 \section{APRS Software Version Number}
 
 The AX.25 Destination Address field can contain the version number of the
 APRS software that is running at the station. Knowledge of the version
 number can be useful when debugging.
+
 The following software version types are reserved (xx and xxx indicate a
 version number):
 
@@ -138,12 +120,11 @@ version number):
 
 This table will be added to by the APRS Working Group.
 For example, a station using version 3.2.6 of MacAPRS could use the
-destination callsign \texttt{APM326}.
+destination callsign \textsf{APM326}.
 
 The Experimental destination is designated for temporary use only while a
 product is being developed, before a special APRS Software Version address
 is assigned to it.
-
 
 \section {Mic-E Encoded Data}
 
@@ -169,7 +150,7 @@ provide a complete Position Report and other information about the station
 \section {Maidenhead Grid Locator in Destination Address}
 
 The AX.25 Destination Address field may contain a 6-character Maidenhead
-Grid Locator. For example: IO91SX. This format is typically used by meteor
+Grid Locator. For example: \textsf{IO91SX}. This format is typically used by meteor
 scatter and satellite operators who need to keep packets as short as possible.
 
 This format is now obsolete.
@@ -200,85 +181,40 @@ generic APRS digipeater paths.
 The SSID field in the Destination Address (i.e. in the 7th address byte) is
 encoded as follows:
 
-% Chart start
 
-APRS Digipeater Paths in Destination Address SSID
-SSID
 
-The AX.25 Source
-Address SSID to
-specify Symbols
+\subsubsection*{APRS Digipeater Paths in Destination Address SSID}
 
-Path
+\begin{multicols}{2}
 
--0
+      
+  \begin{tabular}{|c|c|}
+    \hline
+    SSID & Path \\       \hline
+    -0 & Use VIA path \\ \hline
+    -1 & WIDE1-1 \\      \hline
+    -2 & WIDE2-2 \\ \hline
+    -3 & WIDE3-3 \\ \hline
+    -4 & WIDE4-4 \\ \hline
+    -5 & WIDE5-5 \\ \hline
+    -6 & WIDE6-6 \\ \hline
+    -7 & WIDE7-7 \\ \hline
+  \end{tabular}
+  
+  \begin{tabular}{|c|c|}
+    \hline
+    SSID & Path \\       \hline
+    -8 & North path \\ \hline
+    -9 & South path \\      \hline
+    -10 & East path \\ \hline
+    -11 & West path \\ \hline
+    -12 & North path + WIDE \\ \hline
+    -13 & South path + WIDE \\ \hline
+    -14 & East path + WIDE \\ \hline
+    -15 & West path + WIDE \\ \hline
+  \end{tabular}
+\end{multicols}
 
-Use VIA path
-
--1
--2
-
-SSID
-
-Path
-
--8
-
-North path
-
-WIDE1-1
-
--9
-
-South path
-
-WIDE2-2
-
--10
-
-East path
-
--3
-
-WIDE3-3
-
--11
-
-West path
-
--4
-
-WIDE4-4
-
--12
-
-North path + WIDE
-
--5
-
-WIDE5-5
-
--13
-
-South path + WIDE
-
--6
-
-WIDE6-6
-
--14
-
-East path + WIDE
-
--7
-
-WIDE7-7
-
--15
-
-West path + WIDE
-
-% end chart
 
 \section{The AX.25 Source Address SSID to specify Symbols}
 

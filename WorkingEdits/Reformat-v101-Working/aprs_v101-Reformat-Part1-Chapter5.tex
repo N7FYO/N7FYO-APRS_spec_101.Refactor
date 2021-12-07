@@ -13,26 +13,17 @@ following information:
 
 % begin chart
 
-Generic APRS Information Field
-Data
-Type ID
+\begin{tabular}{|l|c|c|c|c|}
+  \hline
+  \hline
+  \multicolumn{5}{|l|}{Generic APRS Information Field} \\
+  \hline
+  & Data Type ID & APRS Data & APRS Data Extension & Comment \\
+  \hline 
+  Bytes: & 1            & n         & 7                   & n \\
+  \hline
+\end{tabular}
 
-APRS Data
-
-APRS Data
-Extension
-
-Comment
-
-1
-
-n
-
-7
-
-n
-
-Bytes:
 
 % end chart
 
@@ -44,6 +35,7 @@ follows:
 
 % begin chart
 
+\begin{verbatim}
 APRS Data Type Identifiers
 Ident
 
@@ -208,9 +200,11 @@ Telemetry data
 Current Mic-E Data (not used in TM-D700)
 [Do not use]
 
-
+\end{verbatim}
 
 % end chart
+
+
 
 
 \textbf{Note:} There is one exception to the requirement for the Data Type Identifier
@@ -425,10 +419,9 @@ process to obtain the corresponding ASCII character code.
 
 For example, for a data value of 12345678:
 \begin{verbatim}
-12345678 / 913 = modulus 16, remainder 288542
-288542 / 912 = modulus 34, remainder 6988
-6988 / 911
-= modulus 76, remainder 72
+12345678 / 91^3 = modulus 16, remainder 288542
+288542 / 91^2 = modulus 34, remainder 6988
+6988 / 91^1 = modulus 76, remainder 72
 \end{verbatim}
 
 The four ASCII character codes are thus 49 (i.e. 16+33), 67 (i.e. 34+33), 109
