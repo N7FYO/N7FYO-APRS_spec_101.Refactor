@@ -184,23 +184,55 @@ The APRS Data and optional Data Extension follow the Data Type Identifier.
 The table on the next page shows a complete list of all the different possible
 types of APRS Data and APRS Data Extension.
 
+\newpage
+% Begin Table
+
+\begin{table}[htbp]
+  \caption{Possible APRS Data and Extension}
+  \begin{tabular}{|r|l|l|}
+    \hline
+    & Possible APRS Data & Possible APRS Data Extension \\
+    \hline
+    Position & Time (DHM or HMS) & Course and Speed \\
+    & Lat/long coordinates & Power, Effective Antenna Height \\
+    & & /Gain/Directivity \\
+    & Compressed lat/long/course/speed/radio range/altitude & Pre-Calculated Radio Range \\
+    & Symbol Table ID and Symbol Code & Omni DF Signal Strength \\
+    & Mic-E longitude, speed and course, telemetry or status & Storm Data (in Comment field) \\
+    & Raw GPS NMEA sentente & \\
+    & Raw weather station data & \\
+    \hline
+    Direction Finding & Time (DHM or HMS) & Course and Speed \\
+    & Lat/long coordinates & Power, Effective Antenna Height \\
+    & & /Gain/Directivity \\
+    & Compressed lat/long/course/speed/radio range/altitude & Pre-Calculated Radio Range \\
+    & Symbol Table ID and Symbol Code & Omni DF Signal Strength \\
+    & & Bearing and \\
+    & & Number/Range/Quality \\
+    & & (in Comment field) \\
+    \hline
+    
+    
+    \hline
+  \end{tabular}
+\end{table}
+
+% More to add to the table above
+
+\clearpage
+
+  
 
 
-Possible APRS Data
 
-Possible APRS Data Extension
 
-Time (DHM or HMS)
-Lat/long coordinates
-Compressed lat/long/course/speed/radio range/altitude
-Symbol Table ID and Symbol Code
 Mic-E longitude, speed and course, telemetry or status
 Raw GPS NMEA sentence
 Raw weather station data
 
-Course and Speed
-Power, Effective Antenna Height/Gain/Directivity
-Pre-Calculated Radio Range
+
+
+
 Omni DF Signal Strength
 Storm Data (in Comment field)
 
