@@ -15,8 +15,7 @@ following information:
 
 \begin{tabular}{|l|c|c|c|c|}
   \hline
-  \hline
-  \multicolumn{5}{|l|}{Generic APRS Information Field} \\
+  \multicolumn{5}{|l|}{\bf\it{Generic APRS Information Field}} \\
   \hline
   & Data Type ID & APRS Data & APRS Data Extension & Comment \\
   \hline 
@@ -34,173 +33,109 @@ determines the format of the remainder of the data in the Information field, as
 follows:
 
 % begin chart
-
-\begin{verbatim}
-APRS Data Type Identifiers
-Ident
-
-Data Type
-
-Ident
-
-Data Type
-
-0x1c
-
-Current Mic-E Data (Rev 0 beta)
-
-<
-
-Station Capabilities
-
-0x1d
-
-Old Mic-E Data (Rev 0 beta)
-
-=
-
-Position without timestamp (with APRS
-messaging)
-
-!
-
-Position without timestamp (no APRS
-messaging), or Ultimeter 2000 WX Station
-
->
-
-Status
-
-"
-
-[Unused]
-
-?
-
-Query
-
-#
-
-Peet Bros U-II Weather Station
-
-@
-
-Position with timestamp (with APRS messaging)
-
-$
-
-Raw GPS data or Ultimeter 2000
-
-%
-
-Agrelo DFJr / MicroFinder
-
-&
-
-[Reserved — Map Feature]
-
-'
-
-Old Mic-E Data (but Current data for TM-D700)
-
-[
-
-Maidenhead grid locator beacon (obsolete)
-
-(
-
-[Unused]
-
-\
-
-[Unused]
-
-)
-
-Item
-
-]
-
-[Unused]
-
-*
-
-Peet Bros U-II Weather Station
-
-^
-
-[Unused]
-
-+
-
-[Reserved — Shelter data with time]
-
-_
-
-Weather Report (without position)
-
-,
-
-Invalid data or test data
-
-‘
-
--
-
-[Unused]
-
-.
-
-[Reserved — Space weather]
-
-{
-
-User-Defined APRS packet format
-
-/
-
-Position with timestamp (no APRS messaging)
-
-|
-
-[Do not use — TNC stream switch character]
-
-[Do not use]
-
-}
-
-Third-party traffic
-
-:
-
-Message
-
-~
-
-[Do not use — TNC stream switch character]
-
-;
-
-Object
-
-0–9
-
-A–S
-T
-U–Z
-
-a–z
-
-
-
-[Do not use]
-Telemetry data
-[Do not use]
-
-Current Mic-E Data (not used in TM-D700)
-[Do not use]
-
-\end{verbatim}
+% top label figure: APRS Data Type Identifiers
+
+\begin{table}[htbp]
+\caption{\bf{APRS Data Type Identifiers}}
+\begin{tabular} {|l|l|}
+    \hline
+    \bf\it{Ident} & \bf\it{Data Type} \\
+    \hline
+     0x1c & Current Mic-E Data (Rev 0 beta) \\
+     \hline
+     0x2d & Old Mic-E Data (Rev 0 beta) \\
+     \hline
+     ! & Position without timestamp (no APRS messaging), or Ultimeter 2000 WX Station \\
+     \hline
+     \textquotedbl     & [Unused] \\
+     \hline
+     \# & Peet Bros U-II Weather Station \\
+     \hline
+     \$ & Raw GPS data or Ultimeter 2000 \\
+     \hline
+     \% & Agrelo DFJr / MicroFinder \\
+     \hline
+     \& & [Reserved \textemdash Map Feature] \\
+     \hline
+     \textquotesingle & Old Mic-E Data (but \it{Current} data for TM-D700) \\
+     \hline
+     ( & \it{[Unused]} \\
+     \hline
+     ) & Item \\
+     \hline
+     \* & Peet Bros U-II Weather Station \\
+     \hline
+     + & \it{[Reserved} \textemdash Shelter data with time] \\
+     \hline
+     , & Invalid data or test data \\
+     \hline
+     - & \it{[Unused]} \\
+     \hline
+     . & \it{[Reserved \textemdash Space weather]} \\
+     \hline
+     / & Position with timestamp (no APRS messaging) \\
+     \hline
+     0-9 & \it{[Do not use]} \\
+     \hline
+     : & Message \\
+     \hline
+     ; & Object \\
+     \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\bf{APRS Data Type Identifiers, Continued}}
+  
+  \begin{tabular} {|l|l|}
+    \hline
+    \it{Ident} & \it{Data Type} \\
+    \hline
+     < & Station Capabilities \\
+     \hline
+     = & Position without timestamp (with APRS messaging) \\
+     \hline
+     > & Status \\
+     \hline
+     ? & Query \\
+     \hline
+     @ & Position with timestamp (with APRS messaging) \\
+     \hline
+     A-S & \it{[Do not use]} \\
+     \hline
+     T & Telemetry data \\
+     \hline
+     U-Z & \it{[Do not use]} \\
+     \hline
+     [ & Maidenhead grid locator beacon (obsolete) \\
+       \hline
+       \textbackslash & \it{[Unused]} \\
+       \hline
+     ] & \it{[Unused]} \\
+       \hline
+       \^{} & \it{[Unused]} \\
+       \hline
+       \_{} & Weather Report (without position) \\
+       \hline
+       \textasciigrave & Current Mic-E Data (not used in TM-D700) \\
+       \hline
+       a-z & \it{[Do not use]} \\
+       \hline
+       \{ & User-Defined APRS packet format \\
+       \hline
+       | & \it{[Do not use — TNC stream switch character]} \\
+       \hline
+       \} & Third-party traffic \\
+       \hline
+       \textasciitilde{} & \it{[Do not use — TNC stream switch character]} \\
+       \hline
+       
+       
+  \end{tabular}
+
+  
+\end{table}
+  
 
 % end chart
 
@@ -218,6 +153,8 @@ unmodifiable text at the beginning of the field.
 
 \textbf{Note:} The Kenwood TM-D700 radio uses the ' DTI for current Mic-E data.
 The radio does not use the ‘ DTI.
+
+\clearpage
 
 \section{APRS Data and Data Extension}
 
