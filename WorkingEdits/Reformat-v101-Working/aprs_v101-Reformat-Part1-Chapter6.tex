@@ -70,28 +70,15 @@ messaging capability or not:
 
 % Chart here
 
-
-No APRS
-Messaging
-
-With APRS
-Messaging
-
-(Current/real-time)
-
-Report without timestamp
-
-!
-
-=
-
-(Old/non-real-time)
-
-Report with timestamp
-
-/
-
-@
+\begin{tabular} {|l|c|c|c|}
+  \hline \hline
+  & & No APRS Messaging & With APRS Messaging \\
+  \hline
+  (Current/real-time) & Report without timestamp & ! & =  \\
+  \hline
+  (Old/non-real-time) & Report with timestamp & / & @ \\
+  \hline \hline
+\end{tabular}
 
 Stations without APRS messaging capability are typically stand-alone
 trackers or digipeaters. Stations reporting without a timestamp are generally
@@ -107,9 +94,8 @@ Latitude degrees are in the range 00 to 90. Latitude minutes are expressed as
 whole minutes and hundredths of a minute, separated by a decimal point.
 
 For example:
-4903.50N
 
-is 49 degrees 3 minutes 30 seconds north.
+4903.50N is 49 degrees 3 minutes 30 seconds north.
 
 In generic format examples, the latitude is shown as the 8-character string
 ddmm.hhN (i.e. degrees, minutes and hundredths of a minute north).
@@ -150,7 +136,6 @@ The full Symbol Table listing is in Appendix 2.
 
 \section{Position Ambiguity}
 
-% Need to fix the V thing here
 
 In some instances — for example, where the exact position is not known —
 the sending station may wish to reduce the number of digits of precision in
@@ -166,9 +151,9 @@ imprecision increases. For example:
 \item 49\textvisiblespace\textvisiblespace.\textvisiblespace\textvisiblespace N represents latitude to nearest degree.
 \end{description}
 
-The level of ambiguity specified in the latitude will automatically apply to
-the longitude as well — it is not necessary to include any \textvisiblespace characters in the
-longitude.
+The level of ambiguity specified in the latitude will automatically
+apply to the longitude as well — it is not necessary to include
+any \textvisiblespace characters in the longitude.
 
 For example, the coordinates:
 
@@ -243,10 +228,7 @@ at least the following NMEA Received Sentence types:
 \item WPT Way Point Location
 % footnote WPT as typo, as mentioned in 1.1
 
-
 \end{itemize}
-
-
 
 \section{Altitude}
 

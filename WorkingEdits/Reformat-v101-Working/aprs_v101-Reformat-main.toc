@@ -1,65 +1,65 @@
-\contentsline {part}{I\hspace {1em}The Structure of this Specification}{8}{}%
-\contentsline {paragraph}{Introduction to APRS --}{9}{}%
-\contentsline {paragraph}{The APRS Design Philosophy --}{9}{}%
-\contentsline {paragraph}{APRS and AX.25 --}{9}{}%
-\contentsline {paragraph}{APRS Data in the AX.25 Destination and Source Address Fields --}{9}{}%
-\contentsline {paragraph}{APRS Data in the AX.25 Information Field --}{9}{}%
-\contentsline {paragraph}{Time and Position Formats --}{9}{}%
-\contentsline {paragraph}{APRS Data Extensions --}{9}{}%
-\contentsline {paragraph}{Position and DF Report Data Formats --}{9}{}%
-\contentsline {paragraph}{Compressed Position Report Data Formats --}{9}{}%
-\contentsline {paragraph}{Mic-E Data Format --}{9}{}%
-\contentsline {paragraph}{Object and Item Reports --}{9}{}%
-\contentsline {paragraph}{Weather Reports --}{9}{}%
-\contentsline {paragraph}{Telemetry Data --}{9}{}%
-\contentsline {paragraph}{Messages, Bulletins and Announcements --}{9}{}%
-\contentsline {paragraph}{Station Capabilities, Queries and Responses --}{9}{}%
-\contentsline {paragraph}{Status Reports --}{9}{}%
-\contentsline {paragraph}{Network Tunneling --}{9}{}%
-\contentsline {paragraph}{User-Defined Data Format --}{10}{}%
-\contentsline {paragraph}{Other Packets --}{10}{}%
-\contentsline {paragraph}{APRS Symbols --}{10}{}%
-\contentsline {paragraph}{APRS Data Formats --}{10}{}%
-\contentsline {paragraph}{The APRS Symbol Tables --}{10}{}%
-\contentsline {paragraph}{ASCII Code Table --}{10}{}%
-\contentsline {paragraph}{Glossary --}{10}{}%
-\contentsline {paragraph}{References --}{10}{}%
-\contentsline {chapter}{\numberline {1}Chapter 1: Introduction to APRS}{11}{}%
-\contentsline {section}{\numberline {1.1}What is APRS?}{11}{}%
-\contentsline {section}{\numberline {1.2}APRS Features}{12}{}%
-\contentsline {chapter}{\numberline {2}Chapter 2: APRS Design Philosophy}{13}{}%
-\contentsline {section}{\numberline {2.1}Net Cycle Time}{13}{}%
-\contentsline {section}{\numberline {2.2}Packet Timing}{14}{}%
-\contentsline {section}{\numberline {2.3}Generic Digipeating}{14}{}%
-\contentsline {section}{\numberline {2.4}Communicating Map Views Unambiguously}{15}{}%
-\contentsline {chapter}{\numberline {3}Chapter 3: APRS and AX.25}{16}{}%
-\contentsline {section}{\numberline {3.1}Protocols}{16}{}%
-\contentsline {subsection}{\numberline {3.1.1}The AX.25 Frame}{16}{}%
-\contentsline {chapter}{\numberline {4}Chapter 4: APRS Data in the AX.25 Destination and Source Address Fields}{17}{}%
-\contentsline {section}{\numberline {4.1}The AX.25 Destination Address Field}{17}{}%
-\contentsline {section}{\numberline {4.2}Generic APRS Destination Addresses}{17}{}%
-\contentsline {section}{\numberline {4.3}Generic APRS Address with Symbol}{18}{}%
-\contentsline {section}{\numberline {4.4}APRS Software Version Number}{18}{}%
-\contentsline {section}{\numberline {4.5}Mic-E Encoded Data}{19}{}%
-\contentsline {section}{\numberline {4.6}Maidenhead Grid Locator in Destination Address}{19}{}%
-\contentsline {section}{\numberline {4.7}Alternate Nets}{19}{}%
-\contentsline {section}{\numberline {4.8}Generic APRS Digipeater Path}{19}{}%
-\contentsline {section}{\numberline {4.9}The AX.25 Source Address SSID to specify Symbols}{19}{}%
-\contentsline {chapter}{\numberline {5}Chapter 5: APRS Data in the AX.25 Information Field}{21}{}%
-\contentsline {section}{\numberline {5.1}Generic Data Format}{21}{}%
-\contentsline {section}{\numberline {5.2}APRS Data Type Identifier}{21}{}%
-\contentsline {section}{\numberline {5.3}APRS Data and Data Extension}{23}{}%
-\contentsline {section}{\numberline {5.4}Comment Field}{25}{}%
-\contentsline {section}{\numberline {5.5}Base-91 Notation}{25}{}%
-\contentsline {section}{\numberline {5.6}APRS Data Units}{25}{}%
-\contentsline {chapter}{\numberline {6}Chapter 6: Time and Position Formats}{26}{}%
-\contentsline {section}{\numberline {6.1}Time Formats}{26}{}%
-\contentsline {section}{\numberline {6.2}Use of Timestamps}{26}{}%
-\contentsline {section}{\numberline {6.3}Latitude Format}{27}{}%
-\contentsline {section}{\numberline {6.4}Longitude Format}{27}{}%
-\contentsline {section}{\numberline {6.5}Position Coordinates}{27}{}%
-\contentsline {section}{\numberline {6.6}Position Ambiguity}{28}{}%
-\contentsline {section}{\numberline {6.7}Default Null Position}{28}{}%
-\contentsline {section}{\numberline {6.8}Maidenhead Locator (Grid Square)}{28}{}%
-\contentsline {section}{\numberline {6.9}NMEA Data}{29}{}%
-\contentsline {section}{\numberline {6.10}Altitude}{29}{}%
+\contentsline {part}{I\hspace {1em}The Structure of this Specification}{9}{}%
+\contentsline {paragraph}{Introduction to APRS --}{10}{}%
+\contentsline {paragraph}{The APRS Design Philosophy --}{10}{}%
+\contentsline {paragraph}{APRS and AX.25 --}{10}{}%
+\contentsline {paragraph}{APRS Data in the AX.25 Destination and Source Address Fields --}{10}{}%
+\contentsline {paragraph}{APRS Data in the AX.25 Information Field --}{10}{}%
+\contentsline {paragraph}{Time and Position Formats --}{10}{}%
+\contentsline {paragraph}{APRS Data Extensions --}{10}{}%
+\contentsline {paragraph}{Position and DF Report Data Formats --}{10}{}%
+\contentsline {paragraph}{Compressed Position Report Data Formats --}{10}{}%
+\contentsline {paragraph}{Mic-E Data Format --}{10}{}%
+\contentsline {paragraph}{Object and Item Reports --}{10}{}%
+\contentsline {paragraph}{Weather Reports --}{10}{}%
+\contentsline {paragraph}{Telemetry Data --}{10}{}%
+\contentsline {paragraph}{Messages, Bulletins and Announcements --}{10}{}%
+\contentsline {paragraph}{Station Capabilities, Queries and Responses --}{11}{}%
+\contentsline {paragraph}{Status Reports --}{11}{}%
+\contentsline {paragraph}{Network Tunneling --}{11}{}%
+\contentsline {paragraph}{User-Defined Data Format --}{11}{}%
+\contentsline {paragraph}{Other Packets --}{11}{}%
+\contentsline {paragraph}{APRS Symbols --}{11}{}%
+\contentsline {paragraph}{APRS Data Formats --}{11}{}%
+\contentsline {paragraph}{The APRS Symbol Tables --}{11}{}%
+\contentsline {paragraph}{ASCII Code Table --}{11}{}%
+\contentsline {paragraph}{Glossary --}{11}{}%
+\contentsline {paragraph}{References --}{11}{}%
+\contentsline {chapter}{\numberline {1}Chapter 1: Introduction to APRS}{12}{}%
+\contentsline {section}{\numberline {1.1}What is APRS?}{12}{}%
+\contentsline {section}{\numberline {1.2}APRS Features}{13}{}%
+\contentsline {chapter}{\numberline {2}Chapter 2: APRS Design Philosophy}{14}{}%
+\contentsline {section}{\numberline {2.1}Net Cycle Time}{14}{}%
+\contentsline {section}{\numberline {2.2}Packet Timing}{15}{}%
+\contentsline {section}{\numberline {2.3}Generic Digipeating}{15}{}%
+\contentsline {section}{\numberline {2.4}Communicating Map Views Unambiguously}{16}{}%
+\contentsline {chapter}{\numberline {3}Chapter 3: APRS and AX.25}{17}{}%
+\contentsline {section}{\numberline {3.1}Protocols}{17}{}%
+\contentsline {subsection}{\numberline {3.1.1}The AX.25 Frame}{17}{}%
+\contentsline {chapter}{\numberline {4}Chapter 4: APRS Data in the AX.25 Destination and Source Address Fields}{19}{}%
+\contentsline {section}{\numberline {4.1}The AX.25 Destination Address Field}{19}{}%
+\contentsline {section}{\numberline {4.2}Generic APRS Destination Addresses}{19}{}%
+\contentsline {section}{\numberline {4.3}Generic APRS Address with Symbol}{20}{}%
+\contentsline {section}{\numberline {4.4}APRS Software Version Number}{20}{}%
+\contentsline {section}{\numberline {4.5}Mic-E Encoded Data}{21}{}%
+\contentsline {section}{\numberline {4.6}Maidenhead Grid Locator in Destination Address}{21}{}%
+\contentsline {section}{\numberline {4.7}Alternate Nets}{21}{}%
+\contentsline {section}{\numberline {4.8}Generic APRS Digipeater Path}{21}{}%
+\contentsline {section}{\numberline {4.9}The AX.25 Source Address SSID to specify Symbols}{22}{}%
+\contentsline {chapter}{\numberline {5}Chapter 5: APRS Data in the AX.25 Information Field}{23}{}%
+\contentsline {section}{\numberline {5.1}Generic Data Format}{23}{}%
+\contentsline {section}{\numberline {5.2}APRS Data Type Identifier}{23}{}%
+\contentsline {section}{\numberline {5.3}APRS Data and Data Extension}{25}{}%
+\contentsline {section}{\numberline {5.4}Comment Field}{27}{}%
+\contentsline {section}{\numberline {5.5}Base-91 Notation}{27}{}%
+\contentsline {section}{\numberline {5.6}APRS Data Units}{27}{}%
+\contentsline {chapter}{\numberline {6}Chapter 6: Time and Position Formats}{28}{}%
+\contentsline {section}{\numberline {6.1}Time Formats}{28}{}%
+\contentsline {section}{\numberline {6.2}Use of Timestamps}{28}{}%
+\contentsline {section}{\numberline {6.3}Latitude Format}{29}{}%
+\contentsline {section}{\numberline {6.4}Longitude Format}{29}{}%
+\contentsline {section}{\numberline {6.5}Position Coordinates}{29}{}%
+\contentsline {section}{\numberline {6.6}Position Ambiguity}{30}{}%
+\contentsline {section}{\numberline {6.7}Default Null Position}{30}{}%
+\contentsline {section}{\numberline {6.8}Maidenhead Locator (Grid Square)}{30}{}%
+\contentsline {section}{\numberline {6.9}NMEA Data}{31}{}%
+\contentsline {section}{\numberline {6.10}Altitude}{31}{}%

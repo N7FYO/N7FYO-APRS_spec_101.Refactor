@@ -13,6 +13,22 @@
 \usepackage{multicol}
 \usepackage[T1]{fontenc}
 
+% \usepackage{newtxtt}
+%\makeatletter
+%\renewcommand{\verbatim@font}{\usefont{T1}{newtxtt}{m}{n}}
+%\makeatother
+
+% need to use xelatex or lualatex for fontspec
+
+% Adding this to override usual mono spaced font for 'verbatim' environment
+% Doing this because original document uses courier mono for a specific purpose
+% I usually use verbatim as crutch to get something with weird symbols to work right.
+
+\usepackage{fontspec}
+    \setmainfont{DejaVu Serif}
+    \setsansfont{DejaVu Sans}
+    \setmonofont{DejaVu Sans}
+\makeatletter
 
 \title{AUTOMATIC POSITION REPORTING SYSTEM}
 \date{29 August 2000}
@@ -63,6 +79,9 @@
 
 % Part 1 Chapter 6
 \include{aprs_v101-Reformat-Part1-Chapter6.tex}
+
+% Part 1 Chapter 7
+\include{aprs_v101-Reformat-Part1-Chapter7.tex}
 
 \end{document}
 
