@@ -45,3 +45,10 @@
 \contentsline {section}{\numberline {4.7}Alternate Nets}{19}{}%
 \contentsline {section}{\numberline {4.8}Generic APRS Digipeater Path}{19}{}%
 \contentsline {section}{\numberline {4.9}The AX.25 Source Address SSID to specify Symbols}{19}{}%
+\contentsline {chapter}{\numberline {5}Chapter 5: APRS Data in the AX.25 Information Field}{21}{}%
+\contentsline {section}{\numberline {5.1}Generic Data Format}{21}{}%
+\contentsline {section}{\numberline {5.2}APRS Data Type Identifier}{21}{}%
+\contentsline {section}{\numberline {5.3}APRS Data and Data Extension}{23}{}%
+\contentsline {section}{\numberline {5.4}Comment Field}{25}{}%
+\contentsline {section}{\numberline {5.5}Base-91 Notation}{25}{}%
+\contentsline {section}{\numberline {5.6}APRS Data Units}{25}{}%

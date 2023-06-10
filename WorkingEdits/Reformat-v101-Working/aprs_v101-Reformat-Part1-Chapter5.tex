@@ -193,6 +193,9 @@ types of APRS Data and APRS Data Extension.
     \hline
     & Possible APRS Data & Possible APRS Data Extension \\
     \hline
+
+% Position Row
+    
     Position & Time (DHM or HMS) & Course and Speed \\
     & Lat/long coordinates & Power, Effective Antenna Height \\
     & & /Gain/Directivity \\
@@ -202,6 +205,9 @@ types of APRS Data and APRS Data Extension.
     & Raw GPS NMEA sentente & \\
     & Raw weather station data & \\
     \hline
+    
+% Direction Finding Row 
+
     Direction Finding & Time (DHM or HMS) & Course and Speed \\
     & Lat/long coordinates & Power, Effective Antenna Height \\
     & & /Gain/Directivity \\
@@ -211,123 +217,79 @@ types of APRS Data and APRS Data Extension.
     & & Number/Range/Quality \\
     & & (in Comment field) \\
     \hline
-    
-    
+
+% Objects and Items Row
+    Objects and & Object Name & Course and Speed \\
+    Items & Item name & Power, Effective Antenna Height/Gain/Directivity \\
+    & Time  (DHM or HMS) & Pre-Calculated Radio Range \\
+    & Lat/long coordinates & \\
+    & Compressed lat/long/course/speed/radio range/altitude & Omni DF Signal Strength \\
+    & Symbol Table ID and Symbol Code & Area Object \\
+    & Raw weather station data & Storm Data (in Comment field) \\
     \hline
+    
+% Weather Row
+
+    Weather & Time (MDHM) & Wind Direction and Speed \\
+    & Lat/long coordinates & Storm Data (in Comment field) \\
+    & Compressed lat/long/course/speed/radio range/altitude \\
+    & Symbol Table ID and Symbol Code \\
+    & Raw weather station data \\
+    \hline
+
+% Telemetry Row
+    
+    Telemetry & Telemetry (non Mic-E) & \\
+    \hline
+
+    % Messages, Bulletins and Announcements Row
+    Messages, &  Addressee & \\
+    Bulletins and & Message Text & \\
+    Announcements & Message Identifier & \\
+    & Message Acknowledgement & \\
+    & Bulletin ID, Announcement ID & \\
+    & Group Bulletin ID & \\
+    \hline
+
+% Queries Row
+    Queries & Query Type & \\
+    & Query Target Footprint & \\
+    & Addressee (Directed Query) & \\
+    \hline
+    
+% Responses Row
+    & Position & Course and Speed \\
+    & Object/Item & Power, Effective Antenna Height/Gain/Directivity \\
+    & Weather & Pre-Calculated Radio Range \\
+    & Status & Omni DF Signal Strength \\
+    Responses & Message & Area Object \\
+    & Digipeater Trace & Wind Direction and Speed \\
+    & Stations Heard & \\
+    & Heard Statistics & \\
+    & Station Capabilities &  \\
+    \hline
+    
+% Status Row
+
+    Status & Time (DHM zulu) & \\
+    & Status text & \\
+    & Meteor Scatter Beam Heading/Power & \\
+    & Maidenhead Locator (Grid Square) & \\
+    & Altitude (Mic-E) & \\
+    & E-mail message & \\
+    \hline
+ 
+    % Other Row
+    Other & Third-Party forwarding & \\
+    & Invalid Data/Test Data & \\
+    \hline
+    
   \end{tabular}
 \end{table}
 
-% More to add to the table above
+
 
 \clearpage
-
-  
-
-% Resume work here
-
-
-Mic-E longitude, speed and course, telemetry or status
-Raw GPS NMEA sentence
-Raw weather station data
-
-
-
-
-Omni DF Signal Strength
-Storm Data (in Comment field)
-
-Time (DHM or HMS)
-Lat/long coordinates
-Compressed lat/long/course/speed/radio range/altitude
-Symbol Table ID and Symbol Code
-
-Course and Speed
-Power, Effective Antenna Height/Gain/Directivity
-Pre-Calculated Radio Range
-Omni DF Signal Strength
-Bearing and Number/Range/Quality
-(in Comment field)
-
-Objects and
-Items
-
-Object name
-Item name
-Time (DHM or HMS)
-Lat/long coordinates
-Compressed lat/long/course/speed/radio range/altitude
-Symbol Table ID and Symbol Code
-Raw weather station data
-
-Course and Speed
-Power, Effective Antenna Height/Gain/Directivity
-Pre-Calculated Radio Range
-Omni DF Signal Strength
-Area Object
-Storm Data (in Comment field)
-Wind Direction and Speed
-Storm Data (in Comment field)
-
-Weather
-
-Time (MDHM)
-Lat/long coordinates
-Compressed lat/long/course/speed/radio range/altitude
-Symbol Table ID and Symbol Code
-Raw weather station data
-
-Position
-
-Direction Finding
-
-Telemetry
-Messages,
-Bulletins and
-Announcements
-
-Queries
-
-Responses
-
-Status
-
-Other
-
-Telemetry (non Mic-E)
-Addressee
-Message Text
-Message Identifier
-Message Acknowledgement
-Bulletin ID, Announcement ID
-Group Bulletin ID
-Query Type
-Query Target Footprint
-Addressee (Directed Query)
-Position
-Object/Item
-Weather
-Status
-Message
-Digipeater Trace
-Stations Heard
-Heard Statistics
-Station Capabilities
-
-Course and Speed
-Power, Effective Antenna Height/Gain/Directivity
-Pre-Calculated Radio Range
-Omni DF Signal Strength
-Area Object
-Wind Direction and Speed
-
-Time (DHM zulu)
-Status text
-Meteor Scatter Beam Heading/Power
-Maidenhead Locator (Grid Square)
-Altitude (Mic-E)
-E-mail message
-Third-Party forwarding
-Invalid Data/Test Data
 
 
 \section{Comment Field}
