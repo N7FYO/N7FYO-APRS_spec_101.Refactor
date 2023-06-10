@@ -52,3 +52,14 @@
 \contentsline {section}{\numberline {5.4}Comment Field}{25}{}%
 \contentsline {section}{\numberline {5.5}Base-91 Notation}{25}{}%
 \contentsline {section}{\numberline {5.6}APRS Data Units}{25}{}%
+\contentsline {chapter}{\numberline {6}Chapter 6: Time and Position Formats}{26}{}%
+\contentsline {section}{\numberline {6.1}Time Formats}{26}{}%
+\contentsline {section}{\numberline {6.2}Use of Timestamps}{26}{}%
+\contentsline {section}{\numberline {6.3}Latitude Format}{27}{}%
+\contentsline {section}{\numberline {6.4}Longitude Format}{27}{}%
+\contentsline {section}{\numberline {6.5}Position Coordinates}{27}{}%
+\contentsline {section}{\numberline {6.6}Position Ambiguity}{28}{}%
+\contentsline {section}{\numberline {6.7}Default Null Position}{28}{}%
+\contentsline {section}{\numberline {6.8}Maidenhead Locator (Grid Square)}{28}{}%
+\contentsline {section}{\numberline {6.9}NMEA Data}{29}{}%
+\contentsline {section}{\numberline {6.10}Altitude}{29}{}%
