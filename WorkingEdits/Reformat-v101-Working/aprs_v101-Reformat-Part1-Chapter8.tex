@@ -1,26 +1,34 @@
 \chapter{Chapter 8: Position and DF Report Data Formats}
 
 
-\section{Lat/Long Position Reports are contained in the Information field of an APRS AX.25 frame.}
+
 
 \section{Position Reports}
+
+Lat/Long Position Reports are contained in the Information field of an APRS AX.25 frame.
 
 The following diagrams show the permissible formats of these reports,
 together with some examples. The gray areas indicate optional fields, and the
 shaded (yellow) characters are literal ASCII characters. In all cases there is a
 maximum of 43 characters after the Symbol Code.
-Lat/Long Position Report Format — without Timestamp
 
-Bytes:
+% \begin{table}
+%  \caption{Lat/Long Position Report Format — without Timestamp}
+  \begin{tabular}{r|c|c|c|c|c|c|}
+    & ! or \= & Lat & Sym Table ID & Long & Symbol Code & Comment (max 43 chars) \\
+  \end{tabular}
+% \end{table}
 
+
+
+Bytes:  
+    
 ! or
 =
 
 Lat
 
-Sym
-Table
-ID
+
 
 Long
 
@@ -55,6 +63,8 @@ TheNetV
 V X-1J4VV
 VV(BFLD)!4903.50N/07201.75Wn no timestamp, no APRS messaging,
 with X1J node header string.
+
+
 
 Lat/Long Position Report Format — with Timestamp
 
@@ -142,13 +152,13 @@ Bytes:
 7
 
 Example
-=4903.50N/07201.75W#PHG5132
+% =4903.50N/07201.75W\#PHG5132
 
 0-36
 
 no timestamp, with APRS messaging, with PHG.
 
-=4903.50N/07201.75W_225/000g000t050r000p001…h00b10138dU2k
+% =4903.50N/07201.75W_225/000g000t050r000p001…h00b10138dU2k
 
 weather report.
 
@@ -217,7 +227,7 @@ range.
 with timestamp, hours/mins/secs time, DF,
 no APRS messaging.
 
-@092345z4903.50N/07201.75W_090/000g000t066r000p000…dUII
+% @092345z4903.50N/07201.75W_090/000g000t066r000p000…dUII
 
 weather report.
 
@@ -251,7 +261,7 @@ NMEA Received Sentence
 
 Bytes:
 
-$
+\$
 
 …,…,…,…,…,…,…
 
@@ -275,7 +285,7 @@ The Bearing and Number/Range/Quality (BRG/NRQ) parameters follow the
 Data Extension field.
 Note: The BRG/NRQ parameters are only meaningful when the report
 contains the DF symbol (i.e. the Symbol Table ID is / and the Symbol Code
-is \).
+% is \).
 Note: If the DF station is fixed, the Course value is zero. If the station is
 moving, the Course value is non-zero.
 
@@ -329,11 +339,11 @@ Bytes:
 7
 
 Examples
-=4903.50N/07201.75W\088/036/270/729
+% =4903.50N/07201.75W\088/036/270/729
 
-=4903.50N/07201.75W\000/036/270/729
+% =4903.50N/07201.75W\000/036/270/729
 
-Document Version 1.0.1: 29 August 2000
+
 
 no timestamp, course/speed/
 bearing/NRQ, with APRS messaging.
@@ -400,8 +410,8 @@ Bytes:
 7
 
 Examples
-@092345z4903.50N/07201.75W\088/036/270/729
-/092345z4903.50N/07201.75W\000/000/270/729
+% @092345z4903.50N/07201.75W\088/036/270/729
+% /092345z4903.50N/07201.75W\000/000/270/729
 
 
 
