@@ -9,20 +9,13 @@ remotely with only a TNC and radio to report and plot conditions. APRS is
 also ideally suited for the Skywarn weather observer initiative.
 APRS supports three types of Weather Report:
 
-Data Type
-Identifiers
+\section{Data Type Identifiers}
 
-•
+• Raw Weather Report
 
-Raw Weather Report
+• Positionless Weather Report
 
-•
-
-Positionless Weather Report
-
-•
-
-Complete Weather Report
+• Complete Weather Report
 
 The following APRS Data Type Identifiers are used in Weather Reports
 containing raw data:
@@ -43,8 +36,7 @@ insertion of station location information), the four position Data Type
 Identifiers !, =, / and @ may be used instead. In this case, the Weather
 Report is identified with the weather symbol /_ or \_ in the APRS Data.
 
-Raw Weather
-Reports
+\section {Raw Weather Reports}
 
 Raw weather data from a stand-alone weather station is contained in the
 Information Field of an APRS AX.25 frame:
@@ -78,7 +70,7 @@ Ultimeter 2000
 Peet Bros U-II
 
 
-\subsection{Positionless Weather Reports}
+\section{Positionless Weather Reports}
 
 Generic raw weather data from a stand-alone weather station is contained in
 the Information Field of an APRS AX.25 frame:
@@ -118,10 +110,13 @@ Example
 _10090556c220s004g005t077r000p000P000h50b09900wRSW
 report derived from Radio Shack WX station data.
 
-APRS Software Type
+\section {APRS Software Type}
 
 A Weather Report may contain a single-character code S for the type of
 APRS software that is running at the weather station:
+
+% change to a description list
+
 \begin{verbatim}
 d = APRSdos
 M = MacAPRS
@@ -131,14 +126,14 @@ W = WinAPRS
 X = X-APRS (Linux)
 \end{verbatim}
 
-Weather Unit
-Type
+\subsection {Weather Unit Type}
 
 A Weather Report may contain a 2–4 character code uuuu for the type of
 weather station unit. The following codes have been allocated:
-Dvs
 
-= Davis
+\begin{description}
+
+  \item \hl{Dvs} = Davis
 
 HKT
 
@@ -169,12 +164,18 @@ U5
 Upkm = Remote Ultimeter packet mode
 Users may specify any other 2–4 character code for devices not in this list.
 
+% Should a new list like https://github.com/aprsorg/aprs-deviceid be created for weather devices?
 
-Positionless Weather Data
+
+\end{description}
+
+\section {Positionless Weather Data}
 
 The format of weather data within a Positionless Weather Report differs
 according to the type of weather station unit, but generically consists of some
 or all of the following elements:
+
+% Begin chart
 
 Positionless Weather Data
 
@@ -240,6 +241,8 @@ bbbbbb
 
 5
 
+% End Chart
+
 where: c =
 s =
 g =
@@ -303,30 +306,29 @@ Weather Reports, the station has to occasionally send an additional packet
 containing its position (using any of the legal lat/long and compressed
 lat/long position formats described earlier).
 
-Symbols with Raw
-and Positionless
-Weather Stations
+\section {Symbols with Raw and Positionless Weather Stations}
 
 Because Raw and Positionless Weather Reports do not contain a display
 symbol in the AX.25 Information field, it is possible to specify the symbol in
 a generic APRS destination address (e.g. GPSHW or GPSE63) instead.
 Alternatively, if the weather station is on a balloon, the SSID –11 may be
 used in the source address (e.g. N0QBF-11).
+
 See Chapter 20: APRS Symbols for more detail on the usage of symbols.
 
-Complete Weather
-Reports with
-Timestamp and
-Position
+\section {Complete Weather Reports with Timestamp and Position}
 
 An APRS Complete Weather Report can contain a timestamp and location
 information, using any of the legal lat/long and compressed lat/long position
 formats described earlier. An APRS Object may also have weather
 information associated with it.
+
 Examples of report formats are shown below. Note that the Symbol Code in
 every case is the _ (underscore). Also, the 7-byte Wind Direction and Wind
 Speed Data Extension replace the cccc and ssss fields of a Positionless
 Weather Report.
+
+% begin chart
 
 Complete Weather Report Format — with Lat/Long position, no Timestamp
 
@@ -667,7 +669,7 @@ Examples
 
 
 
-\paragraph{Storm Data}
+\section{Storm Data}
 
 APRS reports can contain data relating to tropical storms, hurricanes and
 tropical depressions. The format of the data is as follows:
@@ -718,6 +720,10 @@ Speed
 
 3
 
+
+% End Chart
+
+\begin {description}
 where: ST
 
 4
@@ -758,6 +764,9 @@ RRR = radius of hurricane winds (in nautical miles).
 rrr = radius of tropical storm winds (in nautical miles).
 ggg = radius of “whole gale” (i.e. 50 knot) winds (in
 nautical miles). Optional.
+
+\end{description}
+
 Storm data will usually be included in an Object Report, but may also be
 included in a Position Report or an Item Report.
 www
@@ -765,19 +774,25 @@ www
 =
 
 The display symbol will be either:
+
+\begin{description}
 \@
 /@
 
 Hurricane/Tropical Storm (current position)
 Hurricane (predicted future position)
 
+\end{description}
+
 For example, the progress of Hurricane Brenda could be expressed in Object
 Reports like these:
 ;BRENDAVVV*092345z4903.50N\07202.75W@088/036/HC/150^200/0980>090&030%040
 ;BRENDAVVV*100045z4905.50N/07201.75W@101/047/HC/104^123/0980>065&020%040
 
-National Weather
-Service Bulletins
+% Editors note: seems to be a completely hypothetical hurricane in an
+% inland portion of Quebec Province
+
+\section {National Weather Service Bulletins}
 
 APRS supports the dissemination of National Weather Service bulletins. See
 Chapter 14: Messages, Bulletins and Announcements.
