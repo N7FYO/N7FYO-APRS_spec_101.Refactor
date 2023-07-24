@@ -1,0 +1,20 @@
+The following ten characters have special meanings in (La)TeX:
+
+    & % $ # _ { } ~ ^ \
+
+Outside \verb, the first seven of them can be typeset by prepending a backslash; for the other three, use the macros \textasciitilde, \textasciicircum, and \textbackslash.
+
+\documentclass{article}
+
+\begin{document}
+
+\& \% \$ \# \_ \{ \}
+
+\textasciitilde
+
+\textasciicircum
+
+\textbackslash
+
+\end{document}
+

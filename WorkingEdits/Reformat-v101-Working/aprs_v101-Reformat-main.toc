@@ -73,6 +73,3 @@
 \contentsline {subsection}{\numberline {7.6.1}DFS Codes}{35}{}%
 \contentsline {section}{\numberline {7.7}Bearing and Number/Range/Quality}{35}{}%
 \contentsline {section}{\numberline {7.8}Area Object Descriptor}{36}{}%
-\contentsline {chapter}{\numberline {8}Chapter 8: Position and DF Report Data Formats}{37}{}%
-\contentsline {section}{\numberline {8.1}Position Reports}{37}{}%
-\contentsline {section}{\numberline {8.2}DF Reports}{40}{}%

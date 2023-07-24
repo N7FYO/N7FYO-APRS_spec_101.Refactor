@@ -1,0 +1,117 @@
+
+[aprssig] APRS Air Quality Monitoring
+Steve Dimse steve at dimse.com
+Thu Oct 13 10:08:21 EDT 2022
+
+    Previous message (by thread): [aprssig] APRS Air Quality Monitoring
+    Next message (by thread): [aprssig] APRS Air Quality Monitoring
+    Messages sorted by: [ date ] [ thread ] [ subject ] [ author ]
+
+
+> On Oct 11, 2022, at 4:59 PM, Erik Bacon Beck <bacon at tahoma.com> wrote:
+> 
+> 
+> 
+>> Picking up this old thread; was a sub-specification for working PM2.5 data into the APRS stream ever worked out? I have one in operation and would like to make that data available on CWOP/APRS (not necessarily via RF).
+
+No one ever did. The first guy to put one on the air gets to define the format. I would suggest one that includes the three major AQ measurements (2.5 and 10 nm particulates and ozone) even if you don't put them all on the air so another format is not needed in the future, allowing for absent measurements to be replaced with dots, as in the weather format. The User Defined list is here, 
+
+http://www.aprs.org/aprs11/expfmts.txt
+
+simply pick an unused character pair to follow the {.
+
+If anyone wants to start a discussion, my opening suggestion would be
+
+{AQ PM2.5 x.x PM10 y.y ozn z.z
+
+and allowing any float or integer value, not position limited, so just a 2.5 report might look like 
+
+K4HG>APRS:{AQ PM2.5 12.5 PM10 ... ozn ...
+
+Any discussion? 
+
+Steve K4HG
+>> 
+>> 
+>> 
+>> 
+>> aprssig] APRS Air Quality Monitoring
+>> Steve Dimse steve at dimse.com 
+>> Sun Oct 21 10:20:57 EDT 2018
+>> 	• Previous message (by thread): [aprssig] APRS Air Quality Monitoring
+>> 	• Next message (by thread): [aprssig] aprs.fi and Google Maps API pricing changes, status update
+>> 	• Messages sorted by: [ date ] [ thread ] [ subject ] [ author ]
+>> This project uses the SDS011 particulate sensor. Looking at its specs it would be trivial to interface (rs232 output) but if the specs are accurate it isn't designed for outside air. It is rated for storage in up to 90% humidity and operation in up to 70% humidity. Not too many places in the world are consistently under 70%. It draws air in with a fan and my guess is water would precipitate from humid air inside the sensor. Maybe heating the unit would prevent that.
+>> 
+>> 
+>> 
+>> Still they aren't expensive (under $25 on eBay) so I ordered one to play with.
+>> 
+>> Steve K4HG  
+>> 
+>>> On Oct 12, 2018, at 8:05 PM, Graham <planophore at aei.ca> wrote:
+>>> 
+>>> Bob,
+>>> 
+>>> There are several crowd sourced air monitoring projects that are currently active
+>>> 
+>>> https://luftdaten.info/en/home-en/  is one that have spent a bit of time reading about. A friend has set up such a sensor not far from were I am and he indicates that it seems to work well.
+>>> 
+>>> http://deutschland.maps.luftdaten.info/#3/49.15/-32.18   shows world wide participation and as you might expect for some that started in Europe, most participants in that part of the world
+>>> 
+>>> And more specifically my friends sensor:
+>>> 
+>>> http://deutschland.maps.luftdaten.info/#8/45.457/-74.499   click on the hex to get a text display of it's latest report.
+>>> 
+>>> May or may not be what you have in mind
+>>> 
+>>> An interface to APRS, sounds like a good idea to me.
+>>> 
+>>> cheers, Graham ve3gtc
+>>> 
+>>> 
+>>> 
+>>> On 2018-10-12 16:00, Robert Bruninga wrote:
+>>>> Has anyone looked into the lower priced air-quality monitors that are out
+>>>> there? $50 to $250?
+>>>> 
+>>>> Could one be interfaced to APRS to give some reasonable indications of air
+>>>> quality?
+>>>> 
+>>>> I attended a meeting last night on air quality and the big idea was that
+>>>> in the entire county, there is only one EPA air quality monitor and it is
+>>>> no closer than 15 miles to the THREE mega power plants (one coal and two
+>>>> gas).  So there is nothing that is indicating the air quality where the
+>>>> people live and near the plant.
+>>>> 
+>>>> This could be a great little processor project if we can get the sensors.
+>>>> 
+>>>> What parameters are available and from that we can define an APRS format.
+>>>> We can include radiation counts too...
+>>>> 
+>>>> Bob, WB4APR
+>>>> 
+>>>> _______________________________________________
+>>>> aprssig mailing list
+>>>> aprssig at lists.tapr.org>> http://lists.tapr.org/mailman/listinfo/aprssig_lists.tapr.org>  
+>>> 
+>>> _______________________________________________
+>>> aprssig mailing list
+>>> aprssig at lists.tapr.org> http://lists.tapr.org/mailman/listinfo/aprssig_lists.tapr.org
+>> 
+>> 
+>> 	• Previous message (by thread): [aprssig] APRS Air Quality 
+>> 
+>> 
+>> Erik
+> _______________________________________________
+> aprssig mailing list
+> aprssig at lists.tapr.org
+> http://lists.tapr.org/mailman/listinfo/aprssig_lists.tapr.org
+
+
+    Previous message (by thread): [aprssig] APRS Air Quality Monitoring
+    Next message (by thread): [aprssig] APRS Air Quality Monitoring
+    Messages sorted by: [ date ] [ thread ] [ subject ] [ author ]
+
+More information about the aprssig mailing list

@@ -10,64 +10,60 @@ also ideally suited for the Skywarn weather observer initiative.
 APRS supports three types of Weather Report:
 
 \section{Data Type Identifiers}
-
-• Raw Weather Report
-
-• Positionless Weather Report
-
-• Complete Weather Report
+\begin{itemize}
+\item Raw Weather Report
+\item Positionless Weather Report
+\item Complete Weather Report
+\end{itemize}
 
 The following APRS Data Type Identifiers are used in Weather Reports
 containing raw data:
-!
-#
-$
-*
-_
 
-Ultimeter 2000
-Peet Bros U-II
-Ultimeter 2000
-Peet Bros U-II
-Positionless weather data
+\begin{description}
+\item \hl{!} Ultimeter 2000
+\item \hl{\#} Peet Bros U-II
+\item \hl{\$} Ultimeter 2000
+\item \hl{*} Peet Bros U-II
+\item \hl{\_} Positionless weather data
+\end{description}
 
-In addition, where the raw data has been post-processed (for example, by the
-insertion of station location information), the four position Data Type
-Identifiers !, =, / and @ may be used instead. In this case, the Weather
-Report is identified with the weather symbol /_ or \_ in the APRS Data.
+
+In addition, where the raw data has been post-processed (for example,
+by the insertion of station location information), the four position
+Data Type Identifiers \hl{!}, \hl{$=$}, \hl{/} and \hl{@} may be used
+instead. In this case, the Weather Report is identified with the
+weather symbol \hl{/\_} or \hl{\textbackslash \_} in the APRS Data.
+
 
 \section {Raw Weather Reports}
 
 Raw weather data from a stand-alone weather station is contained in the
 Information Field of an APRS AX.25 frame:
 
-Raw Weather Report Format
-! or
-# or
-$ or
-*
-Bytes:
 
-1
+\begin{tabular}{|l|l|c|r|}
+  \hline
+  & Raw Weather Report Format & & \\
+  \hline
+  & & Raw Weather Data & \\
+  & ! or & & \\
+  & \# or & & \\
+  & \$ or & & \\
+  & * & & \\
+  \hline 
+  Bytes: & 1 & n  & \\
+  \hline
+  & \underline{Examples} & & \\
+  & !!006B005803500000----03E9--------002105140000005D &  Ultimeter 2000 &  \\
+  & \#50B7500820082 &  Peet Bros U-II & \\
+  & \$ULTW0031003702CE0069----000086A00001----011901CC00000005 &  Ultimeter 2000 & \\
+  & \*7007600000000 & Peet Bros U-II & \\
+  \hline
+  
+\end{tabular}
 
-Raw Weather
-Data
 
-n
-
-Examples
-\begin{verbatim}
-!!006B005803500000----03E9--------002105140000005D
-#50B7500820082
-$ULTW0031003702CE0069----000086A00001----011901CC00000005
-*7007600000000
-\end{verbatim}
-
-
-Ultimeter 2000
-Peet Bros U-II
-Ultimeter 2000
-Peet Bros U-II
+\end{document}
 
 
 \section{Positionless Weather Reports}
@@ -75,6 +71,7 @@ Peet Bros U-II
 Generic raw weather data from a stand-alone weather station is contained in
 the Information Field of an APRS AX.25 frame:
 
+% begin chart 
 Positionless Weather Report Format
 
 Bytes:
@@ -109,6 +106,7 @@ uuuu
 Example
 _10090556c220s004g005t077r000p000P000h50b09900wRSW
 report derived from Radio Shack WX station data.
+% end chart
 
 \section {APRS Software Type}
 
@@ -117,14 +115,14 @@ APRS software that is running at the weather station:
 
 % change to a description list
 
-\begin{verbatim}
-d = APRSdos
-M = MacAPRS
-P = pocketAPRS
-S = APRS+SA
-W = WinAPRS
-X = X-APRS (Linux)
-\end{verbatim}
+\begin{description}
+\item \hl{d} = APRSdos
+\item \hl{M} = MacAPRS
+\item \hl{P} = pocketAPRS
+\item \hl{S} = APRS+SA
+\item \hl{W} = WinAPRS
+\item \hl{X} = X-APRS (Linux)
+\end{description}
 
 \subsection {Weather Unit Type}
 
@@ -132,37 +130,19 @@ A Weather Report may contain a 2–4 character code uuuu for the type of
 weather station unit. The following codes have been allocated:
 
 \begin{description}
+\item \hl{Dvs} = Davis
+\item \hl{HKT} = Heathkit
+\item \hl{PIC} = PIC device
+\item \hl{RSW} = Radio Shack
+\item \hl{U-II} = Original Ultimeter U-II (auto mode)
+\item \hl{U2R} = Original Ultimeter U-II (remote mode)
+\item \hl{U2k} = Ultimeter 500/2000
+\item \hl{U2kr} = Remote Ultimeter logger
+\item \hl{U5} = Ultimeter 500
+\item \hl{Upkm} = Remote Ultimeter packet mode
+\end{description}
 
-  \item \hl{Dvs} = Davis
-
-HKT
-
-= Heathkit
-
-PIC
-
-= PIC device
-
-RSW
-
-= Radio Shack
-
-U-II = Original Ultimeter U-II (auto mode)
-U2R
-
-= Original Ultimeter U-II (remote mode)
-
-U2k
-
-= Ultimeter 500/2000
-
-U2kr = Remote Ultimeter logger
-U5
-
-= Ultimeter 500
-
-Upkm = Remote Ultimeter packet mode
-Users may specify any other 2–4 character code for devices not in this list.
+  Users may specify any other 2–4 character code for devices not in this list.
 
 % Should a new list like https://github.com/aprsorg/aprs-deviceid be created for weather devices?
 
@@ -261,7 +241,7 @@ zero are expressed as -01 to -99.
 rainfall (in hundredths of an inch) in the last hour.
 rainfall (in hundredths of an inch) in the last 24 hours.
 rainfall (in hundredths of an inch) since midnight.
-humidity (in %. 00 = 100%).
+humidity (in \%. 00 = 100\%).
 barometric pressure (in tenths of millibars/tenths of hPascal).
 
 Other parameters that are available on some weather station units include:
@@ -674,6 +654,7 @@ Examples
 APRS reports can contain data relating to tropical storms, hurricanes and
 tropical depressions. The format of the data is as follows:
 
+% begin chart
 Storm Data
 
 Direction
@@ -723,66 +704,40 @@ Speed
 
 % End Chart
 
-\begin {description}
-where: ST
+Where ST is one of:
 
-4
-
-=
-
-4
-
-5
-
-4
-
-Radius
-Tropical
-Storm
-Winds
-
-Radius
-Whole
-Gale
-
-&rrr
-
-%ggg
-
-4
-
-4
-
-TS (Tropical Storm)
-HC (Hurricane)
-TD (Tropical Depression).
-
-sustained wind speed (in knots).
-GGG = gust (peak wind speed in knots).
-pppp = central pressure (in millibars/hPascal)
-RRR = radius of hurricane winds (in nautical miles).
-rrr = radius of tropical storm winds (in nautical miles).
-ggg = radius of “whole gale” (i.e. 50 knot) winds (in
-nautical miles). Optional.
-
+\begin{description}
+\item = TS (Tropical Storm)
+\item = HC (Hurricane)
+\item = TD (Tropical Depression)
 \end{description}
+
+and
+\begin{description}
+\item WWW = sustained wind speed (in knots).
+\item GGG = gust (peak wind speed in knots).
+\item pppp = central pressure (in millibars/hPascal)
+\item RRR = radius of hurricane winds (in nautical miles).
+\item rrr = radius of tropical storm winds (in nautical miles).
+\item ggg = radius of “whole gale” (i.e. 50 knot) winds (in nautical
+  miles). Optional.
+\end {description}
+
 
 Storm data will usually be included in an Object Report, but may also be
 included in a Position Report or an Item Report.
-www
 
-=
 
 The display symbol will be either:
 
 \begin{description}
-\@
-/@
-
-Hurricane/Tropical Storm (current position)
-Hurricane (predicted future position)
-
+\item \hl{\@} Hurricane/Tropical Storm (current position)
+\item \hl{/@} Hurricane (predicted future position)
 \end{description}
+
+
+
+
 
 For example, the progress of Hurricane Brenda could be expressed in Object
 Reports like these:
