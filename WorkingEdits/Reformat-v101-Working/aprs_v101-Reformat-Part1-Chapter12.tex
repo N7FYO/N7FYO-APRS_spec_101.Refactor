@@ -41,29 +41,30 @@ Raw weather data from a stand-alone weather station is contained in the
 Information Field of an APRS AX.25 frame:
 
 
-\begin{tabular}{|l|l|c|r|}
+  % top caption   & Raw Weather Report Format & & \\
+\begin{tabular}{|l|c|r|}
   \hline
-  & Raw Weather Report Format & & \\
+  \multicolumn{3}{|c|}{Raw Weather Report Format} \\
   \hline
-  & & Raw Weather Data & \\
-  & ! or & & \\
-  & \# or & & \\
-  & \$ or & & \\
-  & * & & \\
+  \hline
+  & ! or &  \\
+  & \# or  & Raw Weather Data \\
+  & \$ or  & \\
+  & *  & \\
   \hline 
-  Bytes: & 1 & n  & \\
+  Bytes: & 1 & n   \\
   \hline
-  & \underline{Examples} & & \\
-  & !!006B005803500000----03E9--------002105140000005D &  Ultimeter 2000 &  \\
-  & \#50B7500820082 &  Peet Bros U-II & \\
-  & \$ULTW0031003702CE0069----000086A00001----011901CC00000005 &  Ultimeter 2000 & \\
-  & \*7007600000000 & Peet Bros U-II & \\
-  \hline
-  
 \end{tabular}
 
 
-\end{document}
+
+\underline{Examples}
+\begin{description}
+\item [Ultimeter 2000: ] !!006B005803500000----03E9--------002105140000005D (Ultimeter 2000)
+\item [Peet Bros U-II: ] \#50B7500820082   
+\item [Ultimeter 2000: ] \$ULTW0031003702CE0069----000086A00001----011901CC00000005   
+\item [Peet Bros U-II: ] *7007600000000  
+\end{description}
 
 
 \section{Positionless Weather Reports}
@@ -72,43 +73,31 @@ Generic raw weather data from a stand-alone weather station is contained in
 the Information Field of an APRS AX.25 frame:
 
 % begin chart 
-Positionless Weather Report Format
 
-Bytes:
+    %  Top Caption: Positionless Weather Report Format   
+\begin{tabular}{|l|c|c|c|c|r|}
+  \hline
+  \multicolumn{6}{c}{Positionless Weather Report Format} \\
+  \hline
+  & & & & &  \\ 
+  & \_ & Time (MDHM) & Positionless Weather Data & APRS Software (S) & WX Unit (uuuu) \\
+  & & & & &  \\ 
+  \hline
+  & & & & &  \\ 
+  Bytes: & 1 & 8 & n & 1 & 2-4 \\
+  & & & & &  \\ 
+  \hline
+\end{tabular}
 
-_
+\underline{Example}
 
-Time
-MDHM
+\begin{description}
+\item [Report derived from Radio Shack WX station data:]
+\item \_10090556c220s004g005t077r000p000P000h50b09900wRSW 
+\end{description}
 
-1
 
-8
-
-Positionless Weather
-Data
-n
-
-APRS
-Software
-
-WX
-Unit
-
-S
-
-uuuu
-
-1
-
-2-4
-
-Example
-_10090556c220s004g005t077r000p000P000h50b09900wRSW
-report derived from Radio Shack WX station data.
-% end chart
-
-\section {APRS Software Type}
+\subsection {APRS Software Type}
 
 A Weather Report may contain a single-character code S for the type of
 APRS software that is running at the weather station:
@@ -124,7 +113,7 @@ APRS software that is running at the weather station:
 \item \hl{X} = X-APRS (Linux)
 \end{description}
 
-\subsection {Weather Unit Type}
+\subsubsection {Weather Unit Type}
 
 A Weather Report may contain a 2–4 character code uuuu for the type of
 weather station unit. The following codes have been allocated:
@@ -147,9 +136,7 @@ weather station unit. The following codes have been allocated:
 % Should a new list like https://github.com/aprsorg/aprs-deviceid be created for weather devices?
 
 
-\end{description}
-
-\section {Positionless Weather Data}
+\subsection {Positionless Weather Data}
 
 The format of weather data within a Positionless Weather Report differs
 according to the type of weather station unit, but generically consists of some
@@ -157,128 +144,65 @@ or all of the following elements:
 
 % Begin chart
 
-Positionless Weather Data
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{10}{c}{Positionless Weather Data} \\
+  \hline
+  & Wind  & Wind & Gust & Temp & Rain &  & Rain  & Humidity & Barometric  \\
+  & Direction & Speed & & (F) & Last Hr & Last 24 Hrs & Since Midnight & & Pressure \\
+  & & & & & & & &  & \\
+  & cccc & ssss & gggg & tttt & rrrr & pppp & PPPP & hhh & bbbbbb \\
+  \hline 
+  Bytes & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 3 & 5 \\
+  \hline 
+  
+\end{tabular}
 
-Bytes:
+Where:
 
-Wind
-Direction
+\begin{itemize}
+\item c = wind direction (in degrees).
+\item s = sustained one-minute wind speed (in mph).
+\item g = gust (peak wind speed in mph in the last 5 minutes).
+\item t = temperature (in degrees Fahrenheit). Temperatures below zero are expressed as -01 to -99.
+\item r = rainfall (in hundredths of an inch) in the last hour.
+\item p = rainfall (in hundredths of an inch) in the last 24 hours.
+\item P = rainfall (in hundredths of an inch) since midnight.
+\item h = humidity (in \%. 00 = 100\%).
+\item b = barometric pressure (in tenths of millibars/tenths of hPascal).
+\end{itemize}
 
-Wind
-Speed
 
-Gust
-
-Temp
-
-Rain
-Last Hr
-
-Rain
-Last 24 Hrs
-
-Rain
-Since Midnight
-
-Humidity
-
-Barometric
-Pressure
-
-cccc
-
-ssss
-
-gggg
-
-tttt
-
-rrrr
-
-pppp
-
-PPPP
-
-hhh
-
-bbbbbb
-
-4
-
-4
-
-4
-
-4
-
-4
-
-4
-
-4
-
-3
-
-5
-
-% End Chart
-
-where: c =
-s =
-g =
-t =
-r =
-p =
-P =
-h =
-b =
-
-wind direction (in degrees).
-sustained one-minute wind speed (in mph).
-gust (peak wind speed in mph in the last 5 minutes).
-temperature (in degrees Fahrenheit). Temperatures below
-zero are expressed as -01 to -99.
-rainfall (in hundredths of an inch) in the last hour.
-rainfall (in hundredths of an inch) in the last 24 hours.
-rainfall (in hundredths of an inch) since midnight.
-humidity (in \%. 00 = 100\%).
-barometric pressure (in tenths of millibars/tenths of hPascal).
 
 Other parameters that are available on some weather station units include:
-L =
+\begin{itemize}
+\item L = luminosity (in watts per square meter) 999 and below.
 
-luminosity (in watts per square meter) 999 and below.
+\item l (lower-case letter “L”) = luminosity (in watts per square meter) 1000 and above.
+\item NB: (L is inserted in place of one of the rain values).
+\item s= snowfall (in inches) in the last 24 hours.
+\item \#= raw rain counter
+\end{itemize}
 
-l
-
-(lower-case letter “L”) = luminosity (in watts per square meter)
-1000 and above.
-(L is inserted in place of one of the rain values).
-s=
-snowfall (in inches) in the last 24 hours.
-#=
-raw rain counter
 Note: The weather report must include at least the MDHM date/timestamp,
 wind direction, wind speed, gust and temperature, but the remaining
 parameters may be in a different order (or may not even exist).
 Note: Where an item of weather data is unknown or irrelevant, its value may
 be expressed as a series of dots or spaces. For example, if there is no wind
 speed/direction/gust sensor, the wind values could be expressed as:
-c...s...g...
+\begin{itemize}
+\item c...s...g...
+\item  or: c\textvisiblespace\textvisiblespace\textvisiblespace s\textvisiblespace\textvisiblespace\textvisiblespace g \textvisiblespace\textvisiblespace\textvisiblespace
+\end{itemize}
 
-or cVVV
-VVVsVVV
-VVVgVVV
-VVV
-
-For example, Jim’s rain gauge may produce a report like this:
-_10090556c...s...g...t...P012Jim
+For example, Jim’s rain gauge may produce a report like this:\\
+\_10090556c...s...g...t...P012Jim
 
 (The date/timestamp, wind direction/speed/gust and temperature parameters
 must be included, even though they are not meaningful).
 
 
-\section{Location of a Raw and Positionless Weather Stations}
+\subsection{Location of a Raw and Positionless Weather Stations}
 
 APRS cannot display weather data on a map until it knows the location of the
 sending station. In the case of a station transmitting Raw or Positionless
@@ -286,7 +210,7 @@ Weather Reports, the station has to occasionally send an additional packet
 containing its position (using any of the legal lat/long and compressed
 lat/long position formats described earlier).
 
-\section {Symbols with Raw and Positionless Weather Stations}
+\subsection {Symbols with Raw and Positionless Weather Stations}
 
 Because Raw and Positionless Weather Reports do not contain a display
 symbol in the AX.25 Information field, it is possible to specify the symbol in
@@ -304,294 +228,132 @@ formats described earlier. An APRS Object may also have weather
 information associated with it.
 
 Examples of report formats are shown below. Note that the Symbol Code in
-every case is the _ (underscore). Also, the 7-byte Wind Direction and Wind
+every case is the \_ (underscore). Also, the 7-byte Wind Direction and Wind
 Speed Data Extension replace the cccc and ssss fields of a Positionless
 Weather Report.
 
-% begin chart
 
-Complete Weather Report Format — with Lat/Long position, no Timestamp
 
-! or
-=
 
-Lat
-
-Sym
-Table
-ID
-
-Long
-
-Symbol
-Code
-
-Wind
-Directn/
-Speed
-
-Weather
-Data
-
-_
-Bytes:
-
-1
-
-8
-
-1
-
-9
-
-1
-
-7
-
-n
-
-APRS
-Software
-
-WX
-Unit
-
-S
-
-uuuu
-
-1
-
-2-4
-
-Examples
-!4903.50N/07201.75W_220/004g005t077r000p000P000h50b09900wRSW
-!4903.50N/07201.75W_220/004g005t077r000p000P000h50b.....wRSW
-
-
-
-Complete Weather Report Format — with Lat/Long position and Timestamp
-
-/ or
-@
-
-Time
-DHM /
-HMS
-
-Sym
-Table
-ID
-
-Lat
-
-Wind
-Directn/
-Speed
-
-Symbol
-Code
-
-Long
-
-Weather
-Data
-
-APRS
-Software
-
-WX
-Unit
-
-S
-
-uuuu
-
-1
-
-2-4
-
-_
-Bytes:
-
-1
-
-7
-
-8
-
-1
-
-9
-
-1
-
-7
-
-n
-
-Example
-@092345z4903.50N/07201.75W_220/004g005t-07r000p000P000h50b09900wRSW
-Complete Weather Report Format — with Compressed Lat/Long position, no Timestamp
-
-! or
-=
-Bytes:
-
-1
-
-Sym
-Table
-ID
-
-Comp
-Type
-
-_
-
-Comp
-Wind
-Directn/
-Speed
-
-1
-
-2
-
-1
-
-Comp
-Lat
-
-Comp
-Long
-
-Symbol
-Code
-
-YYYY
-
-XXXX
-
-4
-
-4
-
-1
-
-Weather
-Data
-
-T
-n
-
-APRS
-Software
-
-WX
-Unit
-
-S
-
-uuuu
-
-1
-
-2-4
-
-Example
-=/5L!!<*e7> _7P[g005t077r000p000P000h50b09900wRSW
-Complete Weather Report Format — with Compressed Lat/Long position, with Timestamp
-
-/ or
-@
-Bytes:
-
-1
-
-Time
-DHM /
-HMS
-
-Sym
-Table
-ID
-
-7
-
-Comp
-Lat
-
-Comp
-Long
-
-Symbol
-Code
-
-YYYY
-
-XXXX
-
-4
-
-4
-
-1
-
-Comp
-Type
-
-_
-
-Comp
-Wind
-Directn/
-Speed
-
-1
-
-2
-
-1
-
-Weather
-Data
-
-T
-n
-
-APRS
-Software
-
-WX
-Unit
-
-S
-
-uuuu
-
-1
-
-2-4
-
-APRS
-Software
-
-WX
-Unit
-
-S
-
-uuuu
-
-1
-
-2-4
-
-Example
-@092345z/5L!!<*e7 _7P[g005t077r000p000P000h50b09900wRSW
-Complete Weather Report Format — with Object and Lat/Long position
-Object
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|}
+  \hline 
+    \multicolumn{10}{|c|}{ } \\
+    \multicolumn{10}{|c|}{Complete Weather Report Format — with Lat/Long position, no Timestamp} \\
+        \multicolumn{10}{|c|}{ }\\
+  \hline
+  & & & & & & & & & \\
+  & !  & Lat & Sym & Long & Symbol & Wind & Weather & APRS & WX \\
+  & or & & Table & & Code & Direction & Data & Software & Unit \\
+  & = & & ID & & & Speed  & & & \\
+  &  & & & & \_ & & & S & uuuu \\
+  & & & & & & & & & \\
+  \hline 
+  Bytes & & & & & & & & & \\
+  & & & & & & & & & \\
+  & 1 & 8 & 1 & 9 & 1 & 7 & n & 1 & 2-4  \\
+  \hline
+
+\end{tabular}
+
+
+\underline{Examples}
+\begin{description}
+\item !4903.50N/07201.75W\_220/004g005t077r000p000P000h50b09900wRSW
+\item !4903.50N/07201.75W\_220/004g005t077r000p000P000h50b.....wRSW
+\end{description}
+
+
+
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|}
+  \hline 
+    \multicolumn{11}{|c|}{ } \\
+    \multicolumn{11}{|c|}{Complete Weather Report Format — with Lat/Long position and Timestamp} \\
+        \multicolumn{11}{|c|}{ }\\
+  \hline
+  & & & & & & & & & & \\
+  & / & Time  & Lat & Sym & Long & Symbol & Wind & Weather & APRS & WX \\
+  & or & DHM/ & & Table & & Code & Direction & Data & Software & Unit \\
+  & @ & HMS & & ID & & & Speed  & & & \\
+  &  & & & & & \_ & & & S & uuuu \\
+  & & & & & & & & & & \\
+  \hline 
+  Bytes & & & & & & & & & & \\
+  & & & & & & & & & & \\
+  & 1 & 7 & 8 & 1 & 9 & 1 & 7 & n & 1 & 2-4  \\
+  \hline
+
+\end{tabular}
+
+\underline{Example}
+\begin{description}
+\item @092345z4903.50N/07201.75W\_220/004g005t-07r000p000P000h50b09900wRSW
+\end{description}
+
+\vskip10ex
+
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{11}{|c|}{ }\\
+\multicolumn{11}{|c|}{Complete Weather Report Format — with Compressed Lat/Long position, no Timestamp} \\
+\multicolumn{11}{|c|}{} \\
+\multicolumn{11}{|c|}{ }\\
+\hline
+  & & & & & & & & & & \\
+  & ! & Sym   & Comp &  Comp  &  Symbol & Comp & Comp & Weather & APRS & WX \\
+  & or & Table & Lat & Long &  Code & Wind Dir  & Type & Data & Software & Unit \\
+  & = &  ID & & & & + Speed  & & & & \\
+  & & & YYYY & XXXX & \_ & & T & & S & uuuu \\
+  & & & & & & & & & & \\
+  \hline 
+  Bytes & & & & & & & & & & \\
+  & & & & & & & & & & \\
+  & 1 & 1 & 4 & 4 & 1 & 2 & 1 & n & 1 & 2-4  \\
+  & & & & & & & & & & \\
+  \hline
+
+\end{tabular}
+
+\underline{Example}
+\begin {description}
+\item =/5L!!<*e7>\_7P[g005t077r000p000P000h50b09900wRSW
+\end{description}
+
+\vskip10ex
+  
+
+
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{12}{|c|}{ }\\
+\multicolumn{12}{|c|}{Complete Weather Report Format — with Compressed Lat/Long position, with Timestamp} \\
+\multicolumn{12}{|c|}{} \\
+\multicolumn{12}{|c|}{ }\\
+\hline
+  & & & & & & & & & & & \\
+  & / & Time & Sym   & Comp &  Comp  &  Symbol & Comp & Comp & Weather & APRS & WX \\
+  & or & & Table & Lat & Long &  Code & Wind Dir  & Type & Data & Software & Unit \\
+  & @ & DHM & ID & & & & + Speed  & & & & \\
+  & & HMS & & YYYY & XXXX & \_ & & T & & S & uuuu \\
+  & & & & & & & & & & & \\
+  \hline 
+  Bytes & & & & & & & & & & & \\
+  \hline
+  & & & & & & & & & & & \\
+  & 1 & 7 & 1 & 4 & 4 & 1 & 2 & 1 & n & 1 & 2-4  \\
+  & & & & & & & & & & & \\
+  \hline
+
+\end{tabular}
+
+\underline{Example}
+\begin{description}
+\item @092345z/5L!!<*e7\_7P[g005t077r000p000P000h50b09900wRSW
+\end{description}
+\end{document}
+  
+  Complete Weather Report Format — with Object and Lat/Long position
+
+  Object
 Name
 
 ;
@@ -642,6 +404,7 @@ Bytes:
 7
 
 n
+
 
 Examples
 ;BRENDAVVV*4903.50N/07201.75W_220/004g005t077r000p000P000h50b09900wRSW
@@ -735,14 +498,12 @@ The display symbol will be either:
 \item \hl{/@} Hurricane (predicted future position)
 \end{description}
 
-
-
-
-
 For example, the progress of Hurricane Brenda could be expressed in Object
 Reports like these:
-;BRENDAVVV*092345z4903.50N\07202.75W@088/036/HC/150^200/0980>090&030%040
-;BRENDAVVV*100045z4905.50N/07201.75W@101/047/HC/104^123/0980>065&020%040
+\begin{description}
+\item ;BRENDAVVV*092345z4903.50N\07202.75W@088/036/HC/150^200/0980>090&030%040
+\item ;BRENDAVVV*100045z4905.50N/07201.75W@101/047/HC/104^123/0980>065&020%040
+\end{description}
 
 % Editors note: seems to be a completely hypothetical hurricane in an
 % inland portion of Quebec Province
