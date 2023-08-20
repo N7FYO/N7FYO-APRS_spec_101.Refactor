@@ -344,73 +344,49 @@ Weather Report.
   \hline
 
 \end{tabular}
+\vskip 5ex
 
 \underline{Example}
 \begin{description}
 \item @092345z/5L!!<*e7\_7P[g005t077r000p000P000h50b09900wRSW
 \end{description}
-\end{document}
+
+\vskip 10ex
   
-  Complete Weather Report Format — with Object and Lat/Long position
-
-  Object
-Name
-
-;
-
-*
-
-Time
-DHM /
-HMS
-
-Lat
-
-Sym
-Table
-ID
-
-Long
-
-Symbol
-Code
-
-Wind
-Directn/
-Speed
-
-Weather
-Data
-
-_
-Bytes:
-
-1
-
-9
-
-1
-
-7
-
-8
-
-1
-
-9
-
-1
-
-7
-
-n
 
 
-Examples
-;BRENDAVVV*4903.50N/07201.75W_220/004g005t077r000p000P000h50b09900wRSW
-;BRENDAVVV*092345z4903.50N/07201.75W_220/004g005b0990
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{13}{|c|}{ }\\
+\multicolumn{13}{|c|}{Complete Weather Report Format — with Object and Lat/Long position} \\
+\multicolumn{13}{|c|}{} \\
+\multicolumn{13}{|c|}{ }\\
+\hline
+  & & & & & & & & & & & & \\
+  & & Object & & Time & Lat & Sym & Long & Symbol & Wind & Weather & APRS & WX \\
+  & & Name & & DHM/ & & Table & & & Directn/ & Data & Software & Unit \\
+  & & & & HMS & & ID & & & Speed & & & \\
+  & & & & & & & & & &  & S & uuuu \\
+  & ; & & * & & & & & \_ & & & & \\
+  & & & & & & & & & & & & \\
+  \hline 
+  Bytes & & & & & & & & & & & & \\
+  \hline
+  & & & & & & & & & & & & \\
+  & 1 & 9 & 1 & 7 & 8 & 1 & 9 & 1 & 7 & n & 1 & 2-4  \\
+  & & & & & & & & & & & & \\
+  \hline
 
+\end{tabular}
 
+\vskip 5ex
+
+\underline{Examples}
+
+\begin{description}
+\item ;BRENDAVVV*4903.50N/07201.75W\_220/004g005t077r000p000P000h50b09900wRSW
+\item ;BRENDAVVV*092345z4903.50N/07201.75W\_220/004g005b0990
+\end{description}
 
 \section{Storm Data}
 
@@ -418,55 +394,27 @@ APRS reports can contain data relating to tropical storms, hurricanes and
 tropical depressions. The format of the data is as follows:
 
 % begin chart
-Storm Data
 
-Direction
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{11}{|c|}{ } \\
+  \multicolumn{11}{|c|}{Storm Data} \\
+  \hline
+  & & & & & & & & & & \\
+  & & & & Storm & Sustained  & Peak & Central  & Radius & Radius & Radius \\
+  & & & & Type & Wind & Wind & Pressure  & Hurricane & Tropical & Whole \\
+  & Direction & / & Speed & & Speed & Gusts & & Winds & Storm & Gale  \\
+  & & & & & & & & & & \\
+  & & & & & & & & & & \\
+  & & & & /ST & /www & \textasciicircum GGG & /ppp & >RRR & \&rrr & \%ggg  \\ 
+  \hline
+  & & & & & & & & & & \\ 
+  Bytes & 3 & 1 & 3 & 3 & 4 & 4 & 5 & 4 & 4 & 4 \\
+  & & & & & & & & & & \\
+  \hline
+\end{tabular}
 
-Bytes:
-
-3
-
-/
-
-Storm
-Type
-
-Sustained
-Wind
-Speed
-
-Peak
-Wind
-Gusts
-
-Central
-Pressure
-
-Radius
-Hurricane
-Winds
-
-/ST
-
-/www
-
-^GGG
-
-/pppp
-
->RRR
-
-Speed
-
-1
-
-3
-
-3
-
-
-% End Chart
-
+\vskip 5ex
 Where ST is one of:
 
 \begin{description}
@@ -494,16 +442,17 @@ included in a Position Report or an Item Report.
 The display symbol will be either:
 
 \begin{description}
-\item \hl{\@} Hurricane/Tropical Storm (current position)
+\item \hl{\textbackslash@} Hurricane/Tropical Storm (current position)
 \item \hl{/@} Hurricane (predicted future position)
 \end{description}
 
 For example, the progress of Hurricane Brenda could be expressed in Object
 Reports like these:
-\begin{description}
-\item ;BRENDAVVV*092345z4903.50N\07202.75W@088/036/HC/150^200/0980>090&030%040
-\item ;BRENDAVVV*100045z4905.50N/07201.75W@101/047/HC/104^123/0980>065&020%040
-\end{description}
+
+\begin{verbatim}
+;BRENDAVVV*092345z4903.50N\07202.75W@088/036/HC/150^200/0980>090&030%040
+;BRENDAVVV*100045z4905.50N/07201.75W@101/047/HC/104^123/0980>065&020%040
+\end{verbatim}
 
 % Editors note: seems to be a completely hypothetical hurricane in an
 % inland portion of Quebec Province
