@@ -15,6 +15,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{ascii}
 
+
+
 % \usepackage{newtxtt}
 %\makeatletter
 %\renewcommand{\verbatim@font}{\usefont{T1}{newtxtt}{m}{n}}
@@ -37,6 +39,14 @@
 % \usepackage{AnonymousPro}
 % \newfontfamily\TypeWriterFont[ttdefault=true]{AnonymousPro}
 \newcommand{\TypeWriterFont}[0]{\texttt}
+
+% Make height of the table rows a bit more
+
+\newcommand{\arrystrchfactor}[0]{1.5}
+% \renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{\arrystrchfactor}
+
+
 
 \title{AUTOMATIC POSITION REPORTING SYSTEM}
 \date{29 August 2000}

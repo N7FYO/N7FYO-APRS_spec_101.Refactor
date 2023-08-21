@@ -35,7 +35,9 @@ follows:
 % begin chart
 % top label figure: APRS Data Type Identifiers
 
+
 \begin{table}[htbp]
+
 \caption{\bf{APRS Data Type Identifiers}}
 \begin{tabular} {|l|l|}
     \hline
@@ -45,10 +47,11 @@ follows:
      \hline
      0x2d & Old Mic-E Data (Rev 0 beta) \\
      \hline
-     ! & Position without timestamp (no APRS messaging), or Ultimeter 2000 WX Station \\
+     $!$ & Position without timestamp (no APRS messaging), or Ultimeter 2000 WX Station \\
      \hline
-     \textquotedbl     & [Unused] \\
+     \textquotedbl     & [Unused] \\     
      \hline
+
      \# & Peet Bros U-II Weather Station \\
      \hline
      \$ & Raw GPS data or Ultimeter 2000 \\
@@ -63,7 +66,7 @@ follows:
      \hline
      ) & Item \\
      \hline
-     \* & Peet Bros U-II Weather Station \\
+     * & Peet Bros U-II Weather Station \\
      \hline
      + & \it{[Reserved} \textemdash Shelter data with time] \\
      \hline
@@ -83,6 +86,7 @@ follows:
      \hline
 \end{tabular}
 \end{table}
+
 
 \begin{table}[htbp]
 \caption{\bf{APRS Data Type Identifiers, Continued}}
@@ -187,9 +191,16 @@ types of APRS Data and APRS Data Extension.
 \newpage
 % Begin Table
 
-\begin{table}[htbp]
-  \caption{Possible APRS Data and Extension}
+% \begin{table}[htbp]
+%   \caption{Possible APRS Data and Extension}
+
+\renewcommand{\arraystretch}{1.1}
   \begin{tabular}{|r|l|l|}
+    \hline
+    \hline
+    \multicolumn{3}{|c|}{Possible APRS Data and Extension} \\
+    \hline
+    \hline
     \hline
     & Possible APRS Data & Possible APRS Data Extension \\
     \hline
@@ -285,9 +296,10 @@ types of APRS Data and APRS Data Extension.
     \hline
     
   \end{tabular}
-\end{table}
+% \end{table}
 
-
+  % Return to global array Stretch
+\renewcommand{\arraystretch}{\arrystrchfactor}
 
 \clearpage
 
