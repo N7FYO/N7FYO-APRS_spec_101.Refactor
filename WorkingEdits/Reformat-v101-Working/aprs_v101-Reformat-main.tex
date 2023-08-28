@@ -28,10 +28,11 @@
 % Doing this because original document uses courier mono for a specific purpose
 % I usually use verbatim as crutch to get something with weird symbols to work right.
 
-\usepackage{fontspec}
-\setmainfont{DejaVu Serif}
-\setsansfont{DejaVu Sans}
-\setmonofont{DejaVu Sans Mono}
+% turn off fonts temporily to try out tex4ht
+ \usepackage{fontspec}
+ \setmainfont{DejaVu Serif}
+ \setsansfont{DejaVu Sans}
+ \setmonofont{DejaVu Sans Mono}
 % \makeatletter
 
 \newcommand{\setverbatimfont}[1]{\def\m@mverbfont{#1}}
