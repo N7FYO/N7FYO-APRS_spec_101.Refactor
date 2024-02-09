@@ -14,7 +14,8 @@
 \usepackage{multirow}
 \usepackage[T1]{fontenc}
 \usepackage{ascii}
-
+\usepackage{hyperref}
+\usepackage{float}
 
 
 % \usepackage{newtxtt}
@@ -47,7 +48,17 @@
 % \renewcommand{\arraystretch}{1.5}
 \renewcommand{\arraystretch}{\arrystrchfactor}
 
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
 
+\newcommand{\raisedrule}[2][0pt]{%
+  \leaders
+  \hbox{%
+    \makebox[0pt][l]{\rule[#1]{1pt}{#2}}%
+    \rule[\dimexpr#1+.4ex]{1pt}{#2}%
+  }\hfill}
 
 \title{AUTOMATIC POSITION REPORTING SYSTEM}
 \date{29 August 2000}
@@ -56,7 +67,9 @@
 \begin{document}
 
 \maketitle
-
+\tableofcontents
+%\listoftables
+% \listoffigures
 
 
  \include{aprs_v101-Reformat-covers}
@@ -103,9 +116,9 @@
 \include{aprs_v101-Reformat-Part1-Chapter7.tex}
 
 % Part 1 Chapter 8
-% \include{aprs_v101-Reformat-Part1-Chapter8.tex}
-\chapter{}
-Forthcoming: In Preparation
+\include{aprs_v101-Reformat-Part1-Chapter8.tex}
+% \chapter{}
+% Forthcoming: In Preparation
 
 % Part 1 Chapter 9
 % \include{aprs_v101-Reformat-Part1-Chapter9.tex}
@@ -170,7 +183,7 @@ Forthcoming: In Preparation
 
 % Part 1 Chapter 20
 % \include{aprs_v101-Reformat-Part1-Chapter20.tex}
-\chapter{}
+\chapter{APRS Symbols}
 Forthcoming: In Preparation
 
 % Part 2
